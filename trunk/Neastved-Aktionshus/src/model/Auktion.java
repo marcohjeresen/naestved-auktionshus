@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author Madsen
@@ -12,10 +15,10 @@ public class Auktion {
     private Vare vare;
     private Bruger saelger;
     private Bud startbud;
-    private DateTime sluttidspunkt;
+    private Date sluttidspunkt;
     ArrayList<Bud> budhistorik = new ArrayList<Bud>();
 
-    public Auktion(Vare vare, Bruger saelger, Bud startbud, DateTime sluttidspunkt) {
+    public Auktion(Vare vare, Bruger saelger, Bud startbud, Date sluttidspunkt) {
         this.vare = vare;
         this.saelger = saelger;
         this.startbud = startbud;
@@ -46,19 +49,19 @@ public class Auktion {
         this.startbud = startbud;
     }
 
-    public DateTime getSluttidspunkt() {
+    public Date getSluttidspunkt() {
         return sluttidspunkt;
     }
 
-    public void setSluttidspunkt(DateTime sluttidspunkt) {
+    public void setSluttidspunkt(Date sluttidspunkt) {
         this.sluttidspunkt = sluttidspunkt;
     }
 
-    public <any> getBudhistorik() {
+    public ArrayList<Bud> getBudhistorik() {
         return budhistorik;
     }
 
-    public void setBudhistorik(<any> budhistorik) {
+    public void setBudhistorik(ArrayList<Bud> budhistorik) {
         this.budhistorik = budhistorik;
     }
             
