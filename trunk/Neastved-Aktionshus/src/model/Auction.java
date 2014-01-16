@@ -21,7 +21,7 @@ public class Auction {
     public Auction(Product product, User user, Bid bid, Date time) {
         this.product = product;
         this.user = user;
-        this.bid = bid;
+        this.bid = null;
         this.time = time;
         bidingHistory = new ArrayList<Bid>();
     }
