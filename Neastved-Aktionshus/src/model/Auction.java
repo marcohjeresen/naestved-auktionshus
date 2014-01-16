@@ -25,6 +25,16 @@ public class Auction {
         this.time = time;
         bidingHistory = new ArrayList<Bid>();
     }
+    
+    public void addBid(Bid bid){
+        if (bidingHistory.isEmpty()) {
+            setBid(bid);
+            bidingHistory.add(bid);
+        }else {
+            bidingHistory.add(bid);
+        }
+        
+    }
 
     public Product getProduct() {
         return product;
