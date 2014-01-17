@@ -26,15 +26,18 @@ public class Auction {
         bidingHistory = new ArrayList<Bid>();
     }
     
-//    public void addBid(Bid bid){
-//        if (bidingHistory.isEmpty()) {
-//            setAmount(bid);
-//            bidingHistory.add(bid);
-//        }else {
-//            bidingHistory.add(bid);
-//        }
-//        
-//    }
+    public double getLatestBid(){
+        double bid;
+        if (bidingHistory.isEmpty()) {
+            bid = startbid;
+            
+        }else{
+            bid = bidingHistory.get(bidingHistory.size() - 1).getAmount();
+        }
+        return bid;
+    }
+    
+
 
     public Product getProduct() {
         return product;

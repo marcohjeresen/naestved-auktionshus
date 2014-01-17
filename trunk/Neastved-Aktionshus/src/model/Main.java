@@ -7,6 +7,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import view.Loggin;
 
 /**
  *
@@ -132,6 +133,9 @@ public class Main {
         auctionList.add(auk7);
         auctionList.add(auk8);
         
+        
+        Loggin login = new Loggin(userList, auctionList);
+        login.setVisible(true);
         
         
         
