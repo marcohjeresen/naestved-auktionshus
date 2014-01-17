@@ -21,8 +21,49 @@ public class Main {
         userList.add(Bent);
         userList.add(Kurt);
         
+        String manufacturer = "ItalieWine";
+        String country = "Italie";
+        double yearOfProduction = 1890;
+        String grapes = "RedGrapes";
+        double percent = 13;
+        double bottleSize = 1;
+        int quantity = 3;
+        String title = "Wine";
+        String description = "Flot Flot vin";
+        double estimatedPrice = 13000;
+                
+//     protected String title;
+//    protected String description;
+//    protected double estimatedPrice;
+        Wine vin1 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice);
         
+        manufacturer = "Denmark Wine";
+        country = "Denmark";
+        yearOfProduction = 1700;
+        grapes = "Hvide Druer";
+        percent = 15;
+        bottleSize = 0.75;
+        quantity = 4;
+        title = "Wine";
+        description = "Gammel vin fra mormorstid";
+        estimatedPrice = 15000;
+        Wine vin2 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice);
         
+        String materials = "Bøetræ";
+        String dimensions = "50 * 200";
+        title = "Furniture";
+        description = "Arve Stykke";
+        estimatedPrice = 5000;
+        
+        Furniture møbel = new Furniture(materials, dimensions, title, description, estimatedPrice);
+        
+        materials = "egetræ";
+        dimensions = "50 * 250";
+        title = "Furniture";
+        description = "Nedslidt sofa";
+        estimatedPrice = 1000;
+        
+        Furniture møbel2 = new Furniture(materials, dimensions, title, description, estimatedPrice);
         
         
     };
