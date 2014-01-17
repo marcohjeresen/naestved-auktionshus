@@ -14,14 +14,14 @@ import java.util.Date;
 public class Auction {
     private Product product;
     private User user;
-    private double amount;
+    private double startbid;
     private Date time;
     ArrayList<Bid> bidingHistory;
 
-    public Auction(Product product, User user, double amount, Date time) {
+    public Auction(Product product, User user, double startbid, Date time) {
         this.product = product;
         this.user = user;
-        this.amount = amount;
+        this.startbid = startbid;
         this.time = time;
         bidingHistory = new ArrayList<Bid>();
     }
@@ -52,12 +52,12 @@ public class Auction {
         this.user = user;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getStartbid() {
+        return startbid;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setStartbid(double startbid) {
+        this.startbid = startbid;
     }
 
     public Date getTime() {
