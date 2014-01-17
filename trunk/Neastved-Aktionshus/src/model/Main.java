@@ -7,6 +7,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+
 
 /**
  *
@@ -16,10 +18,15 @@ public class Main {
     public static void main(String[] args) {
         User Kurt = new User("Kurt", "Parkvej 170", 24243546);
         User Bent = new User("Bent", "Nøregade", 464646464);
+        User Jens = new User("Bent", "Nøregade", 464646464);
         
         ArrayList<User> userList = new ArrayList<>();
         userList.add(Bent);
         userList.add(Kurt);
+        userList.add(Jens);
+        
+        Calendar cal = Calendar.getInstance();
+        cal.set(2014, 01, 20, 16, 30);
         
         String manufacturer = "ItalieWine";
         String country = "Italie";
@@ -101,6 +108,15 @@ public class Main {
             estimatedPrice = 5000000;
         
         Painting billede2 = new Painting(artist, year, style, size, title, description, estimatedPrice);
+        
+        Auction auk3 = new Auction(smykke1, Jens, 1000, cal.getTime());
+        cal.set(2014, 01, 19, 12, 10);
+        Auction auk4 = new Auction(smykke2, Jens, 5000, cal.getTime());
+        cal.set(2014, 01, 17, 14, 20);
+        Auction auk5 = new Auction(billede1, Jens, 8000000, cal.getTime());
+        cal.set(2014, 01, 20, 15, 15);
+        Auction auk6 = new Auction(billede2, Jens, 4000000, cal.getTime());
+        
     };
-    
+        
 }
