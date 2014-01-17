@@ -5,18 +5,51 @@
  */
 
 package view;
-
+import java.awt.Dimension;
+import java.util.ArrayList;
+import model.*;
 /**
  *
  * @author markh_000
  */
 public class MainFrame extends javax.swing.JFrame {
+    private ArrayList<Auction> auctionsListe;
+    private ArrayList<AuctionPanel> apListe;
+    private User buyer;
+    
 
     /**
      * Creates new form main
      */
-    public MainFrame() {
+    public MainFrame(ArrayList<Auction> auctionsListe, User buyer) {
+        
         initComponents();
+        this.auctionsListe = auctionsListe;
+        apListe = new ArrayList<>();
+        this.buyer = buyer;
+        this.setTitle(buyer.getName());
+        createPanels();
+        
+    }
+    private void createPanels(){
+        int x = 0;
+        int y = 0;
+        int height = 0;
+        for (Auction auction : auctionsListe) {
+            AuctionPanel ap = new AuctionPanel(auction, this);
+            ap.setLocation(x, y);
+            jPanel_SamletAktion.add(ap);
+            y += ap.getHeight();
+            ap.setVisible(true);
+            height = ap.getHeight();
+            
+        }
+        if (auctionsListe.size() > 4) {
+            int width = jPanel_SamletAktion.getWidth();
+            height *= auctionsListe.size();
+            jPanel_SamletAktion.setPreferredSize(new Dimension(width, height));
+            
+        }
     }
 
     /**
@@ -28,44 +61,50 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel_SamletAktion = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("jButton1");
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Næstved Aktionshus");
+
+        javax.swing.GroupLayout jPanel_SamletAktionLayout = new javax.swing.GroupLayout(jPanel_SamletAktion);
+        jPanel_SamletAktion.setLayout(jPanel_SamletAktionLayout);
+        jPanel_SamletAktionLayout.setHorizontalGroup(
+            jPanel_SamletAktionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 534, Short.MAX_VALUE)
+        );
+        jPanel_SamletAktionLayout.setVerticalGroup(
+            jPanel_SamletAktionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 435, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanel_SamletAktion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -101,14 +140,14 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel_SamletAktion;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
