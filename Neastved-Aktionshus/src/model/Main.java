@@ -32,9 +32,7 @@ public class Main {
         String description = "Flot Flot vin";
         double estimatedPrice = 13000;
                 
-//     protected String title;
-//    protected String description;
-//    protected double estimatedPrice;
+
         Wine vin1 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice);
         
         manufacturer = "Denmark Wine";
