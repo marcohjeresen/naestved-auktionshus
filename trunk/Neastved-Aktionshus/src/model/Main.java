@@ -63,7 +63,44 @@ public class Main {
         
         Furniture møbel2 = new Furniture(materials, dimensions, title, description, estimatedPrice);
         
+        String metal = "Sølv";
+        String gemstone = "Diamant";
+        String stamp = "Bente";
+        title = "Jewellery";
+        description = "Mega flot ring";
+        estimatedPrice = 2000;
         
+        
+        Jewellery smykke1 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice);
+        
+        metal = "Guld";
+        gemstone = "Ædelsten";
+        stamp = "Gucci";
+        title = "Jewellery";
+        description = "Gucci ring";
+        estimatedPrice = 10000;
+        
+        Jewellery smykke2 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice);
+        
+            String artist = "Vincent Van Gogh";
+            int year = 1887;
+            String style = "Den afslappede stil" ;
+            String size = "1 * 1";
+            title = "Painting";
+            description = "Super godt afslappede billede malet af selveste Vincent Van Gogh";
+            estimatedPrice = 10000000;
+        
+        Painting billede1 = new Painting(artist, year, style, size, title, description, estimatedPrice);
+        
+            artist = "Vincent Van Gogh";
+            year = 1889;
+            style = "Den naturlige stil" ;
+            size = "2 * 2";
+            title = "Painting";
+            description = "Masser af skov på dette mægtige billede af Vincent Van Gogh";
+            estimatedPrice = 5000000;
+        
+        Painting billede2 = new Painting(artist, year, style, size, title, description, estimatedPrice);
     };
     
 }
