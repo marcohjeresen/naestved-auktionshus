@@ -11,9 +11,9 @@ package model;
  * @author markh_000
  */
 public class Product {
-    protected String title;
-    protected String description;
-    protected double estimatedPrice;
+    private String title;
+    private String description;
+    private double estimatedPrice;
 
 //vi vælger af lave dem protected så vi kan tilgå variablerne fra underklasser
     public Product(String title, String description, double estimatedPrice) {
