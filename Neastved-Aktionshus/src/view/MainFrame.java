@@ -52,6 +52,9 @@ public class MainFrame extends javax.swing.JFrame {
             jScrollPane1.setPreferredSize(new Dimension(width, height));
         }
     }
+    public User getBuyer(){
+        return buyer;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -36,6 +36,19 @@ public class Auction {
         }
         return bid;
     }
+    public void setLatesBid(Bid bid) throws Exception{
+        if (bidingHistory.isEmpty() && bid.getAmount() > startbid) {
+            bidingHistory.add(bid);
+            
+        }else if (!bidingHistory.isEmpty() && bid.getAmount() > getLatestBid()) {
+            bidingHistory.add(bid);
+            
+        }else{
+            throw new Exception("Budet er nød til at være højere ind det nuværende og/eller Startbud");
+        }
+        
+        
+    }
     
 
 
