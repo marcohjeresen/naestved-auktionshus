@@ -3,35 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
+
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Set;
 import model.*;
+
 /**
  *
  * @author markh_000
  */
 public class MainFrame extends javax.swing.JFrame {
+
     private ArrayList<Auction> auctionsListe;
     private ArrayList<AuctionPanel> apListe;
     private User buyer;
-    
+    private int i;
 
     /**
      * Creates new form main
      */
     public MainFrame(ArrayList<Auction> auctionsListe, User buyer) {
-        
+
         initComponents();
         this.auctionsListe = auctionsListe;
         apListe = new ArrayList<>();
         this.buyer = buyer;
         this.setTitle(buyer.getName());
         createPanels();
-        
+
     }
-    private void createPanels(){
+
+    private void createPanels() {
         int x = 0;
         int y = 0;
         int height = 0;
@@ -42,7 +46,7 @@ public class MainFrame extends javax.swing.JFrame {
             y += ap.getHeight();
             ap.setVisible(true);
             height = ap.getHeight();
-            
+
         }
         if (auctionsListe.size() > 4) {
             int width = jPanel_SamletAktion.getWidth();
@@ -52,7 +56,8 @@ public class MainFrame extends javax.swing.JFrame {
             jScrollPane1.setPreferredSize(new Dimension(width, height));
         }
     }
-    public User getBuyer(){
+
+    public User getBuyer() {
         return buyer;
     }
 
@@ -97,6 +102,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jComboBox1MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,11 +149,17 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Seek seek = new Seek(auctionsListe);
-jComboBox1.removeAllItems();
-jComboBox1.addItem(seek.getProdukt());
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MousePressed
+         jComboBox1.removeAllItems();
+        Search search = new Search(auctionsListe);
+        for (Object s : search.getProdukt()) {
+            
+            jComboBox1.addItem(s);
+        }
+    }//GEN-LAST:event_jComboBox1MousePressed
 
     /**
      * @param args the command line arguments
@@ -175,7 +191,7 @@ jComboBox1.addItem(seek.getProdukt());
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }
