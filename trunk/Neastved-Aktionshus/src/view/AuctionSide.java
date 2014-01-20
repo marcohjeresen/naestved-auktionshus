@@ -3,8 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
+
+import model.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +19,99 @@ package view;
  */
 public class AuctionSide extends javax.swing.JFrame {
 
+    private Product product;
+    private Auction akt;
+    private User user;
+
     /**
      * Creates new form AuctionSide
      */
-    public AuctionSide() {
+    public AuctionSide(Auction akt , User user) {
         initComponents();
+        this.akt = akt;
+        product = akt.getProduct();
+        this.user = user;
+        
+        fillLabels();
+    }
+
+    private void removeLabels() {
+        if (product instanceof Painting) {
+            jLabel9.setVisible(false);
+            jLabel10.setVisible(false);
+
+
+        } else if (product instanceof Furniture) {
+            jLabel7.setVisible(false);
+            jLabel8.setVisible(false);
+            jLabel9.setVisible(false);
+            jLabel10.setVisible(false);
+
+
+        } else if (product instanceof Jewellery) {
+            jLabel8.setVisible(false);
+            jLabel9.setVisible(false);
+            jLabel10.setVisible(false);
+ 
+
+        }
+    }
+
+    private void fillLabels() {
+        removeLabels();
+        setLatestBid();
+        jLabel_sælger.setText("Sælger: "+ akt.getUser().getName());
+        jLabel2.setText("Title: " + product.getTitle());
+        String ntime = dateFormat(akt.getTime());
+        jLabel1_Sluttidspunkt.setText("Ends: " + ntime);
+        jLabel_Estimere.setText("Estimated Value: " + product.getEstimatedPrice());
+        if (product instanceof Painting) {
+            Painting p = (Painting) product;
+            jLabel3.setText("Artist: " + p.getArtist());
+            jLabel4.setText("Year: " + p.getYear());
+            jLabel5.setText("Stilart: " + p.getStyle());
+            jLabel6.setText("Størrelse: " + p.getSize());
+            jLabel7.setText("Beskrivelse: " + p.getDescription());
+
+        } else if (product instanceof Wine) {
+            Wine w = (Wine) product;
+            jLabel2.setText("Navn: " + w.getTitle());
+            jLabel3.setText("Producent: " + w.getManufacturer());
+            jLabel4.setText("Land: " + w.getCountry());
+            jLabel5.setText("Year: " + w.getYearOfProduction());
+            jLabel6.setText("Druer: " + w.getGrapes());
+            jLabel7.setText("Procent: " + w.getPercent());
+            jLabel8.setText("Bottle Size: " + w.getBottleSize() + "L.");
+            jLabel9.setText("Quantity: " + w.getQuantity());
+            jLabel10.setText("Beskrivelse: " + w.getDescription());
+
+        } else if (product instanceof Jewellery) {
+            Jewellery j = (Jewellery) product;
+            jLabel2.setText("Navn: " + j.getTitle());
+            jLabel3.setText("Metal: " + j.getMetal());
+            jLabel4.setText("Ædelsten: " + j.getGemstone());
+            jLabel5.setText("Stempel: " + j.getStamp());
+            jLabel6.setText("Beskrivelse: " + j.getDescription());
+
+        } else if (product instanceof Furniture) {
+            Furniture f = (Furniture) product;
+            jLabel2.setText("Navn: " + f.getTitle());
+            jLabel3.setText("Matrialer: "+ f.getMaterials());
+            jLabel4.setText("Dimensioner: "+ f.getDimensions());
+            jLabel5.setText("Beskrivelse: "+ f.getDescription());
+            
+        }
+
+    }
+
+    public void setLatestBid() {
+        jTextArea1.setText("Latest Bid: " + akt.getLatestBid());
+    }
+
+    private String dateFormat(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM-YYYY HH:mm");
+        String str = sdf.format(date);
+        return str;
     }
 
     /**
@@ -38,7 +133,7 @@ public class AuctionSide extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel_Estimere = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton_byd = new javax.swing.JButton();
@@ -67,13 +162,18 @@ public class AuctionSide extends javax.swing.JFrame {
 
         jLabel10.setText("jLabel10");
 
-        jLabel11.setText("jLabel11");
+        jLabel_Estimere.setText("jLabel11");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton_byd.setText("Byd 100 Kr.");
+        jButton_byd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_bydActionPerformed(evt);
+            }
+        });
 
         jLabel_sælger.setText("Sælger:");
 
@@ -87,8 +187,14 @@ public class AuctionSide extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_byd))
+                        .addGap(0, 184, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel_sælger, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(jLabel_Estimere, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(jLabel_sælger, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,13 +207,7 @@ public class AuctionSide extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1_Sluttidspunkt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_byd))
-                        .addGap(0, 184, Short.MAX_VALUE)))
+                            .addComponent(jLabel1_Sluttidspunkt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -136,30 +236,38 @@ public class AuctionSide extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11))
+                        .addComponent(jLabel10))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_Estimere)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton_byd)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton_bydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bydActionPerformed
+        try {
+            double latesbid = akt.getLatestBid();
+            latesbid += 100;
+            akt.setLatesBid(new Bid(user, Calendar.getInstance().getTime(), latesbid));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
+        }
+    }//GEN-LAST:event_jButton_bydActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_byd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel1_Sluttidspunkt;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -169,6 +277,7 @@ public class AuctionSide extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_Estimere;
     private javax.swing.JLabel jLabel_sælger;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
