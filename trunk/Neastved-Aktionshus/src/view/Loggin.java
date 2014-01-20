@@ -87,14 +87,11 @@ private ArrayList<Auction> auctionList;
         for (User user : userList) {
             if (user.getName().equals(jComboBox1.getSelectedItem())) {
                 buyer = user;
-                
-                
             }
-            
         }
         MainFrame mf = new MainFrame(auctionList, buyer);
         mf.setVisible(true);
-        
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
