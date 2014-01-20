@@ -7,6 +7,7 @@ package view;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 import model.*;
 
@@ -44,6 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
             AuctionPanel ap = new AuctionPanel(auction, this);
             ap.setLocation(x, y);
             jPanel_SamletAktion.add(ap);
+
             y += ap.getHeight();
             ap.setVisible(true);
             height = ap.getHeight();
@@ -58,10 +60,15 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
+    private void removePanels() {
+
+    }
+
     public User getBuyer() {
         return buyer;
     }
-    private void setJcombobox(){
+
+    private void setJcombobox() {
         jComboBox1.removeAllItems();
         Search search = new Search(auctionsListe);
         for (Object s : search.getProdukt()) {
@@ -111,11 +118,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Type:" }));
-        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jComboBox1MousePressed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,11 +157,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MousePressed
-        
-    }//GEN-LAST:event_jComboBox1MousePressed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

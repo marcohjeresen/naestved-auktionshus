@@ -106,9 +106,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jComboBox1MousePressed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
