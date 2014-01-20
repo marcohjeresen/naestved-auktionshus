@@ -92,6 +92,10 @@ public class Auction {
         this.bidingHistory = bidingHistory;
     }
 
+    public void add(Auction auction) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
     
 }
