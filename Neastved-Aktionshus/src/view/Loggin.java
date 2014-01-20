@@ -8,6 +8,7 @@ package view;
 
 import java.util.ArrayList;
 import model.Auction;
+import model.Search;
 import model.User;
 
 /**
@@ -17,6 +18,7 @@ import model.User;
 public class Loggin extends javax.swing.JFrame {
 private ArrayList<User> userList;
 private ArrayList<Auction> auctionList;
+    private ArrayList<Auction> auctionsListe;
     /**
      * Creates new form Loggin
      */
