@@ -5,15 +5,19 @@
  */
 package model;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.Timer;
 import view.Loggin;
+
 
 /**
  *
  * @author markh_000
  */
 public class Main {
+    
 
     public static void main(String[] args) {
         User Kurt = new User("Kurt", "Parkvej 170", 24243546);
@@ -136,8 +140,6 @@ public class Main {
         
         Loggin login = new Loggin(userList, auctionList);
         login.setVisible(true);
-        
-        
         
         
         
