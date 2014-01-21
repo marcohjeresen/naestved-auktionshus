@@ -21,6 +21,8 @@ public class MainFrame extends javax.swing.JFrame {
     private ArrayList<AuctionPanel> apListe;
     private User buyer;
     private int i;
+    private Auction at;
+
 
     /**
      * Creates new form main
@@ -34,6 +36,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.setTitle(buyer.getName());
         createPanels();
         setJcombobox();
+        
+        
 
     }
 
@@ -60,9 +64,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
-    private void removePanels() {
-
-    }
 
     public User getBuyer() {
         return buyer;
@@ -76,6 +77,9 @@ public class MainFrame extends javax.swing.JFrame {
             jComboBox1.addItem(s);
         }
     }
+//    private void timerAktion(){
+//        
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

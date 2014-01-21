@@ -22,6 +22,7 @@ public class AuctionSide extends javax.swing.JFrame {
     private Product product;
     private Auction akt;
     private User user;
+    
 
     /**
      * Creates new form AuctionSide
@@ -31,6 +32,7 @@ public class AuctionSide extends javax.swing.JFrame {
         this.akt = akt;
         product = akt.getProduct();
         this.user = user;
+        
         
         fillLabels();
     }

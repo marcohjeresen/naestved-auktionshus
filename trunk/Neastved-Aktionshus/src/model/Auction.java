@@ -4,8 +4,12 @@
  */
 package model;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.Timer;
+import view.AuctionPanel;
 
 /**
  *
@@ -17,6 +21,7 @@ public class Auction {
     private double startbid;
     private Date time;
     ArrayList<Bid> bidingHistory;
+    
 
     public Auction(Product product, User user, double startbid, Date time) {
         this.product = product;
@@ -49,6 +54,7 @@ public class Auction {
         
         
     }
+    
     
 
 
