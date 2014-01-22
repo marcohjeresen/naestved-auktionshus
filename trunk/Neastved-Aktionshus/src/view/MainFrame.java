@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TimerTask;
 import model.*;
 
 /**
@@ -22,6 +23,7 @@ public class MainFrame extends javax.swing.JFrame {
     private User buyer;
     private int i;
     private Auction at;
+    
 
 
     /**
@@ -36,6 +38,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.setTitle(buyer.getName());
         createPanels();
         setJcombobox();
+ 
+        
         
         
 
@@ -77,9 +81,9 @@ public class MainFrame extends javax.swing.JFrame {
             jComboBox1.addItem(s);
         }
     }
-//    private void timerAktion(){
-//        
-//    }
+    
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.

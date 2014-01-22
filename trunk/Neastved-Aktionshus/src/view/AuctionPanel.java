@@ -8,6 +8,7 @@ package view;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimerTask;
 import model.*;
 
 /**
@@ -30,6 +31,7 @@ public class AuctionPanel extends javax.swing.JPanel {
         product = akt.getProduct();
         this.setSize(535, 138);
         fillLabels();
+        start_timer();
         
     }
     
@@ -70,12 +72,25 @@ public class AuctionPanel extends javax.swing.JPanel {
     }
     public void setLatestBid(){
         jLabel_sisdtebud.setText("Latest Bid: "+ akt.getLatestBid());
+        
+       
     }
     
     private String dateFormat(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM-YYYY HH:mm");
         String str = sdf.format(date);
         return str;
+    }
+    public void start_timer() {
+        final java.util.Timer timer;        
+        timer = new java.util.Timer(true);
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                setLatestBid();
+//                
+            }
+        }, 100, 100);         
     }
     
 
