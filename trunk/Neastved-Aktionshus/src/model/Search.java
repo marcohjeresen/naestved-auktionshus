@@ -34,6 +34,18 @@ public class Search {
         }
       
     }
+    public void setProductlist(Object object){
+        for (int i = 0; i < auctionList.size(); i++) {
+            if (!auctionList.get(i).getProduct().getTitle().equals(object)) {
+                System.out.println(auctionList.get(i).getProduct().getTitle());
+                auctionList.add(auctionList.get(i));
+                
+            }
+            
+            
+        }
+        
+    }
     
     private void doCombo() {
         getProduct();
