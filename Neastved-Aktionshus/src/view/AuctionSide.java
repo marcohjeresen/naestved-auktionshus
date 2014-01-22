@@ -5,13 +5,18 @@
  */
 package view;
 
+import java.awt.Graphics;
+import java.nio.file.Files;
 import model.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import view.*;
 
 /**
  *
@@ -22,19 +27,21 @@ public class AuctionSide extends javax.swing.JFrame {
     private Product product;
     private Auction akt;
     private User user;
-    
+    private int størrelse;
 
     /**
      * Creates new form AuctionSide
      */
-    public AuctionSide(Auction akt , User user) {
+    public AuctionSide(Auction akt, User user) {
         initComponents();
         this.akt = akt;
         product = akt.getProduct();
         this.user = user;
-        
-        
+        størrelse = 5;
+
         fillLabels();
+        updateBid();
+
     }
 
     private void removeLabels() {
@@ -42,19 +49,16 @@ public class AuctionSide extends javax.swing.JFrame {
             jLabel9.setVisible(false);
             jLabel10.setVisible(false);
 
-
         } else if (product instanceof Furniture) {
             jLabel7.setVisible(false);
             jLabel8.setVisible(false);
             jLabel9.setVisible(false);
             jLabel10.setVisible(false);
 
-
         } else if (product instanceof Jewellery) {
             jLabel8.setVisible(false);
             jLabel9.setVisible(false);
             jLabel10.setVisible(false);
- 
 
         }
     }
@@ -62,7 +66,7 @@ public class AuctionSide extends javax.swing.JFrame {
     private void fillLabels() {
         removeLabels();
         setLatestBid();
-        jLabel_sælger.setText("Sælger: "+ akt.getUser().getName());
+        jLabel_sælger.setText("Sælger: " + akt.getUser().getName());
         jLabel2.setText("Title: " + product.getTitle());
         String ntime = dateFormat(akt.getTime());
         jLabel1_Sluttidspunkt.setText("Ends: " + ntime);
@@ -98,22 +102,50 @@ public class AuctionSide extends javax.swing.JFrame {
         } else if (product instanceof Furniture) {
             Furniture f = (Furniture) product;
             jLabel2.setText("Navn: " + f.getTitle());
-            jLabel3.setText("Matrialer: "+ f.getMaterials());
-            jLabel4.setText("Dimensioner: "+ f.getDimensions());
-            jLabel5.setText("Beskrivelse: "+ f.getDescription());
-            
+            jLabel3.setText("Matrialer: " + f.getMaterials());
+            jLabel4.setText("Dimensioner: " + f.getDimensions());
+            jLabel5.setText("Beskrivelse: " + f.getDescription());
+
         }
 
     }
 
     public void setLatestBid() {
-        jTextArea1.setText("Latest Bid: " + akt.getLatestBid());
+        størrelse = akt.getBidingHistory().size()-5;
+        jTextArea1.setText("");
+        if (akt.getBidingHistory().size() == 0) {
+            jTextArea1.append("Start bud: " + akt.getLatestBid());
+        }else if (akt.getBidingHistory().size() <= 5) {
+            for (int i = 0; i < akt.getBidingHistory().size(); i++) {
+                jTextArea1.append("Der er bud:  " + akt.getBidingHistory().get(i).getAmount() + "  Af bruger:  " + akt.getBidingHistory().get(i).getUser().getName() + "\n");
+            }
+        } else if (akt.getBidingHistory().size() > 5) {
+            for (int i = størrelse; i < akt.getBidingHistory().size(); i++) {
+                jTextArea1.append("Der er bud:  " + akt.getBidingHistory().get(i).getAmount() + "  Af bruger:  " + akt.getBidingHistory().get(i).getUser().getName() + "\n");
+            }
+        }
     }
+
+    
 
     private String dateFormat(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM-YYYY HH:mm");
         String str = sdf.format(date);
         return str;
+    }
+
+    public void updateBid() {
+        final java.util.Timer timer;
+        timer = new java.util.Timer(true);
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                setLatestBid();
+            }
+
+        }, 100, 100);
+
     }
 
     /**
@@ -189,10 +221,8 @@ public class AuctionSide extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_byd))
-                        .addGap(184, 184, 184))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(194, 194, 194))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel_Estimere, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
@@ -209,8 +239,11 @@ public class AuctionSide extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1_Sluttidspunkt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                            .addComponent(jLabel1_Sluttidspunkt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton_byd)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,10 +276,10 @@ public class AuctionSide extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_Estimere)
                 .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_byd)
-                .addGap(40, 40, 40))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -260,6 +293,7 @@ public class AuctionSide extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
         }
+
     }//GEN-LAST:event_jButton_bydActionPerformed
 
     /**
@@ -284,4 +318,8 @@ public class AuctionSide extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    private AuctionSide() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

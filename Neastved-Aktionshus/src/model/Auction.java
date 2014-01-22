@@ -51,13 +51,13 @@ public class Auction {
         }else{
             throw new Exception("Budet er nød til at være højere ind det nuværende og/eller Startbud");
         }
-        
-        
     }
-    
-    
+//        public String getLatestBiduser(){
+//           
+//            return
+//        }
 
-
+    
     public Product getProduct() {
         return product;
     }
