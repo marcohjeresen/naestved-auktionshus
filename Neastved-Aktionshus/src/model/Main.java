@@ -112,7 +112,7 @@ public class Main {
         Painting billede2 = new Painting(artist, year, style, size, title, description, estimatedPrice);
         
         Auction auk1 = new Auction(vin1, Jens, 1000, cal.getTime());
-        cal.set(2014, 02, 15, 15, 00);
+        cal.set(2014, 00, 21, 10, 04);
         Auction auk2 = new Auction(vin2, Jens, 1500, cal.getTime());
         cal.set(2014, 02, 15, 17, 00);
         Auction auk3 = new Auction(smykke1, Jens, 1000, cal.getTime());
@@ -140,6 +140,9 @@ public class Main {
         
         Loggin login = new Loggin(userList, auctionList);
         login.setVisible(true);
+        
+        Loggin login2 = new Loggin(userList, auctionList);
+        login2.setVisible(true);
         
         
         

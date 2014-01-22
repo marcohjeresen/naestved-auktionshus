@@ -7,6 +7,7 @@ package model;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.Timer;
 import view.AuctionPanel;
@@ -16,12 +17,12 @@ import view.AuctionPanel;
  * @author Madsen
  */
 public class Auction {
+
     private Product product;
     private User user;
     private double startbid;
     private Date time;
     ArrayList<Bid> bidingHistory;
-    
 
     public Auction(Product product, User user, double startbid, Date time) {
         this.product = product;
@@ -30,26 +31,35 @@ public class Auction {
         this.time = time;
         bidingHistory = new ArrayList<Bid>();
     }
-    
-    public double getLatestBid(){
+
+    public double getLatestBid() {
         double bid;
         if (bidingHistory.isEmpty()) {
             bid = startbid;
-            
-        }else{
+
+        } else {
             bid = bidingHistory.get(bidingHistory.size() - 1).getAmount();
         }
         return bid;
     }
-    public void setLatesBid(Bid bid) throws Exception{
-        if (bidingHistory.isEmpty() && bid.getAmount() > startbid) {
-            bidingHistory.add(bid);
-            
-        }else if (!bidingHistory.isEmpty() && bid.getAmount() > getLatestBid()) {
-            bidingHistory.add(bid);
-            
-        }else{
-            throw new Exception("Budet er nød til at være højere ind det nuværende og/eller Startbud");
+
+    public void setLatesBid(Bid bid) throws Exception {
+        Calendar cal = Calendar.getInstance();
+        System.out.println(cal);
+        System.out.println(time);
+
+        if (cal.getTime().after(time)) {
+            throw new Exception("Auctinon er slut");
+        } else {
+            if (bidingHistory.isEmpty() && bid.getAmount() > startbid) {
+                bidingHistory.add(bid);
+
+            } else if (!bidingHistory.isEmpty() && bid.getAmount() > getLatestBid()) {
+                bidingHistory.add(bid);
+
+            } else {
+                throw new Exception("Budet er nød til at være højere ind det nuværende og/eller Startbud");
+            }
         }
     }
 //        public String getLatestBiduser(){
@@ -57,7 +67,6 @@ public class Auction {
 //            return
 //        }
 
-    
     public Product getProduct() {
         return product;
     }
@@ -102,6 +111,4 @@ public class Auction {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
-    
 }
