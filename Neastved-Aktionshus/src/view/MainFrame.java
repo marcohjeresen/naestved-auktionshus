@@ -69,6 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void setJcombobox() {
         jComboBox1.removeAllItems();
         Search search = new Search(auctionsListe);
+        
         for (Object s : search.getProdukt()) {
 
             jComboBox1.addItem(s);
@@ -153,9 +154,11 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Object søg = jComboBox1.getSelectedItem();
-        System.out.println(søg);
 
+        
+        
+
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
