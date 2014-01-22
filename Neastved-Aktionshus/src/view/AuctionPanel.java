@@ -29,7 +29,7 @@ public class AuctionPanel extends javax.swing.JPanel {
         this.akt = akt;
         this.mf = mf;
         product = akt.getProduct();
-        this.setSize(535, 138);
+        this.setSize(535, 140);
         fillLabels();
         starTimer();
         
@@ -37,15 +37,13 @@ public class AuctionPanel extends javax.swing.JPanel {
     
     private void removeLabels(){
         if (product instanceof Painting) {
-            jLabel_flaksestøøresle.setVisible(false);
+            jLabel_ekstra.setVisible(false);
             
         }else if(product instanceof Furniture || product instanceof Jewellery ){
-            jLabel_Artist.setVisible(false);
             jLabel_flaksestøøresle.setVisible(false);
             jLabel_year.setVisible(false);
-            
+            jLabel_ekstra.setVisible(false);
         }
-        
     }
     private void fillLabels(){
         removeLabels();
@@ -54,26 +52,33 @@ public class AuctionPanel extends javax.swing.JPanel {
         String ntime = dateFormat(akt.getTime());
         jLabel_Ends.setText("Ends: " + ntime);
         jLabel_Estimere.setText("Estimated Value: "+ product.getEstimatedPrice());
+        
         if (product instanceof Painting) {
             Painting p = (Painting)product;
             jLabel_Artist.setText("Artist: "+ p.getArtist());
-            jLabel_year.setText("Year: "+ p.getYear());
-            
+            jLabel_flaksestøøresle.setText("Year: "+ p.getYear());
+            jLabel_year.setText("Beskrivelse: "+ p.getDescription());
          
         }else if(product instanceof Wine){
             Wine w = (Wine)product;
             jLabel_Artist.setText("Quantity: " + w.getQuantity());
             jLabel_flaksestøøresle.setText("Bottle Size: "+ w.getBottleSize() + "L.");
             jLabel_year.setText("Year: "+ w.getYearOfProduction());
+            jLabel_ekstra.setText("Beskrivelse: " + w.getDescription());
+            
+        }else if (product instanceof Furniture) {
+            Furniture f =(Furniture)product;
+            jLabel_Artist.setText("Beskrivelse: " + f.getDescription());
+            
+        }else if (product instanceof Jewellery) {
+            Jewellery j = (Jewellery) product;
+            jLabel_Artist.setText("Beskrivelse: " + j.getDescription());
             
         }
-        
         
     }
     public void setLatestBid(){
         jLabel_sisdtebud.setText("Latest Bid: "+ akt.getLatestBid());
-        
-       
     }
     
     private String dateFormat(Date date){
@@ -88,7 +93,6 @@ public class AuctionPanel extends javax.swing.JPanel {
             @Override
             public void run() {
                 setLatestBid();
-//                
             }
         }, 100, 100);         
     }
@@ -114,6 +118,7 @@ public class AuctionPanel extends javax.swing.JPanel {
         jLabel_sisdtebud = new javax.swing.JLabel();
         jLabel_flaksestøøresle = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel_ekstra = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -144,35 +149,44 @@ public class AuctionPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel_ekstra.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel_year)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel_year, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel_Ends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel_Artist)
-                            .addComponent(jLabel_Titel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel_Ends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel_Artist)
+                                .addComponent(jLabel_Titel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1))
                         .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_flaksestøøresle)
-                            .addComponent(jLabel_sisdtebud)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel_Estimere)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_flaksestøøresle)
+                                    .addComponent(jLabel_sisdtebud))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel_ekstra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel_ekstra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_Titel)
@@ -188,14 +202,13 @@ public class AuctionPanel extends javax.swing.JPanel {
                     .addComponent(jLabel_flaksestøøresle))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_year)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         AuctionSide as = new AuctionSide(akt , mf.getBuyer());
         as.setVisible(true);
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -208,6 +221,7 @@ public class AuctionPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_Ends;
     private javax.swing.JLabel jLabel_Estimere;
     private javax.swing.JLabel jLabel_Titel;
+    private javax.swing.JLabel jLabel_ekstra;
     private javax.swing.JLabel jLabel_flaksestøøresle;
     private javax.swing.JLabel jLabel_sisdtebud;
     private javax.swing.JLabel jLabel_year;

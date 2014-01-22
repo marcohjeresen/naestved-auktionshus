@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -164,6 +166,7 @@ public class AuctionSide extends javax.swing.JFrame {
         }, 100, 100);
 
     }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -308,6 +311,7 @@ public class AuctionSide extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_bydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bydActionPerformed
+        
         try {
             double latesbid = akt.getLatestBid();
             latesbid += 100;
