@@ -5,18 +5,14 @@
  */
 package view;
 
-import java.awt.Graphics;
-import java.nio.file.Files;
+import java.awt.Image;
 import model.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
-import view.*;
 
 /**
  *
@@ -46,16 +42,19 @@ public class AuctionSide extends javax.swing.JFrame {
 
     private void removeLabels() {
         if (product instanceof Painting) {
+            jLabel8.setVisible(false);
             jLabel9.setVisible(false);
             jLabel10.setVisible(false);
 
         } else if (product instanceof Furniture) {
+            jLabel6.setVisible(false);
             jLabel7.setVisible(false);
             jLabel8.setVisible(false);
             jLabel9.setVisible(false);
             jLabel10.setVisible(false);
 
         } else if (product instanceof Jewellery) {
+            jLabel7.setVisible(false);
             jLabel8.setVisible(false);
             jLabel9.setVisible(false);
             jLabel10.setVisible(false);
@@ -71,6 +70,22 @@ public class AuctionSide extends javax.swing.JFrame {
         String ntime = dateFormat(akt.getTime());
         jLabel1_Sluttidspunkt.setText("Ends: " + ntime);
         jLabel_Estimere.setText("Estimated Value: " + product.getEstimatedPrice());
+
+        Image img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), 0);
+        ImageIcon icon = new ImageIcon(img);
+
+        if (icon.getIconHeight() < icon.getIconWidth()) {
+            img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(-1, jLabel1.getHeight(), 0);
+            icon = new ImageIcon(img);
+            jLabel1.setIcon(icon);
+
+        } else {
+            img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel1.getWidth(), -1, 0);
+            icon = new ImageIcon(img);
+            jLabel1.setIcon(icon);
+
+        }
+
         if (product instanceof Painting) {
             Painting p = (Painting) product;
             jLabel3.setText("Artist: " + p.getArtist());
@@ -81,6 +96,7 @@ public class AuctionSide extends javax.swing.JFrame {
 
         } else if (product instanceof Wine) {
             Wine w = (Wine) product;
+
             jLabel2.setText("Navn: " + w.getTitle());
             jLabel3.setText("Producent: " + w.getManufacturer());
             jLabel4.setText("Land: " + w.getCountry());
@@ -92,7 +108,9 @@ public class AuctionSide extends javax.swing.JFrame {
             jLabel10.setText("Beskrivelse: " + w.getDescription());
 
         } else if (product instanceof Jewellery) {
+
             Jewellery j = (Jewellery) product;
+
             jLabel2.setText("Navn: " + j.getTitle());
             jLabel3.setText("Metal: " + j.getMetal());
             jLabel4.setText("Ædelsten: " + j.getGemstone());
@@ -101,6 +119,7 @@ public class AuctionSide extends javax.swing.JFrame {
 
         } else if (product instanceof Furniture) {
             Furniture f = (Furniture) product;
+
             jLabel2.setText("Navn: " + f.getTitle());
             jLabel3.setText("Matrialer: " + f.getMaterials());
             jLabel4.setText("Dimensioner: " + f.getDimensions());
@@ -111,11 +130,11 @@ public class AuctionSide extends javax.swing.JFrame {
     }
 
     public void setLatestBid() {
-        størrelse = akt.getBidingHistory().size()-5;
+        størrelse = akt.getBidingHistory().size() - 5;
         jTextArea1.setText("");
         if (akt.getBidingHistory().size() == 0) {
             jTextArea1.append("Start bud: " + akt.getLatestBid());
-        }else if (akt.getBidingHistory().size() <= 5) {
+        } else if (akt.getBidingHistory().size() <= 5) {
             for (int i = 0; i < akt.getBidingHistory().size(); i++) {
                 jTextArea1.append("Der er bud:  " + akt.getBidingHistory().get(i).getAmount() + "  Af bruger:  " + akt.getBidingHistory().get(i).getUser().getName() + "\n");
             }
@@ -125,8 +144,6 @@ public class AuctionSide extends javax.swing.JFrame {
             }
         }
     }
-
-    
 
     private String dateFormat(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM-YYYY HH:mm");
@@ -176,7 +193,11 @@ public class AuctionSide extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Billed");
+        jLabel1.setToolTipText("");
+        jLabel1.setMaximumSize(new java.awt.Dimension(200, 200));
+        jLabel1.setMinimumSize(new java.awt.Dimension(200, 200));
+        jLabel1.setPreferredSize(new java.awt.Dimension(200, 200));
+        jLabel1.setRequestFocusEnabled(false);
 
         jLabel2.setText("Title");
 
@@ -224,11 +245,12 @@ public class AuctionSide extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(194, 194, 194))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel_Estimere, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jLabel_sælger, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel_Estimere, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel_sælger, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -239,7 +261,7 @@ public class AuctionSide extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1_Sluttidspunkt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1_Sluttidspunkt, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton_byd)
@@ -276,7 +298,7 @@ public class AuctionSide extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_Estimere)
                 .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_byd)
                 .addGap(25, 25, 25))

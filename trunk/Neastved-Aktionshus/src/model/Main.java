@@ -42,8 +42,9 @@ public class Main {
         String title = "Wine";
         String description = "Flot Flot vin";
         double estimatedPrice = 13000;
+        String picturePath = ".\\Billeder\\glas vin.jpg";
 
-        Wine vin1 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice);
+        Wine vin1 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
 
         manufacturer = "Denmark Wine";
         country = "Denmark";
@@ -55,23 +56,26 @@ public class Main {
         title = "Wine";
         description = "Gammel vin fra mormorstid";
         estimatedPrice = 15000;
-        Wine vin2 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice);
+        picturePath = ".\\Billeder\\vin.jpg";
+        Wine vin2 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
 
         String materials = "Bøetræ";
         String dimensions = "50 * 200";
         title = "Furniture";
         description = "Arve Stykke";
         estimatedPrice = 5000;
+        picturePath = ".\\Billeder\\bøgetræ sofa.jpg";
 
-        Furniture møbel = new Furniture(materials, dimensions, title, description, estimatedPrice);
+        Furniture møbel = new Furniture(materials, dimensions, title, description, estimatedPrice, picturePath);
 
         materials = "egetræ";
         dimensions = "50 * 250";
         title = "Furniture";
         description = "Nedslidt sofa";
         estimatedPrice = 1000;
+        picturePath = ".\\Billeder\\Nedsligt egetræ sofa.jpg";
 
-        Furniture møbel2 = new Furniture(materials, dimensions, title, description, estimatedPrice);
+        Furniture møbel2 = new Furniture(materials, dimensions, title, description, estimatedPrice, picturePath);
 
         String metal = "Sølv";
         String gemstone = "Diamant";
@@ -79,8 +83,9 @@ public class Main {
         title = "Jewellery";
         description = "Mega flot ring";
         estimatedPrice = 2000;
+        picturePath = ".\\Billeder\\sølvring med diamant.jpg";
 
-        Jewellery smykke1 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice);
+        Jewellery smykke1 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
 
         metal = "Guld";
         gemstone = "Ædelsten";
@@ -88,8 +93,9 @@ public class Main {
         title = "Jewellery";
         description = "Gucci ring";
         estimatedPrice = 10000;
+        picturePath = ".\\Billeder\\gucci ring med ædel.jpg";
 
-        Jewellery smykke2 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice);
+        Jewellery smykke2 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
 
         String artist = "Vincent Van Gogh";
         int year = 1887;
@@ -98,8 +104,9 @@ public class Main {
         title = "Painting";
         description = "Super godt afslappede billede malet af selveste Vincent Van Gogh";
         estimatedPrice = 10000000;
+        picturePath = ".\\Billeder\\Vincent Van Gogh afslapp.jpg";
 
-        Painting billede1 = new Painting(artist, year, style, size, title, description, estimatedPrice);
+        Painting billede1 = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
 
         artist = "Vincent Van Gogh";
         year = 1889;
@@ -108,8 +115,9 @@ public class Main {
         title = "Painting";
         description = "Masser af skov på dette mægtige billede af Vincent Van Gogh";
         estimatedPrice = 5000000;
+        picturePath = ".\\Billeder\\Vincent Van Gogh natur.jpg";
 
-        Painting billede2 = new Painting(artist, year, style, size, title, description, estimatedPrice);
+        Painting billede2 = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
         
         Auction auk1 = new Auction(vin1, Jens, 1000, cal.getTime());
         cal.set(2014, 00, 21, 10, 04);

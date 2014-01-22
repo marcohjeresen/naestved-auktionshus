@@ -46,19 +46,24 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void createPanels() {
+        
         int x = 0;
         int y = 0;
         int height = 0;
+        
         for (Auction auction : auctionsListe) {
+            
+            
             AuctionPanel ap = new AuctionPanel(auction, this);
             ap.setLocation(x, y);
+            
             jPanel_SamletAktion.add(ap);
 
             y += ap.getHeight();
             ap.setVisible(true);
             height = ap.getHeight();
-
-        }
+}
+        
         if (auctionsListe.size() > 4) {
             int width = jPanel_SamletAktion.getWidth();
             height *= auctionsListe.size();
@@ -164,7 +169,10 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+Object søg = jComboBox1.getSelectedItem();
+        
 
+        System.out.println(søg);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -10,16 +10,16 @@ package model;
  */
 public class Jewellery extends Product {
 
-    public Jewellery(String title, String description, double estimatedPrice) {
-        super(title, description, estimatedPrice);
+    public Jewellery(String title, String description, double estimatedPrice, String picturePath) {
+        super(title, description, estimatedPrice, picturePath);
     }
     
     private String metal;
     private String gemstone;
     private String stamp;
 
-    public Jewellery(String metal, String gemstone, String stamp, String title, String description, double estimatedPrice) {
-        super(title, description, estimatedPrice);
+    public Jewellery(String metal, String gemstone, String stamp, String title, String description, double estimatedPrice, String picturePath) {
+        super(title, description, estimatedPrice, picturePath);
         this.metal = metal;
         this.gemstone = gemstone;
         this.stamp = stamp;
