@@ -12,8 +12,8 @@ package model;
  */
 public class Painting extends Product{
 
-    public Painting(String title, String description, double estimatedPrice) {
-        super(title, description, estimatedPrice);
+    public Painting(String title, String description, double estimatedPrice, String picturePath) {
+        super(title, description, estimatedPrice ,picturePath);
     }
 
     private String artist;
@@ -21,8 +21,8 @@ public class Painting extends Product{
     private String style;
     private String size;
 
-    public Painting(String artist, int year, String style, String size, String title, String description, double estimatedPrice) {
-        super(title, description, estimatedPrice);
+    public Painting(String artist, int year, String style, String size, String title, String description, double estimatedPrice, String picturePath) {
+        super(title, description, estimatedPrice, picturePath);
         this.artist = artist;
         this.year = year;
         this.style = style;

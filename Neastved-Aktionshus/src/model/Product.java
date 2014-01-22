@@ -14,12 +14,14 @@ public class Product {
     private String title;
     private String description;
     private double estimatedPrice;
+    private String picturePath;
 
 //vi vælger af lave dem protected så vi kan tilgå variablerne fra underklasser
-    public Product(String title, String description, double estimatedPrice) {
+    public Product(String title, String description, double estimatedPrice, String picturePath) {
         this.title = title;
         this.description = description;
         this.estimatedPrice = estimatedPrice;
+        this.picturePath = picturePath;
     }
 
     public String getTitle() {
@@ -44,6 +46,14 @@ public class Product {
 
     public void setEstimatedPrice(double estimatedPrice) {
         this.estimatedPrice = estimatedPrice;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
     
    
