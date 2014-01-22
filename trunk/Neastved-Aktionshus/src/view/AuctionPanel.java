@@ -31,7 +31,7 @@ public class AuctionPanel extends javax.swing.JPanel {
         product = akt.getProduct();
         this.setSize(535, 138);
         fillLabels();
-        start_timer();
+        starTimer();
         
     }
     
@@ -81,7 +81,7 @@ public class AuctionPanel extends javax.swing.JPanel {
         String str = sdf.format(date);
         return str;
     }
-    public void start_timer() {
+    public void starTimer() {
         final java.util.Timer timer;        
         timer = new java.util.Timer(true);
         timer.schedule(new TimerTask() {
