@@ -8,6 +8,9 @@ package view;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Auction;
 import model.Furniture;
 import model.Jewellery;
@@ -28,7 +31,7 @@ private ArrayList<Auction> auctionsListe;
     private Auction at;
     private Search search;
     private String maxPrise;
-    private int maxPris;
+    private double maxPris;
     private MainFrame1 mf;
 
     /**
@@ -80,63 +83,56 @@ private ArrayList<Auction> auctionsListe;
         for (Object s : search.getProdukt()) {
             jComboBox1.addItem(s);
         }
-
     }
 
     public ArrayList<Auction> getSpecificAuction(String product) throws Exception {
         ArrayList<Auction> al = new ArrayList<>();
         try {
-            {
-                maxPris = Integer.parseInt(maxPrise);
-                
-            }
+                maxPris = Double.parseDouble(maxPrise);
         } catch (Exception e) {
-            throw new Exception("Tegn og Bokstaver kan bruges.");
+            throw new Exception("Tegn og Bokstaver kan ikke bruges.");
         }
-            
+//        
         for (Auction auction : auctionsListe) {
+            System.out.println(auction.getLatestBid());
+            System.out.println("Pris " + maxPris);
             switch (product) {
                 case "Furniture":
                     if (auction.getProduct() instanceof Furniture) {
                         if (auction.getLatestBid() <= maxPris) {
                             al.add(auction);
-                        } else {
-                            throw new Exception("Beløbet er for småt");
-                        }
+                        } 
                     }
                     break;
                 case "Jewellery":
                     if (auction.getProduct() instanceof Jewellery) {
                         if (auction.getLatestBid() <= maxPris) {
                             al.add(auction);
-                        } else {
-                            throw new Exception("Beløbet er for småt");
-                        }
+                        } 
                     }
                     break;
                 case "Painting":
                     if (auction.getProduct() instanceof Painting) {
                         if (auction.getLatestBid() <= maxPris) {
                             al.add(auction);
-                        } else {
-                            throw new Exception("Beløbet er for småt");
-                        }
+                        } 
                     }
                     break;
                 case "Wine":
                     if (auction.getProduct() instanceof Wine) {
                         if (auction.getLatestBid() <= maxPris) {
                             al.add(auction);
-                        } else {
-                            throw new Exception("Beløbet er for småt");
-                        }
+                        } 
                     }
                     break;
                 default:
                     al = auctionsListe;
                     break;
             }
-
+        }
+        if (al.isEmpty()) {
+            
+                            throw new Exception("Beløbet er for småt");
         }
         jPanel_SamletAktion.removeAll();
         createPanels(al);
@@ -197,6 +193,8 @@ private ArrayList<Auction> auctionsListe;
             }
         });
 
+        jTextField_pris.setText("0");
+
         jLabel2.setText("Max Pris:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -248,7 +246,7 @@ private ArrayList<Auction> auctionsListe;
         try {
             getSpecificAuction("hej");
         } catch (Exception ex) {
-//            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -263,7 +261,7 @@ private ArrayList<Auction> auctionsListe;
         try {
             getSpecificAuction(selectedItem);
         } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
+            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
