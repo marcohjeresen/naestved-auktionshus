@@ -48,7 +48,7 @@ private CardLayout cl;
     public void addPages(){
         HovdePanel hp = new HovdePanel(auctionsList, buyer, this);
         ch.addPage(hp, HOVEDPANEL);
-        as = new AuctionSiden(buyer);
+        as = new AuctionSiden(buyer, this);
         ch.addPage(as, AUCTIONSIDE);
         ch.show(HOVEDPANEL);
     }

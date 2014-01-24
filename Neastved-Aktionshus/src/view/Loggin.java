@@ -91,6 +91,7 @@ private ArrayList<Auction> auctionList;
         }
         MainFrame1 mf = new MainFrame1(auctionList, buyer);
         mf.setVisible(true);
+        this.dispose();
         
        
     }//GEN-LAST:event_jButton1ActionPerformed
