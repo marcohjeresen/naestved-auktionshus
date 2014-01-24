@@ -89,7 +89,7 @@ private ArrayList<Auction> auctionList;
                 buyer = user;
             }
         }
-        MainFrame mf = new MainFrame(auctionList, buyer);
+        MainFrame1 mf = new MainFrame1(auctionList, buyer);
         mf.setVisible(true);
         
        

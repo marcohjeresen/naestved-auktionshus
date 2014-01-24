@@ -18,12 +18,12 @@ import model.*;
 public class AuctionPanel extends javax.swing.JPanel {
     private Auction akt;
     private Product product;
-    private MainFrame mf;
+    private MainFrame1 mf;
 
     /**
      * Creates new form AuctionPanel
      */
-    public AuctionPanel(Auction akt, MainFrame mf) {
+    public AuctionPanel(Auction akt, MainFrame1 mf) {
         
         initComponents();
         this.akt = akt;
@@ -207,8 +207,8 @@ public class AuctionPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AuctionSide as = new AuctionSide(akt , mf.getBuyer());
-        as.setVisible(true);
+        mf.getAuctionSiden().startAuction(akt);
+        mf.getCardHandler().show(MainFrame1.AUCTIONSIDE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
