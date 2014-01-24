@@ -63,11 +63,7 @@ public class Auction {
             }
         }
     }}
-//        public String getLatestBiduser(){
-//           
-//            return
-//        }
-
+    
     public Product getProduct() {
         return product;
     }
