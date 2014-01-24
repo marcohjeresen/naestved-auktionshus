@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.*;
 
 /**
@@ -23,7 +26,10 @@ public class MainFrame extends javax.swing.JFrame {
     private User buyer;
     private int i;
     private Auction at;
-    
+    private Search search;
+    private String maxPrise;
+    private int maxPris;
+
     /**
      * Creates new form main
      */
@@ -34,26 +40,25 @@ public class MainFrame extends javax.swing.JFrame {
         apListe = new ArrayList<>();
         this.buyer = buyer;
         this.setTitle(buyer.getName());
-        createPanels();
+        createPanels(auctionsListe);
         setJcombobox();
-
     }
 
-    private void createPanels() {
-        
+    private void createPanels(ArrayList<Auction> auctionsLis) {
+
         int x = 0;
         int y = 0;
         int height = 0;
-        for (Auction auction : auctionsListe) {
-            
+        for (Auction auction : auctionsLis) {
+
             AuctionPanel ap = new AuctionPanel(auction, this);
             ap.setLocation(x, y);
             jPanel_SamletAktion.add(ap);
             y += ap.getHeight();
             ap.setVisible(true);
             height = ap.getHeight();
-}
-        if (auctionsListe.size() > 4) {
+        }
+        if (auctionsLis.size() > 4) {
             int width = jPanel_SamletAktion.getWidth();
             height *= auctionsListe.size();
             jPanel_SamletAktion.setPreferredSize(new Dimension(width, height));
@@ -69,12 +74,74 @@ public class MainFrame extends javax.swing.JFrame {
     private void setJcombobox() {
         jComboBox1.removeAllItems();
         Search search = new Search(auctionsListe);
-        
         for (Object s : search.getProdukt()) {
-
             jComboBox1.addItem(s);
         }
+
     }
+
+    public ArrayList<Auction> getSpecificAuction(String product) throws Exception {
+        ArrayList<Auction> al = new ArrayList<>();
+        try {
+            {
+                maxPris = Integer.parseInt(maxPrise);
+                
+            }
+        } catch (Exception e) {
+            throw new Exception("Tegn og Bokstaver kan bruges.");
+        }
+            
+        for (Auction auction : auctionsListe) {
+            switch (product) {
+                case "Furniture":
+                    if (auction.getProduct() instanceof Furniture) {
+                        if (auction.getLatestBid() <= maxPris) {
+                            al.add(auction);
+                        } else {
+                            throw new Exception("Beløbet er for småt");
+                        }
+                    }
+                    break;
+                case "Jewellery":
+                    if (auction.getProduct() instanceof Jewellery) {
+                        if (auction.getLatestBid() <= maxPris) {
+                            al.add(auction);
+                        } else {
+                            throw new Exception("Beløbet er for småt");
+                        }
+                    }
+                    break;
+                case "Painting":
+                    if (auction.getProduct() instanceof Painting) {
+                        if (auction.getLatestBid() <= maxPris) {
+                            al.add(auction);
+                        } else {
+                            throw new Exception("Beløbet er for småt");
+                        }
+                    }
+                    break;
+                case "Wine":
+                    if (auction.getProduct() instanceof Wine) {
+                        if (auction.getLatestBid() <= maxPris) {
+                            al.add(auction);
+                        } else {
+                            throw new Exception("Beløbet er for småt");
+                        }
+                    }
+                    break;
+                default:
+                    al = auctionsListe;
+                    break;
+            }
+
+        }
+        jPanel_SamletAktion.removeAll();
+        createPanels(al);
+        jPanel_SamletAktion.updateUI();
+        return al;
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,6 +156,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel_SamletAktion = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField_pris = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,6 +187,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Type:" }));
 
+        jButton2.setText("Tilbage");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Max Pris:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,14 +203,19 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTextField_pris))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,9 +227,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_pris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -154,12 +244,27 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        maxPrise = jTextField_pris.getText();
+        if ("".equals(maxPrise) || "0".equals(maxPrise)) {
+                maxPrise = "10000000";
+                System.out.println("hej");
+            }
 
-        
-        
-
-        
+        String selectedItem = (String) jComboBox1.getSelectedItem();
+        try {
+            getSpecificAuction(selectedItem);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            getSpecificAuction("hej");
+        } catch (Exception ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,9 +303,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel_SamletAktion;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField_pris;
     // End of variables declaration//GEN-END:variables
 }
