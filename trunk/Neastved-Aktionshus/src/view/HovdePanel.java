@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package view;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import model.*;
+import model.Auction;
+import model.Furniture;
+import model.Jewellery;
+import model.Painting;
+import model.Search;
+import model.User;
+import model.Wine;
 
 /**
  *
  * @author markh_000
  */
-public class MainFrame extends javax.swing.JFrame {
-
-    private ArrayList<Auction> auctionsListe;
+public class HovdePanel extends javax.swing.JPanel {
+private ArrayList<Auction> auctionsListe;
     private ArrayList<AuctionPanel> apListe;
     private User buyer;
     private int i;
@@ -29,19 +29,21 @@ public class MainFrame extends javax.swing.JFrame {
     private Search search;
     private String maxPrise;
     private int maxPris;
+    private MainFrame1 mf;
 
     /**
      * Creates new form main
      */
-    public MainFrame(ArrayList<Auction> auctionsListe, User buyer) {
+    public HovdePanel(ArrayList<Auction> auctionsListe, User buyer, MainFrame1 mf) {
 
         initComponents();
         this.auctionsListe = auctionsListe;
         apListe = new ArrayList<>();
         this.buyer = buyer;
-        this.setTitle(buyer.getName());
+        this.mf = mf;
         createPanels(auctionsListe);
         setJcombobox();
+        System.out.println(jPanel_SamletAktion.getSize());
     }
 
     private void createPanels(ArrayList<Auction> auctionsLis) {
@@ -49,17 +51,18 @@ public class MainFrame extends javax.swing.JFrame {
         int x = 0;
         int y = 0;
         int height = 0;
+        int width = 0;
         for (Auction auction : auctionsLis) {
-
-            AuctionPanel ap = new AuctionPanel(auction, this);
+            AuctionPanel ap = new AuctionPanel(auction, mf);
             ap.setLocation(x, y);
             jPanel_SamletAktion.add(ap);
+            jPanel_SamletAktion.revalidate();
             y += ap.getHeight();
             ap.setVisible(true);
             height = ap.getHeight();
+            width = ap.getWidth();
         }
         if (auctionsLis.size() > 4) {
-            int width = jPanel_SamletAktion.getWidth();
             height *= auctionsListe.size();
             jPanel_SamletAktion.setPreferredSize(new Dimension(width, height));
             width += 18;
@@ -151,19 +154,16 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel_SamletAktion = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
         jTextField_pris = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Næstved Aktionshus");
+        jPanel_SamletAktion.setMinimumSize(new java.awt.Dimension(534, 487));
 
         javax.swing.GroupLayout jPanel_SamletAktionLayout = new javax.swing.GroupLayout(jPanel_SamletAktion);
         jPanel_SamletAktion.setLayout(jPanel_SamletAktionLayout);
@@ -173,19 +173,13 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel_SamletAktionLayout.setVerticalGroup(
             jPanel_SamletAktionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 435, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(jPanel_SamletAktion);
 
-        jButton1.setText("Søg");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Type:" }));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Næstved Aktionshus");
 
         jButton2.setText("Tilbage");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -194,16 +188,25 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Type:" }));
+
+        jButton1.setText("Søg");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Max Pris:");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +214,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -239,67 +242,31 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        maxPrise = jTextField_pris.getText();
-        if ("".equals(maxPrise) || "0".equals(maxPrise)) {
-                maxPrise = "10000000";
-                System.out.println("hej");
-            }
-
-        String selectedItem = (String) jComboBox1.getSelectedItem();
-        try {
-            getSpecificAuction(selectedItem);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             getSpecificAuction("hej");
         } catch (Exception ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        maxPrise = jTextField_pris.getText();
+        if ("".equals(maxPrise) || "0".equals(maxPrise)) {
+            maxPrise = "10000000";
+            System.out.println("hej");
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        String selectedItem = (String) jComboBox1.getSelectedItem();
+        try {
+            getSpecificAuction(selectedItem);
+        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
