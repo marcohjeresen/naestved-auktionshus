@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 /**
@@ -11,12 +10,12 @@ package model;
  * @author markh_000
  */
 public class Product {
+
     private String title;
     private String description;
     private double estimatedPrice;
     private String picturePath;
 
-//vi vælger af lave dem protected så vi kan tilgå variablerne fra underklasser
     public Product(String title, String description, double estimatedPrice, String picturePath) {
         this.title = title;
         this.description = description;
@@ -55,6 +54,5 @@ public class Product {
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
     }
-    
-   
+
 }

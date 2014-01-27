@@ -10,9 +10,6 @@ package model;
  */
 public class Furniture extends Product {
 
-    public Furniture(String title, String description, double estimatedPrice, String picturePath) {
-        super(title, description, estimatedPrice, picturePath);
-    }
     private String materials;
     private String dimensions;
 
