@@ -151,6 +151,9 @@ public class CreateProduct extends javax.swing.JPanel {
         double estimatedPrice;
         String description;
         String picturePath;
+        double minimumspris;
+        minimumspris = Double.parseDouble(jTextField9.getText());
+        
 
         Calendar cal = Calendar.getInstance();
         cal.set(2014, 00, 21, 10, 04);
@@ -163,7 +166,7 @@ public class CreateProduct extends javax.swing.JPanel {
             description = jTextArea1.getText();
             picturePath = "";
             Furniture f = new Furniture(matrialer, dimensions, title, description, estimatedPrice, picturePath);
-            Auction auk = new Auction(f, buyer, 1500, cal.getTime());
+            Auction auk = new Auction(f, buyer, minimumspris, cal.getTime());
             auctionsListe.add(auk);
 
         } else if (product instanceof Jewellery) {
@@ -177,7 +180,7 @@ public class CreateProduct extends javax.swing.JPanel {
             picturePath = "";
 
             Jewellery s = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
-            Auction auk = new Auction(s, buyer, 1500, cal.getTime());
+            Auction auk = new Auction(s, buyer, minimumspris, cal.getTime());
             auctionsListe.add(auk);
 
         } else if (product instanceof Wine) {
@@ -194,7 +197,7 @@ public class CreateProduct extends javax.swing.JPanel {
             picturePath = "";
 
             Wine v = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
-            Auction auk = new Auction(v, buyer, 1500, cal.getTime());
+            Auction auk = new Auction(v, buyer, minimumspris, cal.getTime());
             auctionsListe.add(auk);
 
         } else if (product instanceof Painting) {
@@ -209,7 +212,7 @@ public class CreateProduct extends javax.swing.JPanel {
             picturePath = "";
 
             Painting b = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
-            Auction auk = new Auction(b, buyer, 1500, cal.getTime());
+            Auction auk = new Auction(b, buyer, minimumspris, cal.getTime());
             auctionsListe.add(auk);
 
         }
@@ -241,6 +244,13 @@ public class CreateProduct extends javax.swing.JPanel {
         jToggleButton_tilbage = new javax.swing.JToggleButton();
         jTextField9 = new javax.swing.JTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jComboBox_YYY = new javax.swing.JComboBox();
+        jComboBox_MM = new javax.swing.JComboBox();
+        jComboBox_DD = new javax.swing.JComboBox();
+        jComboBox_TT = new javax.swing.JComboBox();
+        jComboBox_Minut = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jComboBox_typer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_typer.addActionListener(new java.awt.event.ActionListener() {
@@ -297,6 +307,20 @@ public class CreateProduct extends javax.swing.JPanel {
 
         jToggleButton1.setText("Tilføj Billed");
 
+        jComboBox_YYY.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox_MM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox_DD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox_TT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox_Minut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel1.setText("YY-MM-DD");
+
+        jLabel2.setText("Time-Minut");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -310,7 +334,7 @@ public class CreateProduct extends javax.swing.JPanel {
                             .addComponent(jComboBox_typer, 0, 129, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jButton_Chose, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(jButton_OpretAuction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToggleButton_tilbage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField1)
@@ -322,8 +346,24 @@ public class CreateProduct extends javax.swing.JPanel {
                     .addComponent(jTextField7)
                     .addComponent(jTextField8)
                     .addComponent(jTextField9)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jComboBox_TT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox_Minut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox_YYY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox_MM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox_DD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,12 +395,23 @@ public class CreateProduct extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox_YYY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_MM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_DD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox_TT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_Minut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_OpretAuction)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton_tilbage)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -390,7 +441,14 @@ public class CreateProduct extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Chose;
     private javax.swing.JButton jButton_OpretAuction;
+    private javax.swing.JComboBox jComboBox_DD;
+    private javax.swing.JComboBox jComboBox_MM;
+    private javax.swing.JComboBox jComboBox_Minut;
+    private javax.swing.JComboBox jComboBox_TT;
+    private javax.swing.JComboBox jComboBox_YYY;
     private javax.swing.JComboBox jComboBox_typer;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_User;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
