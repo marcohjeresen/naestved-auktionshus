@@ -7,6 +7,7 @@ package utility;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -18,8 +19,10 @@ public class CardHandler {
     private CardLayout cl;
     private JPanel main;
     private ArrayList<JPanel> pages;
+    private JFrame frame;
 
-    public CardHandler(CardLayout cl, JPanel main) {
+    public CardHandler(CardLayout cl, JPanel main, JFrame frame) {
+        this.frame = frame;
         this.cl = cl;
         this.main = main;
         pages = new ArrayList<>();
@@ -32,6 +35,20 @@ public class CardHandler {
 
     public void show(String ref) {
         cl.show(main, ref);
+        switch (ref) {
+            case "cp":
+                frame.setBounds(0, 0, 400, 650);
+                break;
+
+            case "hp":
+                frame.setBounds(0, 0, 750, 600);
+                break;
+                
+            case "as":
+                frame.setBounds(0, 0, 600, 610);
+                break;
+
+        }
         main.revalidate();
     }
 }

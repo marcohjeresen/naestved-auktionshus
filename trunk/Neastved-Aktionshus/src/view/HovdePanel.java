@@ -46,7 +46,7 @@ private ArrayList<Auction> auctionsListe;
         this.mf = mf;
         createPanels(auctionsListe);
         setJcombobox();
-        System.out.println(jPanel_SamletAktion.getSize());
+        
     }
 
     private void createPanels(ArrayList<Auction> auctionsLis) {
@@ -158,6 +158,7 @@ private ArrayList<Auction> auctionsListe;
         jButton1 = new javax.swing.JButton();
         jTextField_pris = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         jPanel_SamletAktion.setMinimumSize(new java.awt.Dimension(534, 487));
 
@@ -197,6 +198,13 @@ private ArrayList<Auction> auctionsListe;
 
         jLabel2.setText("Max Pris:");
 
+        jButton3.setText("Opret Produkt");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -216,7 +224,8 @@ private ArrayList<Auction> auctionsListe;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField_pris))
+                    .addComponent(jTextField_pris)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -226,7 +235,9 @@ private ArrayList<Auction> auctionsListe;
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -237,8 +248,9 @@ private ArrayList<Auction> auctionsListe;
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(24, 24, 24))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,7 +266,6 @@ private ArrayList<Auction> auctionsListe;
         maxPrise = jTextField_pris.getText();
         if ("".equals(maxPrise) || "0".equals(maxPrise)) {
             maxPrise = "10000000";
-            System.out.println("hej");
         }
 
         String selectedItem = (String) jComboBox1.getSelectedItem();
@@ -265,10 +276,17 @@ private ArrayList<Auction> auctionsListe;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        mf.getCardHandler().show(MainFrame1.CREATEPRODUCT);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
