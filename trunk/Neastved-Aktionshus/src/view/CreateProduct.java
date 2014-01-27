@@ -11,6 +11,8 @@ import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.*;
+import utility.CardHandler;
+import view.*;
 
 /**
  *
@@ -23,6 +25,7 @@ public class CreateProduct extends javax.swing.JPanel {
     private Product product;
     private Auction akt;
     private MainFrame1 mf;
+    private HovdePanel hp;
 
     /**
      * Creates new form OpretProduct
@@ -144,77 +147,102 @@ public class CreateProduct extends javax.swing.JPanel {
         for (Object s : search.getProdukt()) {
             jComboBox_typer.addItem(s);
         }
+
     }
 
-    public void setCreateProduct(Product product) {
+    public void CreateProduct(String product) {
         String title;
-        double estimatedPrice;
         String description;
         String picturePath;
-        double minimumspris;
-        minimumspris = Double.parseDouble(jTextField9.getText());
-        
+        try {
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(2014, 00, 21, 10, 04);
+            double estimatedPrice;
+            double minimumspris;
+            
+            int years = Integer.parseInt(jTextField_Year.getText());
+            int mothn = Integer.parseInt(jTextField_mohnt.getText());
+            int day = Integer.parseInt(jTextField_date.getText());
+            int time = Integer.parseInt(jTextField_hour.getText());
+            int min = Integer.parseInt(jTextField_minut.getText());
 
-        if (product instanceof Furniture) {
-            String matrialer = jTextField1.getText();
-            String dimensions = jTextField2.getText();
-            title = (String) jComboBox_typer.getSelectedItem();
-            estimatedPrice = Double.parseDouble(jTextField3.getText());
-            description = jTextArea1.getText();
-            picturePath = "";
-            Furniture f = new Furniture(matrialer, dimensions, title, description, estimatedPrice, picturePath);
-            Auction auk = new Auction(f, buyer, minimumspris, cal.getTime());
-            auctionsListe.add(auk);
+            Calendar cal = Calendar.getInstance();
+            cal.set(years, mothn, day, time, min);
 
-        } else if (product instanceof Jewellery) {
+            for (Auction auction : auctionsListe) {
+                switch (product) {
+                    case "Furniture":
 
-            String metal = jTextField1.getText();
-            String gemstone = jTextField2.getText();
-            String stamp = jTextField3.getText();
-            title = (String) jComboBox_typer.getSelectedItem();
-            description = jTextArea1.getText();
-            estimatedPrice = Double.parseDouble(jTextField4.getText());
-            picturePath = "";
+                        String matrialer = jTextField1.getText();
+                        String dimensions = jTextField2.getText();
+                        title = (String) jComboBox_typer.getSelectedItem();
+                        estimatedPrice = Double.parseDouble(jTextField3.getText());
+                        minimumspris = Double.parseDouble(jTextField4.getText());
+                        description = jTextArea1.getText();
+                        picturePath = "";
+                        Furniture f = new Furniture(matrialer, dimensions, title, description, estimatedPrice, picturePath);
+                        auction = new Auction(f, buyer, minimumspris, cal.getTime());
+                        auctionsListe.add(auction);
 
-            Jewellery s = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
-            Auction auk = new Auction(s, buyer, minimumspris, cal.getTime());
-            auctionsListe.add(auk);
+                        break;
+                    case "Jewellery":
 
-        } else if (product instanceof Wine) {
-            String manufacturer = jTextField1.getText();
-            String country = jTextField2.getText();
-            double yearOfProduction = Double.parseDouble(jTextField3.getText());
-            String grapes = jTextField4.getText();
-            double percent = Double.parseDouble(jTextField5.getText());
-            double bottleSize = Double.parseDouble(jTextField6.getText());
-            int quantity = Integer.parseInt(jTextField7.getText());
-            title = (String) jComboBox_typer.getSelectedItem();
-            description = jTextArea1.getText();
-            estimatedPrice = Double.parseDouble(jTextField8.getText());
-            picturePath = "";
+                        String metal = jTextField1.getText();
+                        String gemstone = jTextField2.getText();
+                        String stamp = jTextField3.getText();
+                        title = (String) jComboBox_typer.getSelectedItem();
+                        description = jTextArea1.getText();
+                        estimatedPrice = Double.parseDouble(jTextField4.getText());
+                        minimumspris = Double.parseDouble(jTextField5.getText());
+                        picturePath = "";
 
-            Wine v = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
-            Auction auk = new Auction(v, buyer, minimumspris, cal.getTime());
-            auctionsListe.add(auk);
+                        Jewellery s = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
+                        auction = new Auction(s, buyer, minimumspris, cal.getTime());
+                        auctionsListe.add(auction);
 
-        } else if (product instanceof Painting) {
+                        break;
+                    case "Painting":
 
-            String artist = jTextField1.getText();
-            int year = Integer.parseInt(jTextField2.getText());
-            String style = jTextField3.getText();
-            String size = jTextField4.getText();
-            title = (String) jComboBox_typer.getSelectedItem();
-            description = jTextArea1.getText();
-            estimatedPrice = Double.parseDouble(jTextField5.getText());
-            picturePath = "";
+                        String artist = jTextField1.getText();
+                        int year = Integer.parseInt(jTextField2.getText());
+                        String style = jTextField3.getText();
+                        String size = jTextField4.getText();
+                        title = (String) jComboBox_typer.getSelectedItem();
+                        description = jTextArea1.getText();
+                        estimatedPrice = Double.parseDouble(jTextField5.getText());
+                        minimumspris = Double.parseDouble(jTextField6.getText());
+                        picturePath = "";
 
-            Painting b = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
-            Auction auk = new Auction(b, buyer, minimumspris, cal.getTime());
-            auctionsListe.add(auk);
+                        Painting b = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
+                        auction = new Auction(b, buyer, minimumspris, cal.getTime());
+                        auctionsListe.add(auction);
 
+                        break;
+                    case "Wine":
+
+                        String manufacturer = jTextField1.getText();
+                        String country = jTextField2.getText();
+                        double yearOfProduction = Double.parseDouble(jTextField3.getText());
+                        String grapes = jTextField4.getText();
+                        double percent = Double.parseDouble(jTextField5.getText());
+                        double bottleSize = Double.parseDouble(jTextField6.getText());
+                        int quantity = Integer.parseInt(jTextField7.getText());
+                        title = (String) jComboBox_typer.getSelectedItem();
+                        description = jTextArea1.getText();
+                        estimatedPrice = Double.parseDouble(jTextField8.getText());
+                        minimumspris = Double.parseDouble(jTextField9.getText());
+                        picturePath = "";
+
+                        Wine v = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
+                        auction = new Auction(v, buyer, minimumspris, cal.getTime());
+                        auctionsListe.add(auction);
+
+                        break;
+                }
+            }
+            akt.updateList();
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Dato, Tid, Pris, og procenter kan ikke være bogstaver");
         }
     }
 
@@ -244,13 +272,14 @@ public class CreateProduct extends javax.swing.JPanel {
         jToggleButton_tilbage = new javax.swing.JToggleButton();
         jTextField9 = new javax.swing.JTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jComboBox_YYY = new javax.swing.JComboBox();
-        jComboBox_MM = new javax.swing.JComboBox();
-        jComboBox_DD = new javax.swing.JComboBox();
-        jComboBox_TT = new javax.swing.JComboBox();
-        jComboBox_Minut = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jTextField_Year = new javax.swing.JTextField();
+        jTextField_mohnt = new javax.swing.JTextField();
+        jTextField_date = new javax.swing.JTextField();
+        jTextField_minut = new javax.swing.JTextField();
+        jTextField_hour = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         jComboBox_typer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_typer.addActionListener(new java.awt.event.ActionListener() {
@@ -307,19 +336,26 @@ public class CreateProduct extends javax.swing.JPanel {
 
         jToggleButton1.setText("Tilføj Billed");
 
-        jComboBox_YYY.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1.setText("Dato: fks. 2014-11-23.");
 
-        jComboBox_MM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel2.setText("Kl: fks. 21,44");
 
-        jComboBox_DD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jTextField_Year.setText("9999");
 
-        jComboBox_TT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jTextField_mohnt.setText("MM");
 
-        jComboBox_Minut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jTextField_date.setText("DD");
 
-        jLabel1.setText("YY-MM-DD");
+        jTextField_minut.setText("Min");
 
-        jLabel2.setText("Time-Minut");
+        jTextField_hour.setText("24");
+        jTextField_hour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_hourActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Auctionens udløbnings dag/tid");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -327,43 +363,45 @@ public class CreateProduct extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox_typer, 0, 129, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Chose, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jButton_OpretAuction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton_tilbage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7)
-                    .addComponent(jTextField8)
-                    .addComponent(jTextField9)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jComboBox_TT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_Minut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox_YYY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_MM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_DD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox_typer, 0, 129, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton_Chose, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton_OpretAuction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton_tilbage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextField_Year, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_mohnt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_date, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel1))
+                            .addGap(58, 58, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextField_hour, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField_minut, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,24 +432,26 @@ public class CreateProduct extends javax.swing.JPanel {
                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_YYY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_MM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_DD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_TT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_Minut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
                     .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_Year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_mohnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_minut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_OpretAuction)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton_tilbage)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -426,29 +466,29 @@ public class CreateProduct extends javax.swing.JPanel {
 
     private void jButton_OpretAuctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_OpretAuctionActionPerformed
         String selectedItem = (String) jComboBox_typer.getSelectedItem();
-//        try {
-//            getSpecificAuction(selectedItem);
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
-//        }
+        try {
+            CreateProduct(selectedItem);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
+        }
     }//GEN-LAST:event_jButton_OpretAuctionActionPerformed
 
     private void jToggleButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_tilbageActionPerformed
         mf.getCardHandler().show(MainFrame1.HOVEDPANEL);
     }//GEN-LAST:event_jToggleButton_tilbageActionPerformed
 
+    private void jTextField_hourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_hourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_hourActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Chose;
     private javax.swing.JButton jButton_OpretAuction;
-    private javax.swing.JComboBox jComboBox_DD;
-    private javax.swing.JComboBox jComboBox_MM;
-    private javax.swing.JComboBox jComboBox_Minut;
-    private javax.swing.JComboBox jComboBox_TT;
-    private javax.swing.JComboBox jComboBox_YYY;
     private javax.swing.JComboBox jComboBox_typer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel_User;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
@@ -461,6 +501,11 @@ public class CreateProduct extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextField_Year;
+    private javax.swing.JTextField jTextField_date;
+    private javax.swing.JTextField jTextField_hour;
+    private javax.swing.JTextField jTextField_minut;
+    private javax.swing.JTextField jTextField_mohnt;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton_tilbage;
     // End of variables declaration//GEN-END:variables

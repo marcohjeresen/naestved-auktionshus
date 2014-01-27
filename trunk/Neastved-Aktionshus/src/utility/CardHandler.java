@@ -37,7 +37,7 @@ public class CardHandler {
         cl.show(main, ref);
         switch (ref) {
             case "cp":
-                frame.setBounds(0, 0, 400, 700);
+                frame.setBounds(0, 0, 310, 700);
                 break;
 
             case "hp":
