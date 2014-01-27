@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.Timer;
-import view.AuctionPanel;
+import view.*;
 
 /**
  *
@@ -23,6 +23,7 @@ public class Auction {
     private double startbid;
     private Date time;
     ArrayList<Bid> bidingHistory;
+    private HovdePanel hp;
 
     public Auction(Product product, User user, double startbid, Date time) {
         this.product = product;
@@ -47,23 +48,27 @@ public class Auction {
         Calendar cal = Calendar.getInstance();
         if (getUser().getName().equals(bid.getUser().getName())) {
             throw new Exception("Sælger kan ikke byde");
-        
-        }else{
-            if (cal.getTime().after(time)) {
-            throw new Exception("Auctinon er slut");
+
         } else {
-            if (bidingHistory.isEmpty() && bid.getAmount() > startbid) {
-                bidingHistory.add(bid);
-
-            } else if (!bidingHistory.isEmpty() && bid.getAmount() > getLatestBid()) {
-                bidingHistory.add(bid);
-
+            if (cal.getTime().after(time)) {
+                throw new Exception("Auctinon er slut");
             } else {
-                throw new Exception("Budet er nød til at være højere ind det nuværende og/eller Startbud");
+                if (bidingHistory.isEmpty() && bid.getAmount() > startbid) {
+                    bidingHistory.add(bid);
+
+                } else if (!bidingHistory.isEmpty() && bid.getAmount() > getLatestBid()) {
+                    bidingHistory.add(bid);
+
+                } else {
+                    throw new Exception("Budet er nød til at være højere ind det nuværende og/eller Startbud");
+                }
             }
         }
-    }}
-    
+    }
+    public void updateList(){
+        hp.update();
+    }
+
     public Product getProduct() {
         return product;
     }

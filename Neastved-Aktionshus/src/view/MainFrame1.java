@@ -63,6 +63,14 @@ private CardLayout cl;
     public AuctionSiden getAuctionSiden(){
         return as;
     }
+    
+    public void createProduct(Auction auction){
+        
+        auctionsList.add(auction);
+        
+        
+        
+    }
 
 
     

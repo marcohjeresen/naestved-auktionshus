@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -24,7 +24,8 @@ import model.Wine;
  * @author markh_000
  */
 public class HovdePanel extends javax.swing.JPanel {
-private ArrayList<Auction> auctionsListe;
+
+    private ArrayList<Auction> auctionsListe;
     private ArrayList<AuctionPanel> apListe;
     private User buyer;
     private int i;
@@ -46,7 +47,7 @@ private ArrayList<Auction> auctionsListe;
         this.mf = mf;
         createPanels(auctionsListe);
         setJcombobox();
-        
+
     }
 
     private void createPanels(ArrayList<Auction> auctionsLis) {
@@ -88,41 +89,40 @@ private ArrayList<Auction> auctionsListe;
     public ArrayList<Auction> getSpecificAuction(String product) throws Exception {
         ArrayList<Auction> al = new ArrayList<>();
         try {
-                maxPris = Double.parseDouble(maxPrise);
+            maxPris = Double.parseDouble(maxPrise);
         } catch (Exception e) {
             throw new Exception("Tegn og Bokstaver kan ikke bruges.");
         }
 //        
         for (Auction auction : auctionsListe) {
-            System.out.println(auction.getLatestBid());
-            System.out.println("Pris " + maxPris);
+            
             switch (product) {
                 case "Furniture":
                     if (auction.getProduct() instanceof Furniture) {
                         if (auction.getLatestBid() <= maxPris) {
                             al.add(auction);
-                        } 
+                        }
                     }
                     break;
                 case "Jewellery":
                     if (auction.getProduct() instanceof Jewellery) {
                         if (auction.getLatestBid() <= maxPris) {
                             al.add(auction);
-                        } 
+                        }
                     }
                     break;
                 case "Painting":
                     if (auction.getProduct() instanceof Painting) {
                         if (auction.getLatestBid() <= maxPris) {
                             al.add(auction);
-                        } 
+                        }
                     }
                     break;
                 case "Wine":
                     if (auction.getProduct() instanceof Wine) {
                         if (auction.getLatestBid() <= maxPris) {
                             al.add(auction);
-                        } 
+                        }
                     }
                     break;
                 default:
@@ -131,13 +131,23 @@ private ArrayList<Auction> auctionsListe;
             }
         }
         if (al.isEmpty()) {
-            
-                            throw new Exception("Beløbet er for småt");
+
+            throw new Exception("Beløbet er for småt");
         }
         jPanel_SamletAktion.removeAll();
         createPanels(al);
         jPanel_SamletAktion.updateUI();
         return al;
+
+    }
+
+    public void update() {
+       try {
+            getSpecificAuction("hej");
+        } catch (Exception ex) {
+            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
 
     }
 
@@ -255,11 +265,10 @@ private ArrayList<Auction> auctionsListe;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            getSpecificAuction("hej");
-        } catch (Exception ex) {
-            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        update();
+       
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -277,9 +286,9 @@ private ArrayList<Auction> auctionsListe;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+
         mf.getCardHandler().show(MainFrame1.CREATEPRODUCT);
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
