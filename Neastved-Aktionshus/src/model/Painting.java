@@ -12,10 +12,6 @@ package model;
  */
 public class Painting extends Product{
 
-    public Painting(String title, String description, double estimatedPrice, String picturePath) {
-        super(title, description, estimatedPrice ,picturePath);
-    }
-
     private String artist;
     private int year;
     private String style;

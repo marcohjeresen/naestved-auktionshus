@@ -9,10 +9,6 @@ package model;
  * @author Madsen
  */
 public class Jewellery extends Product {
-
-    public Jewellery(String title, String description, double estimatedPrice, String picturePath) {
-        super(title, description, estimatedPrice, picturePath);
-    }
     
     private String metal;
     private String gemstone;
