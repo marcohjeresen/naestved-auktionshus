@@ -29,9 +29,11 @@ private CardLayout cl;
     private ArrayList<Auction> auctionsList;
     private User buyer;
     private AuctionSiden as;
+    private CreateProduct cp;
     
     public static final String HOVEDPANEL = "hp";
     public static final String AUCTIONSIDE = "as";
+    public static final String CREATEPRODUCT = "cp";
     /**
      * Creates new form main
      */
@@ -40,8 +42,8 @@ private CardLayout cl;
         this.buyer = buyer;
         initComponents();
         setTitle(buyer.getName());
-        setSize(new Dimension(800, 800));
-        ch = new CardHandler(cl, jPanel1);
+        setSize(new Dimension(750, 600));
+        ch = new CardHandler(cl, jPanel1,this);
         addPages();
         
     }
@@ -51,6 +53,9 @@ private CardLayout cl;
         as = new AuctionSiden(buyer, this);
         ch.addPage(as, AUCTIONSIDE);
         ch.show(HOVEDPANEL);
+        cp = new CreateProduct(auctionsList, buyer, this);
+        ch.addPage(cp, CREATEPRODUCT);
+        
     }
     public CardHandler getCardHandler(){
         return ch;
