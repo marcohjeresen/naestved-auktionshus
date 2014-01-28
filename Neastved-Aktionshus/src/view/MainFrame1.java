@@ -30,12 +30,12 @@ private CardLayout cl;
     private User buyer;
     private AuctionSiden as;
     private CreateProduct cp;
-    private CreateUser cu;
+
     
     public static final String HOVEDPANEL = "hp";
     public static final String AUCTIONSIDE = "as";
     public static final String CREATEPRODUCT = "cp";
-    public static final String CREATEUSER = "cu";
+
     
     /**
      * Creates new form main
@@ -60,9 +60,6 @@ private CardLayout cl;
         
         cp = new CreateProduct(auctionsList, buyer, this);
         ch.addPage(cp, CREATEPRODUCT);
-        
-        cu = new CreateUser();
-        ch.addPage(cu, CREATEUSER);
         
     }
     public CardHandler getCardHandler(){

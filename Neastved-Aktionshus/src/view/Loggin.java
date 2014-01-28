@@ -5,7 +5,9 @@
  */
 package view;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Auction;
 import model.Search;
 import model.User;
@@ -19,20 +21,86 @@ public class Loggin extends javax.swing.JFrame {
     private ArrayList<User> userList;
     private ArrayList<Auction> auctionList;
     private ArrayList<Auction> auctionsListe;
+    private User buyer;
 
     /**
      * Creates new form Loggin
      */
     public Loggin(ArrayList<User> userList, ArrayList<Auction> auctionList) {
-
+        buyer = null;
         initComponents();
+        removeField();
         this.userList = userList;
         this.auctionList = auctionList;
         jComboBox1.removeAllItems();
+        setCombobox();
+
+    }
+
+    public void setCombobox() {
         for (User user : userList) {
             jComboBox1.addItem(user.getName());
         }
+    }
 
+    public void removeField() {
+        jLabel_brugeropret.setVisible(false);
+        jTextField1.setVisible(false);
+        jTextField2.setVisible(false);
+        jTextField3.setVisible(false);
+        jButton_opretloggin.setVisible(false);
+
+    }
+
+    private void setTextfeid() {
+        jLabel_brugeropret.setVisible(true);
+        jTextField1.setVisible(true);
+        jTextField2.setVisible(true);
+        jTextField3.setVisible(true);
+        jButton_opretloggin.setVisible(true);
+
+        jTextField1.setText("Navn: ");
+        jTextField2.setText("Adresse: ");
+        jTextField3.setText("Telefonnummer: ");
+        update(getGraphics());
+    }
+
+    public void CreateBuyer() {
+        String name;
+        String address;
+        int phoneNumber;
+        try {
+
+            name = jTextField1.getText();
+            address = jTextField2.getText();
+            phoneNumber = Integer.parseInt(jTextField3.getText());
+
+            User u = new User(name, address, phoneNumber);
+            userList.add(u);
+            
+            setCombobox();
+            buyer = u;
+            jComboBox1.removeAllItems();
+            setCombobox();
+            update(getGraphics());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Telefon nummeret kan ikke være tom eller bokstaver");
+        }
+
+    }
+
+    public void getCombobox() {
+        for (User user : userList) {
+            if (user.getName().equals(jComboBox1.getSelectedItem())) {
+                buyer = user;
+            }
+        }
+    }
+
+    public void login() {
+        MainFrame1 mf = new MainFrame1(auctionList, buyer);
+        mf.setVisible(true);
+        this.dispose();
     }
 
     /**
@@ -47,6 +115,11 @@ public class Loggin extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jButton_opretloggin = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel_brugeropret = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +139,21 @@ public class Loggin extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.setText("jTextField2");
+
+        jTextField1.setText("jTextField1");
+
+        jButton_opretloggin.setText("Login");
+        jButton_opretloggin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_opretlogginActionPerformed(evt);
+            }
+        });
+
+        jTextField3.setText("jTextField3");
+
+        jLabel_brugeropret.setText("Brugeroprettelse");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,12 +161,17 @@ public class Loggin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton_opretloggin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_brugeropret, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,31 +182,41 @@ public class Loggin extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_brugeropret)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_opretloggin)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        User buyer = null;
-
-        for (User user : userList) {
-            if (user.getName().equals(jComboBox1.getSelectedItem())) {
-                buyer = user;
-            }
-        }
-        MainFrame1 mf = new MainFrame1(auctionList, buyer);
-        mf.setVisible(true);
-        this.dispose();
-
+        getCombobox();
+        login();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        setTextfeid();
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton_opretlogginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_opretlogginActionPerformed
+        CreateBuyer();
+        if (buyer == null) {
+            login();
+        }
+
+
+    }//GEN-LAST:event_jButton_opretlogginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +225,11 @@ public class Loggin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_opretloggin;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel_brugeropret;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
