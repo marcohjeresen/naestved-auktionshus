@@ -223,7 +223,7 @@ public class CreateProduct extends javax.swing.JPanel {
 
                         String manufacturer = jTextField1.getText();
                         String country = jTextField2.getText();
-                        double yearOfProduction = Double.parseDouble(jTextField3.getText());
+                        int yearOfProduction = Integer.parseInt(jTextField3.getText());
                         String grapes = jTextField4.getText();
                         double percent = Double.parseDouble(jTextField5.getText());
                         double bottleSize = Double.parseDouble(jTextField6.getText());
@@ -477,7 +477,7 @@ public class CreateProduct extends javax.swing.JPanel {
 
     private void jToggleButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_tilbageActionPerformed
         mf.getCardHandler().show(MainFrame1.HOVEDPANEL);
-        hp.update();
+        
     }//GEN-LAST:event_jToggleButton_tilbageActionPerformed
 
     private void jTextField_hourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_hourActionPerformed

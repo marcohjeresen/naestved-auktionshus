@@ -35,7 +35,7 @@ public class Main {
 
         String manufacturer = "ItalieWine";
         String country = "Italie";
-        double yearOfProduction = 1890;
+        int yearOfProduction = 1890;
         String grapes = "RedGrapes";
         double percent = 13;
         double bottleSize = 1;
