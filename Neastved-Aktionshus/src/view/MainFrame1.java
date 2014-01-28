@@ -30,10 +30,13 @@ private CardLayout cl;
     private User buyer;
     private AuctionSiden as;
     private CreateProduct cp;
+    private CreateUser cu;
     
     public static final String HOVEDPANEL = "hp";
     public static final String AUCTIONSIDE = "as";
     public static final String CREATEPRODUCT = "cp";
+    public static final String CREATEUSER = "cu";
+    
     /**
      * Creates new form main
      */
@@ -50,11 +53,16 @@ private CardLayout cl;
     public void addPages(){
         HovdePanel hp = new HovdePanel(auctionsList, buyer, this);
         ch.addPage(hp, HOVEDPANEL);
+        
         as = new AuctionSiden(buyer, this);
         ch.addPage(as, AUCTIONSIDE);
         ch.show(HOVEDPANEL);
+        
         cp = new CreateProduct(auctionsList, buyer, this);
         ch.addPage(cp, CREATEPRODUCT);
+        
+        cu = new CreateUser();
+        ch.addPage(cu, CREATEUSER);
         
     }
     public CardHandler getCardHandler(){

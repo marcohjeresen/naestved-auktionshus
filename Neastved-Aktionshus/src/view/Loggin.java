@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
 
 import java.util.ArrayList;
@@ -16,14 +15,16 @@ import model.User;
  * @author markh_000
  */
 public class Loggin extends javax.swing.JFrame {
-private ArrayList<User> userList;
-private ArrayList<Auction> auctionList;
+
+    private ArrayList<User> userList;
+    private ArrayList<Auction> auctionList;
     private ArrayList<Auction> auctionsListe;
+
     /**
      * Creates new form Loggin
      */
-    public Loggin(ArrayList<User> userList, ArrayList<Auction> auctionList){
-        
+    public Loggin(ArrayList<User> userList, ArrayList<Auction> auctionList) {
+
         initComponents();
         this.userList = userList;
         this.auctionList = auctionList;
@@ -31,7 +32,7 @@ private ArrayList<Auction> auctionList;
         for (User user : userList) {
             jComboBox1.addItem(user.getName());
         }
-        
+
     }
 
     /**
@@ -45,6 +46,7 @@ private ArrayList<Auction> auctionList;
 
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,25 +59,37 @@ private ArrayList<Auction> auctionList;
             }
         });
 
+        jButton2.setText("Opret bruger");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,7 +97,7 @@ private ArrayList<Auction> auctionList;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         User buyer = null;
-        
+
         for (User user : userList) {
             if (user.getName().equals(jComboBox1.getSelectedItem())) {
                 buyer = user;
@@ -92,17 +106,22 @@ private ArrayList<Auction> auctionList;
         MainFrame1 mf = new MainFrame1(auctionList, buyer);
         mf.setVisible(true);
         this.dispose();
-        
-       
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     // End of variables declaration//GEN-END:variables
 }

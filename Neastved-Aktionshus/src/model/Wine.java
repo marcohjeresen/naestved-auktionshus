@@ -17,13 +17,13 @@ public class Wine extends Product{
     }
     private String manufacturer;
     private String country;
-    private double yearOfProduction;
+    private int yearOfProduction;
     private String grapes;
     private double percent;
     private double bottleSize;
     private int quantity ;
 
-    public Wine(String manufacturer, String country, double yearOfProduction, String grapes, double percent, double bottleSize, int quantity, String title, String description, double estimatedPrice, String picturePath) {
+    public Wine(String manufacturer, String country, int yearOfProduction, String grapes, double percent, double bottleSize, int quantity, String title, String description, double estimatedPrice, String picturePath) {
         super(title, description, estimatedPrice, picturePath);
         this.manufacturer = manufacturer;
         this.country = country;
@@ -54,7 +54,7 @@ public class Wine extends Product{
         return yearOfProduction;
     }
 
-    public void setYearOfProduction(double yearOfProduction) {
+    public void setYearOfProduction(int yearOfProduction) {
         this.yearOfProduction = yearOfProduction;
     }
 

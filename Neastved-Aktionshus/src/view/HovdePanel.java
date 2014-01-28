@@ -11,6 +11,7 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import model.Auction;
 import model.Furniture;
 import model.Jewellery;
@@ -23,7 +24,7 @@ import model.Wine;
  *
  * @author markh_000
  */
-public class HovdePanel extends javax.swing.JPanel {
+public class HovdePanel extends javax.swing.JPanel{
 
     private ArrayList<Auction> auctionsListe;
     private ArrayList<AuctionPanel> apListe;
@@ -34,6 +35,7 @@ public class HovdePanel extends javax.swing.JPanel {
     private String maxPrise;
     private double maxPris;
     private MainFrame1 mf;
+    private boolean færdig = false;
 
     /**
      * Creates new form main
@@ -95,7 +97,7 @@ public class HovdePanel extends javax.swing.JPanel {
         }
 //        
         for (Auction auction : auctionsListe) {
-            
+
             switch (product) {
                 case "Furniture":
                     if (auction.getProduct() instanceof Furniture) {
@@ -142,14 +144,15 @@ public class HovdePanel extends javax.swing.JPanel {
     }
 
     public void update() {
-       try {
+        try {
             getSpecificAuction("hej");
         } catch (Exception ex) {
             Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
 
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -266,9 +269,8 @@ public class HovdePanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         update();
-       
-        
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
