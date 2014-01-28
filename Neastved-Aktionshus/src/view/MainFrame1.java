@@ -23,20 +23,17 @@ import utility.CardHandler;
  */
 public class MainFrame1 extends javax.swing.JFrame {
 
-    
-private CardLayout cl;
+    private CardLayout cl;
     private CardHandler ch;
     private ArrayList<Auction> auctionsList;
     private User buyer;
     private AuctionSiden as;
     private CreateProduct cp;
 
-    
     public static final String HOVEDPANEL = "hp";
     public static final String AUCTIONSIDE = "as";
     public static final String CREATEPRODUCT = "cp";
 
-    
     /**
      * Creates new form main
      */
@@ -46,39 +43,38 @@ private CardLayout cl;
         initComponents();
         setTitle(buyer.getName());
         setSize(new Dimension(750, 600));
-        ch = new CardHandler(cl, jPanel1,this);
+        ch = new CardHandler(cl, jPanel1, this);
         addPages();
-        
+
     }
-    public void addPages(){
+
+    public void addPages() {
         HovdePanel hp = new HovdePanel(auctionsList, buyer, this);
         ch.addPage(hp, HOVEDPANEL);
-        
+
         as = new AuctionSiden(buyer, this);
         ch.addPage(as, AUCTIONSIDE);
         ch.show(HOVEDPANEL);
-        
+
         cp = new CreateProduct(auctionsList, buyer, this);
         ch.addPage(cp, CREATEPRODUCT);
-        
+
     }
-    public CardHandler getCardHandler(){
+
+    public CardHandler getCardHandler() {
         return ch;
     }
-    public AuctionSiden getAuctionSiden(){
+
+    public AuctionSiden getAuctionSiden() {
         return as;
     }
-    
-    public void createProduct(Auction auction){
-        
+
+    public void createProduct(Auction auction) {
+
         auctionsList.add(auction);
-        
-        
-        
+
     }
 
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
