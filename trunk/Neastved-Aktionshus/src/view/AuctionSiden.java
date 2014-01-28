@@ -31,7 +31,7 @@ public class AuctionSiden extends javax.swing.JPanel {
     private Product product;
     private Auction akt;
     private User user;
-    private int størrelse;
+    private int size;
     private MainFrame1 mf;
 
     /**
@@ -47,7 +47,7 @@ public class AuctionSiden extends javax.swing.JPanel {
     public void startAuction(Auction akt) {
         this.akt = akt;
         product = akt.getProduct();
-        størrelse = 5;
+        size = 5;
         
         fillLabels();
         updateBid();
@@ -146,7 +146,7 @@ public class AuctionSiden extends javax.swing.JPanel {
     }
 
     public void setLatestBid() {
-        størrelse = akt.getBidingHistory().size() - 5;
+        size = akt.getBidingHistory().size() - 5;
         jTextArea1.setText("");
         if (akt.getBidingHistory().size() == 0) {
             jTextArea1.append("Start bud: " + akt.getLatestBid());
@@ -155,7 +155,7 @@ public class AuctionSiden extends javax.swing.JPanel {
                 jTextArea1.append("Der er bud:  " + akt.getBidingHistory().get(i).getAmount() + "  Af bruger:  " + akt.getBidingHistory().get(i).getUser().getName() + "\n");
             }
         } else if (akt.getBidingHistory().size() > 5) {
-            for (int i = størrelse; i < akt.getBidingHistory().size(); i++) {
+            for (int i = size; i < akt.getBidingHistory().size(); i++) {
                 jTextArea1.append("Der er bud:  " + akt.getBidingHistory().get(i).getAmount() + "  Af bruger:  " + akt.getBidingHistory().get(i).getUser().getName() + "\n");
             }
         }
@@ -369,19 +369,16 @@ public class AuctionSiden extends javax.swing.JPanel {
         try {
             double bid = Double.parseDouble(jTextField1.getText());
             double currentBid = akt.getLatestBid();
-            
             if (bid >= 50 + currentBid) {
                 akt.setLatesBid(new Bid(user, Calendar.getInstance().getTime(), bid));
             } else {
                 JOptionPane.showMessageDialog(this, "Buddet er for lavt. Fedterøv!");
             }
-
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Ikke bogstaver");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
         }
-
     }//GEN-LAST:event_jButton_bydActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

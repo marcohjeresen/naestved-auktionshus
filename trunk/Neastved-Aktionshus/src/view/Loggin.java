@@ -49,6 +49,9 @@ public class Loggin extends javax.swing.JFrame {
         jTextField2.setVisible(false);
         jTextField3.setVisible(false);
         jButton_opretloggin.setVisible(false);
+        jButton_fortryd.setVisible(false);
+        jComboBox1.setEnabled(true);
+        jButton1.setEnabled(true);
 
     }
 
@@ -58,10 +61,15 @@ public class Loggin extends javax.swing.JFrame {
         jTextField2.setVisible(true);
         jTextField3.setVisible(true);
         jButton_opretloggin.setVisible(true);
+        jComboBox1.setEnabled(false);
+        jButton1.setEnabled(false);
+        jButton_fortryd.setVisible(true);
 
         jTextField1.setText("Navn: ");
         jTextField2.setText("Adresse: ");
         jTextField3.setText("Telefonnummer: ");
+        
+        
         update(getGraphics());
     }
 
@@ -120,6 +128,7 @@ public class Loggin extends javax.swing.JFrame {
         jButton_opretloggin = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jLabel_brugeropret = new javax.swing.JLabel();
+        jButton_fortryd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,6 +163,13 @@ public class Loggin extends javax.swing.JFrame {
 
         jLabel_brugeropret.setText("Brugeroprettelse");
 
+        jButton_fortryd.setText("Fortryd");
+        jButton_fortryd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_fortrydActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,7 +186,8 @@ public class Loggin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_fortryd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,6 +209,8 @@ public class Loggin extends javax.swing.JFrame {
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_opretloggin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_fortryd)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,6 +237,10 @@ public class Loggin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton_opretlogginActionPerformed
 
+    private void jButton_fortrydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_fortrydActionPerformed
+        removeField();
+    }//GEN-LAST:event_jButton_fortrydActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,6 +248,7 @@ public class Loggin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_fortryd;
     private javax.swing.JButton jButton_opretloggin;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel_brugeropret;

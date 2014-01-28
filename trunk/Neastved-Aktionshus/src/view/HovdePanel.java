@@ -32,8 +32,8 @@ public class HovdePanel extends javax.swing.JPanel{
     private int i;
     private Auction at;
     private Search search;
-    private String maxPrise;
-    private double maxPris;
+    private String maxPrice;
+    private double MaxPrice;
     private MainFrame1 mf;
     private boolean færdig = false;
 
@@ -90,39 +90,35 @@ public class HovdePanel extends javax.swing.JPanel{
 
     public ArrayList<Auction> getSpecificAuction(String product) throws Exception {
         ArrayList<Auction> al = new ArrayList<>();
-        try {
-            maxPris = Double.parseDouble(maxPrise);
-        } catch (Exception e) {
-            throw new Exception("Tegn og Bokstaver kan ikke bruges.");
-        }
-//        
+        
+        
         for (Auction auction : auctionsListe) {
 
             switch (product) {
                 case "Furniture":
                     if (auction.getProduct() instanceof Furniture) {
-                        if (auction.getLatestBid() <= maxPris) {
+                        if (auction.getLatestBid() <= MaxPrice) {
                             al.add(auction);
                         }
                     }
                     break;
                 case "Jewellery":
                     if (auction.getProduct() instanceof Jewellery) {
-                        if (auction.getLatestBid() <= maxPris) {
+                        if (auction.getLatestBid() <= MaxPrice) {
                             al.add(auction);
                         }
                     }
                     break;
                 case "Painting":
                     if (auction.getProduct() instanceof Painting) {
-                        if (auction.getLatestBid() <= maxPris) {
+                        if (auction.getLatestBid() <= MaxPrice) {
                             al.add(auction);
                         }
                     }
                     break;
                 case "Wine":
                     if (auction.getProduct() instanceof Wine) {
-                        if (auction.getLatestBid() <= maxPris) {
+                        if (auction.getLatestBid() <= MaxPrice) {
                             al.add(auction);
                         }
                     }
@@ -166,7 +162,7 @@ public class HovdePanel extends javax.swing.JPanel{
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel_SamletAktion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButton_tilbage = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jTextField_pris = new javax.swing.JTextField();
@@ -191,10 +187,10 @@ public class HovdePanel extends javax.swing.JPanel{
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Næstved Aktionshus");
 
-        jButton2.setText("Tilbage");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton_tilbage.setText("Tilbage");
+        jButton_tilbage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton_tilbageActionPerformed(evt);
             }
         });
 
@@ -233,7 +229,7 @@ public class HovdePanel extends javax.swing.JPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(jButton_tilbage, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -260,28 +256,33 @@ public class HovdePanel extends javax.swing.JPanel{
                         .addGap(49, 49, 49)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(jButton_tilbage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(24, 24, 24))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_tilbageActionPerformed
         update();
 
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton_tilbageActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        maxPrise = jTextField_pris.getText();
-        if ("".equals(maxPrise) || "0".equals(maxPrise)) {
-            maxPrise = "10000000";
+        maxPrice = jTextField_pris.getText();
+        if ("".equals(maxPrice) || "0".equals(maxPrice)) {
+            maxPrice = "10000000";
         }
 
         String selectedItem = (String) jComboBox1.getSelectedItem();
         try {
+            
+            MaxPrice = Double.parseDouble(maxPrice);
+            
             getSpecificAuction(selectedItem);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Bokstaver er ikke tilladt");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
         }
@@ -296,8 +297,8 @@ public class HovdePanel extends javax.swing.JPanel{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_tilbage;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

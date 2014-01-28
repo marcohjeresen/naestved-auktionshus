@@ -6,9 +6,11 @@
 
 package view;
 
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimerTask;
+import javax.swing.ImageIcon;
 import model.*;
 
 /**
@@ -29,7 +31,7 @@ public class AuctionPanel extends javax.swing.JPanel {
         this.akt = akt;
         this.mf = mf;
         product = akt.getProduct();
-        this.setSize(535, 140);
+        this.setSize(680, 140);
         fillLabels();
         starTimer();
         
@@ -48,6 +50,8 @@ public class AuctionPanel extends javax.swing.JPanel {
     private void fillLabels(){
         removeLabels();
         setLatestBid();
+        
+        
         jLabel_Titel.setText("Title: " + product.getTitle());
         String ntime = dateFormat(akt.getTime());
         jLabel_Ends.setText("Ends: " + ntime);
@@ -96,6 +100,22 @@ public class AuctionPanel extends javax.swing.JPanel {
             }
         }, 100, 100);         
     }
+    public void insertPic(){
+        Image img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), 0);
+        ImageIcon icon = new ImageIcon(img);
+
+        if (icon.getIconHeight() < icon.getIconWidth()) {
+            img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(-1, jLabel3.getHeight(), 0);
+            icon = new ImageIcon(img);
+            jLabel3.setIcon(icon);
+
+        } else {
+            img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel3.getWidth(), -1, 0);
+            icon = new ImageIcon(img);
+            jLabel3.setIcon(icon);
+
+        }
+    }
     
 
     /**
@@ -119,6 +139,7 @@ public class AuctionPanel extends javax.swing.JPanel {
         jLabel_flaksestøøresle = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel_ekstra = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -151,58 +172,65 @@ public class AuctionPanel extends javax.swing.JPanel {
 
         jLabel_ekstra.setText("jLabel3");
 
+        jLabel3.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel_year, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addGap(0, 104, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel_year, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel_Ends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel_Artist)
-                                .addComponent(jLabel_Titel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel1))
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_Estimere)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_flaksestøøresle)
-                                    .addComponent(jLabel_sisdtebud))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel_ekstra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(20, 20, 20))
+                                .addComponent(jLabel_Titel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(52, 52, 52)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel_Estimere)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel_flaksestøøresle)
+                                .addComponent(jLabel_sisdtebud))))
+                    .addComponent(jLabel_ekstra, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel_ekstra))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Titel)
-                    .addComponent(jLabel_Estimere)
-                    .addComponent(jButton1))
+                    .addComponent(jLabel_ekstra)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Ends)
-                    .addComponent(jLabel_sisdtebud))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Artist)
-                    .addComponent(jLabel_flaksestøøresle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_year)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel_Titel)
+                            .addComponent(jLabel_Estimere)
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel_Ends)
+                            .addComponent(jLabel_sisdtebud))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel_Artist)
+                            .addComponent(jLabel_flaksestøøresle))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_year))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -216,6 +244,7 @@ public class AuctionPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel_Artist;
     private javax.swing.JLabel jLabel_Ends;

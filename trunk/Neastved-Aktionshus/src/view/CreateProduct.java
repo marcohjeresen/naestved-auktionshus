@@ -477,6 +477,7 @@ public class CreateProduct extends javax.swing.JPanel {
 
     private void jToggleButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_tilbageActionPerformed
         mf.getCardHandler().show(MainFrame1.HOVEDPANEL);
+        setTextfeid();
         
     }//GEN-LAST:event_jToggleButton_tilbageActionPerformed
 
