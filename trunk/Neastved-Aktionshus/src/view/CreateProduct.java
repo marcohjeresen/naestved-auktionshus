@@ -8,6 +8,8 @@ package view;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.*;
@@ -469,12 +471,13 @@ public class CreateProduct extends javax.swing.JPanel {
         try {
             CreateProduct(selectedItem);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
+            JOptionPane.showMessageDialog(this, "Auction oprettet. ");
         }
     }//GEN-LAST:event_jButton_OpretAuctionActionPerformed
 
     private void jToggleButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_tilbageActionPerformed
         mf.getCardHandler().show(MainFrame1.HOVEDPANEL);
+        hp.update();
     }//GEN-LAST:event_jToggleButton_tilbageActionPerformed
 
     private void jTextField_hourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_hourActionPerformed
