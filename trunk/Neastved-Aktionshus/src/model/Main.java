@@ -42,7 +42,7 @@ public class Main {
         int quantity = 3;
         String title = "Wine";
         String description = "Flot Flot vin";
-        double estimatedPrice = 13000;
+        int estimatedPrice = 13000;
         String picturePath = ".\\Billeder\\glas vin.jpg";
 
         Wine vin1 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);

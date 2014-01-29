@@ -17,7 +17,7 @@ public class Painting extends Product{
     private String style;
     private String size;
 
-    public Painting(String artist, int year, String style, String size, String title, String description, double estimatedPrice, String picturePath) {
+    public Painting(String artist, int year, String style, String size, String title, String description, int estimatedPrice, String picturePath) {
         super(title, description, estimatedPrice, picturePath);
         this.artist = artist;
         this.year = year;

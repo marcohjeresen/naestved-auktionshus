@@ -7,6 +7,7 @@ package view;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import model.Auction;
 import model.Search;
@@ -34,6 +35,7 @@ public class Loggin extends javax.swing.JFrame {
         this.auctionList = auctionList;
         jComboBox1.removeAllItems();
         setCombobox();
+     
 
     }
 
@@ -51,7 +53,7 @@ public class Loggin extends javax.swing.JFrame {
         jButton_opretloggin.setVisible(false);
         jButton_fortryd.setVisible(false);
         jComboBox1.setEnabled(true);
-        jButton1.setEnabled(true);
+        jButton_login.setEnabled(true);
 
     }
 
@@ -62,7 +64,7 @@ public class Loggin extends javax.swing.JFrame {
         jTextField3.setVisible(true);
         jButton_opretloggin.setVisible(true);
         jComboBox1.setEnabled(false);
-        jButton1.setEnabled(false);
+        jButton_login.setEnabled(false);
         jButton_fortryd.setVisible(true);
 
         jTextField1.setText("Navn: ");
@@ -85,9 +87,8 @@ public class Loggin extends javax.swing.JFrame {
 
             User u = new User(name, address, phoneNumber);
             userList.add(u);
-            
-            setCombobox();
             buyer = u;
+            
             jComboBox1.removeAllItems();
             setCombobox();
             update(getGraphics());
@@ -105,11 +106,14 @@ public class Loggin extends javax.swing.JFrame {
         }
     }
 
-    public void login() {
+    public void login(User buyer) {
+        
         MainFrame1 mf = new MainFrame1(auctionList, buyer);
         mf.setVisible(true);
         this.dispose();
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,8 +125,8 @@ public class Loggin extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton_login = new javax.swing.JButton();
+        jButton_opret = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jButton_opretloggin = new javax.swing.JButton();
@@ -134,17 +138,17 @@ public class Loggin extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_login.setText("Login");
+        jButton_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_loginActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Opret bruger");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton_opret.setText("Opret bruger");
+        jButton_opret.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton_opretActionPerformed(evt);
             }
         });
 
@@ -182,11 +186,11 @@ public class Loggin extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_brugeropret, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_opret, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton_login, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton_fortryd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -196,9 +200,9 @@ public class Loggin extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton_login))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(jButton_opret)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_brugeropret)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -217,21 +221,22 @@ public class Loggin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_loginActionPerformed
         getCombobox();
-        login();
+        login(buyer);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_loginActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton_opretActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_opretActionPerformed
         setTextfeid();
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton_opretActionPerformed
 
     private void jButton_opretlogginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_opretlogginActionPerformed
         CreateBuyer();
-        if (buyer == null) {
-            login();
+        
+        if (buyer != null) {
+            login(buyer);
         }
 
 
@@ -246,9 +251,9 @@ public class Loggin extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_fortryd;
+    private javax.swing.JButton jButton_login;
+    private javax.swing.JButton jButton_opret;
     private javax.swing.JButton jButton_opretloggin;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel_brugeropret;

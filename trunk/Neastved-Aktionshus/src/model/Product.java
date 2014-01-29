@@ -13,10 +13,10 @@ public class Product {
 
     private String title;
     private String description;
-    private double estimatedPrice;
+    private int estimatedPrice;
     private String picturePath;
 
-    public Product(String title, String description, double estimatedPrice, String picturePath) {
+    public Product(String title, String description, int estimatedPrice, String picturePath) {
         this.title = title;
         this.description = description;
         this.estimatedPrice = estimatedPrice;
@@ -43,7 +43,7 @@ public class Product {
         return estimatedPrice;
     }
 
-    public void setEstimatedPrice(double estimatedPrice) {
+    public void setEstimatedPrice(int estimatedPrice) {
         this.estimatedPrice = estimatedPrice;
     }
 

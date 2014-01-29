@@ -13,7 +13,7 @@ public class Furniture extends Product {
     private String materials;
     private String dimensions;
 
-    public Furniture(String materials, String dimensions, String title, String description, double estimatedPrice, String picturePath) {
+    public Furniture(String materials, String dimensions, String title, String description, int estimatedPrice, String picturePath) {
         super(title, description, estimatedPrice, picturePath);
         this.materials = materials;
         this.dimensions = dimensions;

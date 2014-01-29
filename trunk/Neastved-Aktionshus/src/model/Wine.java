@@ -12,7 +12,7 @@ package model;
  */
 public class Wine extends Product{
 
-    public Wine(String title, String description, double estimatedPrice, String picturePath) {
+    public Wine(String title, String description, int estimatedPrice, String picturePath) {
         super(title, description, estimatedPrice, picturePath);
     }
     private String manufacturer;
@@ -23,7 +23,7 @@ public class Wine extends Product{
     private double bottleSize;
     private int quantity ;
 
-    public Wine(String manufacturer, String country, int yearOfProduction, String grapes, double percent, double bottleSize, int quantity, String title, String description, double estimatedPrice, String picturePath) {
+    public Wine(String manufacturer, String country, int yearOfProduction, String grapes, double percent, double bottleSize, int quantity, String title, String description, int estimatedPrice, String picturePath) {
         super(title, description, estimatedPrice, picturePath);
         this.manufacturer = manufacturer;
         this.country = country;

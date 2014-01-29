@@ -367,8 +367,8 @@ public class AuctionSiden extends javax.swing.JPanel {
     private void jButton_bydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bydActionPerformed
 
         try {
-            double bid = Double.parseDouble(jTextField1.getText());
-            double currentBid = akt.getLatestBid();
+            int bid = Integer.parseInt(jTextField1.getText());
+            int currentBid = (int) akt.getLatestBid();
             if (bid >= 50 + currentBid) {
                 akt.setLatesBid(new Bid(user, Calendar.getInstance().getTime(), bid));
             } else {
