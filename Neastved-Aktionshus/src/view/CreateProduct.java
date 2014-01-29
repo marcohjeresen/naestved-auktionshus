@@ -158,11 +158,11 @@ public class CreateProduct extends javax.swing.JPanel {
         String picturePath;
         try {
 
-            double estimatedPrice;
-            double minimumspris;
+            int estimatedPrice;
+            int minimumspris;
             
             int years = Integer.parseInt(jTextField_Year.getText());
-            int mothn = Integer.parseInt(jTextField_mohnt.getText());
+            int mothn = Integer.parseInt(jTextField_mohnt.getText()) -1;
             int day = Integer.parseInt(jTextField_date.getText());
             int time = Integer.parseInt(jTextField_hour.getText());
             int min = Integer.parseInt(jTextField_minut.getText());
@@ -177,8 +177,8 @@ public class CreateProduct extends javax.swing.JPanel {
                         String matrialer = jTextField1.getText();
                         String dimensions = jTextField2.getText();
                         title = (String) jComboBox_typer.getSelectedItem();
-                        estimatedPrice = Double.parseDouble(jTextField3.getText());
-                        minimumspris = Double.parseDouble(jTextField4.getText());
+                        estimatedPrice = Integer.parseInt(jTextField3.getText());
+                        minimumspris = Integer.parseInt(jTextField4.getText());
                         description = jTextArea1.getText();
                         picturePath = "";
                         Furniture f = new Furniture(matrialer, dimensions, title, description, estimatedPrice, picturePath);
@@ -193,8 +193,8 @@ public class CreateProduct extends javax.swing.JPanel {
                         String stamp = jTextField3.getText();
                         title = (String) jComboBox_typer.getSelectedItem();
                         description = jTextArea1.getText();
-                        estimatedPrice = Double.parseDouble(jTextField4.getText());
-                        minimumspris = Double.parseDouble(jTextField5.getText());
+                        estimatedPrice = Integer.parseInt(jTextField4.getText());
+                        minimumspris = Integer.parseInt(jTextField5.getText());
                         picturePath = "";
 
                         Jewellery s = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
@@ -210,8 +210,8 @@ public class CreateProduct extends javax.swing.JPanel {
                         String size = jTextField4.getText();
                         title = (String) jComboBox_typer.getSelectedItem();
                         description = jTextArea1.getText();
-                        estimatedPrice = Double.parseDouble(jTextField5.getText());
-                        minimumspris = Double.parseDouble(jTextField6.getText());
+                        estimatedPrice = Integer.parseInt(jTextField5.getText());
+                        minimumspris = Integer.parseInt(jTextField6.getText());
                         picturePath = "";
 
                         Painting b = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
@@ -230,8 +230,8 @@ public class CreateProduct extends javax.swing.JPanel {
                         int quantity = Integer.parseInt(jTextField7.getText());
                         title = (String) jComboBox_typer.getSelectedItem();
                         description = jTextArea1.getText();
-                        estimatedPrice = Double.parseDouble(jTextField8.getText());
-                        minimumspris = Double.parseDouble(jTextField9.getText());
+                        estimatedPrice = Integer.parseInt(jTextField8.getText());
+                        minimumspris = Integer.parseInt(jTextField9.getText());
                         picturePath = "";
 
                         Wine v = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);

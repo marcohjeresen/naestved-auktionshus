@@ -20,12 +20,12 @@ public class Auction {
 
     private Product product;
     private User user;
-    private double startbid;
+    private int startbid;
     private Date time;
     ArrayList<Bid> bidingHistory;
     private HovdePanel hp;
 
-    public Auction(Product product, User user, double startbid, Date time) {
+    public Auction(Product product, User user, int startbid, Date time) {
         this.product = product;
         this.user = user;
         this.startbid = startbid;
@@ -34,7 +34,7 @@ public class Auction {
     }
 
     public double getLatestBid() {
-        double bid;
+        int bid;
         if (bidingHistory.isEmpty()) {
             bid = startbid;
 
@@ -89,7 +89,7 @@ public class Auction {
         return startbid;
     }
 
-    public void setStartbid(double startbid) {
+    public void setStartbid(int startbid) {
         this.startbid = startbid;
     }
 

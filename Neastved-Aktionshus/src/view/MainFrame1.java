@@ -55,6 +55,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         as = new AuctionSiden(buyer, this);
         ch.addPage(as, AUCTIONSIDE);
         ch.show(HOVEDPANEL);
+        
 
         cp = new CreateProduct(auctionsList, buyer, this);
         ch.addPage(cp, CREATEPRODUCT);

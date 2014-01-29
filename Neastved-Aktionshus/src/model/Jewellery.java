@@ -14,7 +14,7 @@ public class Jewellery extends Product {
     private String gemstone;
     private String stamp;
 
-    public Jewellery(String metal, String gemstone, String stamp, String title, String description, double estimatedPrice, String picturePath) {
+    public Jewellery(String metal, String gemstone, String stamp, String title, String description, int estimatedPrice, String picturePath) {
         super(title, description, estimatedPrice, picturePath);
         this.metal = metal;
         this.gemstone = gemstone;

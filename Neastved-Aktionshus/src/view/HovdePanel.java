@@ -6,6 +6,8 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -24,7 +26,7 @@ import model.Wine;
  *
  * @author markh_000
  */
-public class HovdePanel extends javax.swing.JPanel{
+public class HovdePanel extends javax.swing.JPanel {
 
     private ArrayList<Auction> auctionsListe;
     private ArrayList<AuctionPanel> apListe;
@@ -37,6 +39,7 @@ public class HovdePanel extends javax.swing.JPanel{
     private MainFrame1 mf;
     private boolean færdig = false;
 
+
     /**
      * Creates new form main
      */
@@ -47,8 +50,10 @@ public class HovdePanel extends javax.swing.JPanel{
         apListe = new ArrayList<>();
         this.buyer = buyer;
         this.mf = mf;
+
         createPanels(auctionsListe);
         setJcombobox();
+        
 
     }
 
@@ -90,8 +95,7 @@ public class HovdePanel extends javax.swing.JPanel{
 
     public ArrayList<Auction> getSpecificAuction(String product) throws Exception {
         ArrayList<Auction> al = new ArrayList<>();
-        
-        
+
         for (Auction auction : auctionsListe) {
 
             switch (product) {
@@ -187,7 +191,7 @@ public class HovdePanel extends javax.swing.JPanel{
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Næstved Aktionshus");
 
-        jButton_tilbage.setText("Tilbage");
+        jButton_tilbage.setText("Anullere Søgningen");
         jButton_tilbage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_tilbageActionPerformed(evt);
@@ -277,9 +281,9 @@ public class HovdePanel extends javax.swing.JPanel{
 
         String selectedItem = (String) jComboBox1.getSelectedItem();
         try {
-            
+
             MaxPrice = Double.parseDouble(maxPrice);
-            
+
             getSpecificAuction(selectedItem);
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Bokstaver er ikke tilladt");

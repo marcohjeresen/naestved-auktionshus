@@ -15,9 +15,9 @@ import java.util.Date;
 public class Bid {
     private User user;
     private Date time;
-    private double amount;
+    private int amount;
 
-    public Bid(User user, Date time, double amount) {
+    public Bid(User user, Date time, int amount) {
         this.user = user;
         this.time = time;
         this.amount = amount;
@@ -39,11 +39,11 @@ public class Bid {
         this.time = tidspunkt;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setamount(double amount) {
+    public void setamount(int amount) {
         this.amount = amount;
     }
     
