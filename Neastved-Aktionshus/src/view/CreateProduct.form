@@ -16,10 +16,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="jToggleButton_tilbage" pref="234" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jButton_OpretAuction" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jLabel_User" max="32767" attributes="0"/>
@@ -29,8 +31,6 @@
                           <Component id="jButton_Chose" min="-2" pref="87" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButton_OpretAuction" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jToggleButton_tilbage" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
@@ -40,7 +40,6 @@
                       <Component id="jTextField7" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextField8" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextField9" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jToggleButton1" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -62,8 +61,9 @@
                               <Component id="jLabel2" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_tilføj" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -115,12 +115,12 @@
                   <Component id="jTextField_hour" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButton_tilføj" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton_OpretAuction" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jToggleButton_tilbage" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -233,11 +233,6 @@
         <Property name="text" type="java.lang.String" value="jTextField9"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tilf&#xf8;j Billed"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Dato: fks. 2014-11-23."/>
@@ -250,8 +245,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_Year">
       <Properties>
-        <Property name="text" type="java.lang.String" value="9999"/>
+        <Property name="text" type="java.lang.String" value="YYYY"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_YearActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_mohnt">
       <Properties>
@@ -280,6 +278,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Auctionens udl&#xf8;bnings dag/tid"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton_tilf&#xf8;j">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tilf&#xf8;j billed"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_tilf&#xf8;jActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -6,9 +6,13 @@
 package view;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.TimerTask;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import model.Auction;
 import model.Search;
 import model.User;
@@ -23,23 +27,35 @@ public class Loggin extends javax.swing.JFrame {
     private ArrayList<Auction> auctionList;
     private ArrayList<Auction> auctionsListe;
     private User buyer;
+//    private Timer timer;
+    private boolean running;
 
     /**
      * Creates new form Loggin
      */
     public Loggin(ArrayList<User> userList, ArrayList<Auction> auctionList) {
         buyer = null;
+        running = true;
         initComponents();
         removeField();
         this.userList = userList;
         this.auctionList = auctionList;
         jComboBox1.removeAllItems();
         setCombobox();
-     
+//        timer = new Timer(500, new ActionListener() {
+//
+//            @Override
+//            public void actionPerformed(ActionEvent ae) {
+//                
+//                setCombobox();
+//            }
+//        });
+//        timer.start();
 
     }
 
     public void setCombobox() {
+        jComboBox1.removeAllItems();
         for (User user : userList) {
             jComboBox1.addItem(user.getName());
         }
@@ -70,9 +86,8 @@ public class Loggin extends javax.swing.JFrame {
         jTextField1.setText("Navn: ");
         jTextField2.setText("Adresse: ");
         jTextField3.setText("Telefonnummer: ");
-        
-        
-        update(getGraphics());
+
+        repaint();
     }
 
     public void CreateBuyer() {
@@ -88,10 +103,7 @@ public class Loggin extends javax.swing.JFrame {
             User u = new User(name, address, phoneNumber);
             userList.add(u);
             buyer = u;
-            
-            jComboBox1.removeAllItems();
-            setCombobox();
-            update(getGraphics());
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Telefon nummeret kan ikke være tom eller bokstaver");
         }
@@ -107,13 +119,15 @@ public class Loggin extends javax.swing.JFrame {
     }
 
     public void login(User buyer) {
-        
+
         MainFrame1 mf = new MainFrame1(auctionList, buyer);
         mf.setVisible(true);
+        
         this.dispose();
+       
     }
     
-   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,6 +151,16 @@ public class Loggin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseEntered(evt);
+            }
+        });
+        jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBox1FocusGained(evt);
+            }
+        });
 
         jButton_login.setText("Login");
         jButton_login.addActionListener(new java.awt.event.ActionListener() {
@@ -224,6 +248,7 @@ public class Loggin extends javax.swing.JFrame {
     private void jButton_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_loginActionPerformed
         getCombobox();
         login(buyer);
+//        timer.stop();
 
     }//GEN-LAST:event_jButton_loginActionPerformed
 
@@ -234,9 +259,10 @@ public class Loggin extends javax.swing.JFrame {
 
     private void jButton_opretlogginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_opretlogginActionPerformed
         CreateBuyer();
-        
+
         if (buyer != null) {
             login(buyer);
+//            timer.stop();
         }
 
 
@@ -245,6 +271,15 @@ public class Loggin extends javax.swing.JFrame {
     private void jButton_fortrydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_fortrydActionPerformed
         removeField();
     }//GEN-LAST:event_jButton_fortrydActionPerformed
+
+    private void jComboBox1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseEntered
+      
+    }//GEN-LAST:event_jComboBox1MouseEntered
+
+    private void jComboBox1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusGained
+        setCombobox();
+         System.out.println("ap");
+    }//GEN-LAST:event_jComboBox1FocusGained
 
     /**
      * @param args the command line arguments

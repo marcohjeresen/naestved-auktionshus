@@ -6,6 +6,7 @@
 
 package view;
 
+import java.awt.Dimension;
 import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,7 +51,7 @@ public class AuctionPanel extends javax.swing.JPanel {
     private void fillLabels(){
         removeLabels();
         setLatestBid();
-        
+        insertPic();
         
         jLabel_Titel.setText("Title: " + product.getTitle());
         String ntime = dateFormat(akt.getTime());
@@ -101,6 +102,13 @@ public class AuctionPanel extends javax.swing.JPanel {
         }, 100, 100);         
     }
     public void insertPic(){
+        
+           
+//        Image img = new ImageIcon(product.getPicturePath()).getImage();
+            
+            
+        jLabel3.setPreferredSize(new Dimension(34, 14));
+        jLabel3.setSize(148, 83);
         Image img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), 0);
         ImageIcon icon = new ImageIcon(img);
 
@@ -115,6 +123,7 @@ public class AuctionPanel extends javax.swing.JPanel {
             jLabel3.setIcon(icon);
 
         }
+        
     }
     
 
@@ -172,8 +181,6 @@ public class AuctionPanel extends javax.swing.JPanel {
 
         jLabel_ekstra.setText("jLabel3");
 
-        jLabel3.setText("jLabel3");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,11 +188,11 @@ public class AuctionPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 104, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                        .addGap(0, 112, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel_year, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -213,7 +220,7 @@ public class AuctionPanel extends javax.swing.JPanel {
                     .addComponent(jLabel_ekstra)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel_Titel)
@@ -228,7 +235,8 @@ public class AuctionPanel extends javax.swing.JPanel {
                             .addComponent(jLabel_Artist)
                             .addComponent(jLabel_flaksestøøresle))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_year))
+                        .addComponent(jLabel_year)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
