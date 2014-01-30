@@ -35,17 +35,14 @@ public class CreateProduct extends javax.swing.JPanel {
         this.mf = mf;
         picturePath = "";
         initComponents();
-
         startCreate();
 
     }
 
     public void startCreate() {
         jLabel_User.setText("Bruger: " + buyer.getName());
-
         setJcombobox();
         removeTextfeild();
-
     }
 
     private void removeTextfeild() {
@@ -92,7 +89,6 @@ public class CreateProduct extends javax.swing.JPanel {
             jTextField7.setVisible(true);
             jTextField8.setVisible(true);
             jTextField9.setVisible(true);
-
         }
         setTextfeid();
     }
@@ -138,7 +134,6 @@ public class CreateProduct extends javax.swing.JPanel {
             jTextArea1.setText("Beskrivelse: ");
         }
         updateUI();
-
     }
 
     private void setJcombobox() {
@@ -147,27 +142,24 @@ public class CreateProduct extends javax.swing.JPanel {
         for (Object s : search.getProdukt()) {
             jComboBox_typer.addItem(s);
         }
-
     }
 
     public void CreateProduct(String product) {
         String title;
         String description;
-        
-        try {
 
+        try {
             int estimatedPrice;
             int minimumspris;
-            
             int years = Integer.parseInt(jTextField_Year.getText());
-            int mothn = Integer.parseInt(jTextField_mohnt.getText()) -1;
+            int mothn = Integer.parseInt(jTextField_mohnt.getText()) - 1;
             int day = Integer.parseInt(jTextField_date.getText());
             int time = Integer.parseInt(jTextField_hour.getText());
             int min = Integer.parseInt(jTextField_minut.getText());
 
             Calendar cal = Calendar.getInstance();
             cal.set(years, mothn, day, time, min);
-ProductControl pc = new ProductControl();
+            ProductControl pc = new ProductControl();
             for (Auction auction : ac.getAuctionlist()) {
                 switch (product) {
                     case "Furniture":
@@ -179,9 +171,8 @@ ProductControl pc = new ProductControl();
                         minimumspris = Integer.parseInt(jTextField4.getText());
                         pc.setDescription(jTextArea1.getText());
                         pc.setPicturePath(picturePath);
-                        
+
                         ac.createAuction(pc.createFurniture(), buyer, minimumspris, cal.getTime());
-                        
 
                         break;
                     case "Jewellery":
@@ -195,7 +186,6 @@ ProductControl pc = new ProductControl();
                         minimumspris = Integer.parseInt(jTextField5.getText());
                         pc.setPicturePath(picturePath);
 
-                        
                         ac.createAuction(pc.createJewellery(), buyer, minimumspris, cal.getTime());
 
                         break;
@@ -211,18 +201,17 @@ ProductControl pc = new ProductControl();
                         minimumspris = Integer.parseInt(jTextField6.getText());
                         pc.setPicturePath(picturePath);
 
-                        
                         ac.createAuction(pc.createPainting(), buyer, minimumspris, cal.getTime());
 
                         break;
                     case "Wine":
 
                         pc.setManufacturer(jTextField1.getText());
-                        pc.setCountry(jTextField2.getText()); 
-                        pc.setYearOfProduction(Integer.parseInt(jTextField3.getText())); 
+                        pc.setCountry(jTextField2.getText());
+                        pc.setYearOfProduction(Integer.parseInt(jTextField3.getText()));
                         pc.setGrapes(jTextField4.getText());
-                        pc.setPercent(Double.parseDouble(jTextField5.getText())); 
-                        pc.setBottleSize(Double.parseDouble(jTextField6.getText())); 
+                        pc.setPercent(Double.parseDouble(jTextField5.getText()));
+                        pc.setBottleSize(Double.parseDouble(jTextField6.getText()));
                         pc.setQuantity(Integer.parseInt(jTextField7.getText()));
                         title = (String) jComboBox_typer.getSelectedItem();
                         pc.setDescription(jTextArea1.getText());
@@ -230,20 +219,16 @@ ProductControl pc = new ProductControl();
                         minimumspris = Integer.parseInt(jTextField9.getText());
                         pc.setPicturePath(picturePath);
 
-                        
                         ac.createAuction(pc.createWine(), buyer, minimumspris, cal.getTime());
                         break;
                 }
             }
             akt.updateList();
-
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Dato, Tid, Pris, og procenter kan ikke være bogstaver" + ex.getLocalizedMessage());
             ex.getLocalizedMessage();
-        } 
+        }
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -470,7 +455,6 @@ ProductControl pc = new ProductControl();
 
     private void jButton_ChoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ChoseActionPerformed
         removeTextfeild();
-
     }//GEN-LAST:event_jButton_ChoseActionPerformed
 
     private void jButton_OpretAuctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_OpretAuctionActionPerformed
@@ -480,14 +464,11 @@ ProductControl pc = new ProductControl();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Auction oprettet. ");
         }
-        
     }//GEN-LAST:event_jButton_OpretAuctionActionPerformed
 
     private void jToggleButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_tilbageActionPerformed
         mf.getCardHandler().show(MainFrame1.HOVEDPANEL);
         setTextfeid();
-       
-        
     }//GEN-LAST:event_jToggleButton_tilbageActionPerformed
 
     private void jTextField_hourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_hourActionPerformed
@@ -498,7 +479,6 @@ ProductControl pc = new ProductControl();
         JFileChooser jfc = new JFileChooser();
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             picturePath = jfc.getSelectedFile().getAbsolutePath();
-            
         }
     }//GEN-LAST:event_jButton_tilføjActionPerformed
 

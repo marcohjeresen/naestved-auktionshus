@@ -8,10 +8,13 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
 import model.*;
 
 /**
@@ -34,8 +37,14 @@ public class AuctionPanel extends javax.swing.JPanel {
         product = akt.getProduct();
         this.setSize(680, 140);
         fillLabels();
-        starTimer();
-        
+        Timer timer = new Timer(250, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                setLatestBid();
+            }
+        });
+        timer.start();
     }
     
     private void removeLabels(){
@@ -78,10 +87,9 @@ public class AuctionPanel extends javax.swing.JPanel {
         }else if (product instanceof Jewellery) {
             Jewellery j = (Jewellery) product;
             jLabel_Artist.setText("Beskrivelse: " + j.getDescription());
-            
         }
-        
     }
+    
     public void setLatestBid(){
         jLabel_sisdtebud.setText("Latest Bid: "+ akt.getLatestBid());
     }
@@ -91,19 +99,9 @@ public class AuctionPanel extends javax.swing.JPanel {
         String str = sdf.format(date);
         return str;
     }
-    public void starTimer() {
-        final java.util.Timer timer;        
-        timer = new java.util.Timer(true);
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                setLatestBid();
-            }
-        }, 100, 100);         
-    }
+    
     public void insertPic(){
         
-
         jLabel3.setPreferredSize(new Dimension(34, 14));
         jLabel3.setSize(148, 83);
         Image img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), 0);
@@ -118,9 +116,7 @@ public class AuctionPanel extends javax.swing.JPanel {
             img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel3.getWidth(), -1, 0);
             icon = new ImageIcon(img);
             jLabel3.setIcon(icon);
-
         }
-        
     }
     
 

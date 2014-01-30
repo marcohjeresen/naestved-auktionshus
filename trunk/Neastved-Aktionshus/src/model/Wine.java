@@ -89,6 +89,4 @@ public class Wine extends Product{
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    
 }

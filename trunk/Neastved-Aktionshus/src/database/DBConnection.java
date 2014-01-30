@@ -70,7 +70,6 @@ public class DBConnection {
         }
         return connection;
     }
-
     /**
      *
      * @param sql a String containing the sql command

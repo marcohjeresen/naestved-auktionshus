@@ -45,6 +45,4 @@ public class Jewellery extends Product {
         this.stamp = stamp;
     }
 
-    
-
 }

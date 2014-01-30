@@ -56,8 +56,4 @@ public class Painting extends Product{
     public void setSize(String size) {
         this.size = size;
     }
-
-    
-   
-    
 }

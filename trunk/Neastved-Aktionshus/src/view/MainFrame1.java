@@ -34,7 +34,6 @@ public class MainFrame1 extends javax.swing.JFrame {
     private AuctionSiden as;
     private CreateProduct cp;
     private HovdePanel hp;
-
     public static final String HOVEDPANEL = "hp";
     public static final String AUCTIONSIDE = "as";
     public static final String CREATEPRODUCT = "cp";
@@ -50,7 +49,6 @@ public class MainFrame1 extends javax.swing.JFrame {
         setSize(new Dimension(750, 600));
         ch = new CardHandler(cl, jPanel1, this);
         addPages();
-//        
 
     }
 
@@ -62,10 +60,8 @@ public class MainFrame1 extends javax.swing.JFrame {
         ch.addPage(as, AUCTIONSIDE);
         ch.show(HOVEDPANEL);
         
-
         cp = new CreateProduct(ac, buyer, this);
         ch.addPage(cp, CREATEPRODUCT);
-
     }
 
     public CardHandler getCardHandler() {
@@ -77,9 +73,7 @@ public class MainFrame1 extends javax.swing.JFrame {
     }
 
     public void createProduct(Auction auction) {
-
         ac.addAuction(auction);
-
     }
 
     /**
