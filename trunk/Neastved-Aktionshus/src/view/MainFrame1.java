@@ -5,6 +5,7 @@
  */
 package view;
 
+import control.AuctionControl;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -28,7 +29,7 @@ public class MainFrame1 extends javax.swing.JFrame {
 
     private CardLayout cl;
     private CardHandler ch;
-    private ArrayList<Auction> auctionsList;
+    private AuctionControl ac;
     private User buyer;
     private AuctionSiden as;
     private CreateProduct cp;
@@ -41,8 +42,8 @@ public class MainFrame1 extends javax.swing.JFrame {
     /**
      * Creates new form main
      */
-    public MainFrame1(ArrayList<Auction> auctionsList, User buyer) {
-        this.auctionsList = auctionsList;
+    public MainFrame1(AuctionControl ac, User buyer) {
+        this.ac = ac;
         this.buyer = buyer;
         initComponents();
         setTitle(buyer.getName());
@@ -54,7 +55,7 @@ public class MainFrame1 extends javax.swing.JFrame {
     }
 
     public void addPages() {
-        hp = new HovdePanel(auctionsList, buyer, this);
+        hp = new HovdePanel(ac, buyer, this);
         ch.addPage(hp, HOVEDPANEL);
 
         as = new AuctionSiden(buyer, this);
@@ -62,7 +63,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         ch.show(HOVEDPANEL);
         
 
-        cp = new CreateProduct(auctionsList, buyer, this);
+        cp = new CreateProduct(ac, buyer, this);
         ch.addPage(cp, CREATEPRODUCT);
 
     }
@@ -77,7 +78,7 @@ public class MainFrame1 extends javax.swing.JFrame {
 
     public void createProduct(Auction auction) {
 
-        auctionsList.add(auction);
+        ac.addAuction(auction);
 
     }
 

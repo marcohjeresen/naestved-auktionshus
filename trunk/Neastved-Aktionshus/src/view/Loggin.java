@@ -5,6 +5,7 @@
  */
 package view;
 
+import control.AuctionControl;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,8 +25,7 @@ import model.User;
 public class Loggin extends javax.swing.JFrame {
 
     private ArrayList<User> userList;
-    private ArrayList<Auction> auctionList;
-    private ArrayList<Auction> auctionsListe;
+    private AuctionControl ac;
     private User buyer;
 //    private Timer timer;
     private boolean running;
@@ -33,24 +33,16 @@ public class Loggin extends javax.swing.JFrame {
     /**
      * Creates new form Loggin
      */
-    public Loggin(ArrayList<User> userList, ArrayList<Auction> auctionList) {
+    public Loggin(ArrayList<User> userList, AuctionControl ac) {
         buyer = null;
         running = true;
         initComponents();
         removeField();
         this.userList = userList;
-        this.auctionList = auctionList;
+        this.ac = ac;
         jComboBox1.removeAllItems();
         setCombobox();
-//        timer = new Timer(500, new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                
-//                setCombobox();
-//            }
-//        });
-//        timer.start();
+//      
 
     }
 
@@ -120,7 +112,7 @@ public class Loggin extends javax.swing.JFrame {
 
     public void login(User buyer) {
 
-        MainFrame1 mf = new MainFrame1(auctionList, buyer);
+        MainFrame1 mf = new MainFrame1(ac, buyer);
         mf.setVisible(true);
         
         this.dispose();

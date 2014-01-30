@@ -5,6 +5,7 @@
  */
 package view;
 
+import control.AuctionControl;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,29 +29,28 @@ import model.Wine;
  */
 public class HovdePanel extends javax.swing.JPanel {
 
-    private ArrayList<Auction> auctionsListe;
+    private AuctionControl ac;
     private ArrayList<AuctionPanel> apListe;
     private User buyer;
     private int i;
     private Auction at;
     private Search search;
-    private String maxPrice;
-    private double MaxPrice;
+    
+    
     private MainFrame1 mf;
     private boolean færdig = false;
 
     /**
      * Creates new form main
      */
-    public HovdePanel(ArrayList<Auction> auctionsListe, User buyer, MainFrame1 mf) {
+    public HovdePanel(AuctionControl ac, User buyer, MainFrame1 mf) {
 
         initComponents();
-        this.auctionsListe = auctionsListe;
+        this.ac = ac;
         apListe = new ArrayList<>();
         this.buyer = buyer;
         this.mf = mf;
-
-        createPanels(auctionsListe);
+        createPanels(ac.getAuctionlist());
         setJcombobox();
 
     }
@@ -72,7 +72,7 @@ public class HovdePanel extends javax.swing.JPanel {
             width = ap.getWidth();
         }
         if (auctionsLis.size() > 4) {
-            height *= auctionsListe.size();
+            height *= auctionsLis.size();
             jPanel_SamletAktion.setPreferredSize(new Dimension(width, height));
             width += 18;
             jScrollPane1.setPreferredSize(new Dimension(width, height));
@@ -85,82 +85,29 @@ public class HovdePanel extends javax.swing.JPanel {
 
     private void setJcombobox() {
         jComboBox1.removeAllItems();
-        Search search = new Search(auctionsListe);
+        Search search = new Search(ac.getAuctionlist());
         jComboBox1.addItem("all auctions");
         for (Object s : search.getProdukt()) {
             jComboBox1.addItem(s);
         }
     }
 
-    public ArrayList<Auction> getSpecificAuction(String product) throws Exception {
-        ArrayList<Auction> al = new ArrayList<>();
-
-        for (Auction auction : auctionsListe) {
-
-            switch (product) {
-                case "Furniture":
-                    if (auction.getProduct() instanceof Furniture) {
-                        if (auction.getLatestBid() <= MaxPrice) {
-                            al.add(auction);
-                        }
-                    }
-                    break;
-                case "Jewellery":
-                    if (auction.getProduct() instanceof Jewellery) {
-                        if (auction.getLatestBid() <= MaxPrice) {
-                            al.add(auction);
-                        }
-                    }
-                    break;
-                case "Painting":
-                    if (auction.getProduct() instanceof Painting) {
-                        if (auction.getLatestBid() <= MaxPrice) {
-                            al.add(auction);
-                        }
-                    }
-                    break;
-                case "Wine":
-                    if (auction.getProduct() instanceof Wine) {
-                        if (auction.getLatestBid() <= MaxPrice) {
-                            al.add(auction);
-                        }
-                    }
-                    break;
-                case "all auctions":
-
-                    if (auction.getLatestBid() <= MaxPrice) {
-                        al.add(auction);
-
-                    }
-                break;
-                    
-                default:
-                    al = auctionsListe;
-                    break;
-            }
-        }
-
+    public void getSpecificAuction(String product, String maxPrice) throws Exception {
+        ArrayList<Auction> al = ac.getSpecificAuction(product, maxPrice);
         jPanel_SamletAktion.removeAll();
         createPanels(al);
         jPanel_SamletAktion.updateUI();
-        return al;
-
     }
 
     public void update() {
-        maxPrice = jTextField_pris.getText();
-        if ("".equals(maxPrice) || "0".equals(maxPrice)) {
-            maxPrice = "10000000";
-        }
         try {
             String selectedItem = (String) jComboBox1.getSelectedItem();
-            MaxPrice = Double.parseDouble(maxPrice);
-            getSpecificAuction(selectedItem);
+            getSpecificAuction(selectedItem , jTextField_pris.getText());
         } catch (Exception ex) {
             Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,20 +212,10 @@ public class HovdePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        maxPrice = jTextField_pris.getText();
-        if ("".equals(maxPrice) || "0".equals(maxPrice)) {
-            maxPrice = "10000000";
-        }
-
         String selectedItem = (String) jComboBox1.getSelectedItem();
         try {
-
-            MaxPrice = Double.parseDouble(maxPrice);
-
-            getSpecificAuction(selectedItem);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Bokstaver er ikke tilladt");
-        } catch (Exception ex) {
+            getSpecificAuction(selectedItem, jTextField_pris.getText());
+        }  catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
