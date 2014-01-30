@@ -42,10 +42,10 @@ public class CreateProduct extends javax.swing.JPanel {
     public void startCreate() {
         jLabel_User.setText("Bruger: " + buyer.getName());
         setJcombobox();
-        removeTextfeild();
+        setTextFeildVisible();
     }
 
-    private void removeTextfeild() {
+    private void setTextFeildVisible() {
         jTextField1.setVisible(false);
         jTextField2.setVisible(false);
         jTextField3.setVisible(false);
@@ -90,10 +90,15 @@ public class CreateProduct extends javax.swing.JPanel {
             jTextField8.setVisible(true);
             jTextField9.setVisible(true);
         }
-        setTextfeid();
+        setTextFeid();
     }
 
-    private void setTextfeid() {
+    private void setTextFeid() {
+        jTextField_Year.setText("YYYY");
+        jTextField_date.setText("DD");
+        jTextField_hour.setText("TT");
+        jTextField_minut.setText("MM");
+        jTextField_mohnt.setText("MM");
 
         if (jComboBox_typer.getSelectedItem() == "Painting") {
             jTextField1.setText("Artist: ");
@@ -283,23 +288,71 @@ public class CreateProduct extends javax.swing.JPanel {
         jLabel_User.setText("Bruger");
 
         jTextField1.setText("jTextField1");
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+        });
 
         jTextField2.setText("jTextField2");
+        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField2FocusGained(evt);
+            }
+        });
 
         jTextField3.setText("jTextField3");
+        jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField3FocusGained(evt);
+            }
+        });
 
         jTextField4.setText("jTextField4");
+        jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField4FocusGained(evt);
+            }
+        });
 
         jTextField5.setText("jTextField5");
+        jTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField5FocusGained(evt);
+            }
+        });
 
         jTextField6.setText("jTextField6");
+        jTextField6.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField6FocusGained(evt);
+            }
+        });
 
         jTextField7.setText("jTextField7");
+        jTextField7.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField7FocusGained(evt);
+            }
+        });
 
         jTextField8.setText("jTextField8");
+        jTextField8.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField8FocusGained(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextArea1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextArea1FocusLost(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton_OpretAuction.setText("Opret Auction");
@@ -317,28 +370,63 @@ public class CreateProduct extends javax.swing.JPanel {
         });
 
         jTextField9.setText("jTextField9");
+        jTextField9.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField9FocusGained(evt);
+            }
+        });
 
         jLabel1.setText("Dato: fks. 2014-11-23.");
 
         jLabel2.setText("Kl: fks. 21,44");
 
         jTextField_Year.setText("YYYY");
-        jTextField_Year.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_YearActionPerformed(evt);
+        jTextField_Year.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_YearFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_YearFocusLost(evt);
             }
         });
 
         jTextField_mohnt.setText("MM");
+        jTextField_mohnt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_mohntFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_mohntFocusLost(evt);
+            }
+        });
 
         jTextField_date.setText("DD");
+        jTextField_date.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_dateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_dateFocusLost(evt);
+            }
+        });
 
         jTextField_minut.setText("Min");
+        jTextField_minut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_minutFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_minutFocusLost(evt);
+            }
+        });
 
         jTextField_hour.setText("24");
-        jTextField_hour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_hourActionPerformed(evt);
+        jTextField_hour.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_hourFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_hourFocusLost(evt);
             }
         });
 
@@ -359,42 +447,41 @@ public class CreateProduct extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jToggleButton_tilbage, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton_OpretAuction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox_typer, 0, 129, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton_Chose, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTextField_Year, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField_mohnt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField_date, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel1))
-                            .addGap(58, 58, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTextField_hour, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField_minut, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton_tilføj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButton_OpretAuction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox_typer, 0, 129, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_Chose, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField_Year, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_mohnt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_date, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addGap(58, 58, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField_hour, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_minut, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_tilføj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -454,7 +541,7 @@ public class CreateProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox_typerActionPerformed
 
     private void jButton_ChoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ChoseActionPerformed
-        removeTextfeild();
+        setTextFeildVisible();
     }//GEN-LAST:event_jButton_ChoseActionPerformed
 
     private void jButton_OpretAuctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_OpretAuctionActionPerformed
@@ -468,12 +555,8 @@ public class CreateProduct extends javax.swing.JPanel {
 
     private void jToggleButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_tilbageActionPerformed
         mf.getCardHandler().show(MainFrame1.HOVEDPANEL);
-        setTextfeid();
+        setTextFeid();
     }//GEN-LAST:event_jToggleButton_tilbageActionPerformed
-
-    private void jTextField_hourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_hourActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_hourActionPerformed
 
     private void jButton_tilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_tilføjActionPerformed
         JFileChooser jfc = new JFileChooser();
@@ -482,9 +565,101 @@ public class CreateProduct extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton_tilføjActionPerformed
 
-    private void jTextField_YearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_YearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_YearActionPerformed
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
+        jTextField2.setText("");
+    }//GEN-LAST:event_jTextField2FocusGained
+
+    private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
+        jTextField3.setText("");
+    }//GEN-LAST:event_jTextField3FocusGained
+
+    private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusGained
+        jTextField4.setText("");
+    }//GEN-LAST:event_jTextField4FocusGained
+
+    private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusGained
+        jTextField5.setText("");
+    }//GEN-LAST:event_jTextField5FocusGained
+
+    private void jTextField6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField6FocusGained
+        jTextField6.setText("");
+    }//GEN-LAST:event_jTextField6FocusGained
+
+    private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
+        jTextField7.setText("");
+    }//GEN-LAST:event_jTextField7FocusGained
+
+    private void jTextField8FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusGained
+        jTextField8.setText("");
+    }//GEN-LAST:event_jTextField8FocusGained
+
+    private void jTextField9FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField9FocusGained
+        jTextField9.setText("");
+    }//GEN-LAST:event_jTextField9FocusGained
+
+    private void jTextField_YearFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_YearFocusGained
+        jTextField_Year.setText("");
+    }//GEN-LAST:event_jTextField_YearFocusGained
+
+    private void jTextField_YearFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_YearFocusLost
+        if (jTextField_Year.getText().isEmpty()) {
+            jTextField_Year.setText("YYYY");
+        }
+    }//GEN-LAST:event_jTextField_YearFocusLost
+
+    private void jTextField_mohntFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_mohntFocusGained
+        jTextField_mohnt.setText("");
+    }//GEN-LAST:event_jTextField_mohntFocusGained
+
+    private void jTextField_mohntFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_mohntFocusLost
+       if (jTextField_mohnt.getText().isEmpty()) {
+            jTextField_mohnt.setText("MM");
+        }
+    }//GEN-LAST:event_jTextField_mohntFocusLost
+
+    private void jTextField_dateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_dateFocusGained
+       jTextField_date.setText("");
+    }//GEN-LAST:event_jTextField_dateFocusGained
+
+    private void jTextField_dateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_dateFocusLost
+       if (jTextField_date.getText().isEmpty()) {
+            jTextField_date.setText("DD");
+        }
+    }//GEN-LAST:event_jTextField_dateFocusLost
+
+    private void jTextField_hourFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_hourFocusGained
+       jTextField_hour.setText("");
+    }//GEN-LAST:event_jTextField_hourFocusGained
+
+    private void jTextField_hourFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_hourFocusLost
+       if (jTextField_hour.getText().isEmpty()) {
+            jTextField_hour.setText("TT");
+        }
+    }//GEN-LAST:event_jTextField_hourFocusLost
+
+    private void jTextField_minutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_minutFocusGained
+      jTextField_minut.setText("");
+    }//GEN-LAST:event_jTextField_minutFocusGained
+
+    private void jTextField_minutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_minutFocusLost
+      if (jTextField_minut.getText().isEmpty()) {
+           jTextField_minut.setText("MM");
+        }
+    }//GEN-LAST:event_jTextField_minutFocusLost
+
+    private void jTextArea1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusGained
+       jTextArea1.setText("");
+    }//GEN-LAST:event_jTextArea1FocusGained
+
+    private void jTextArea1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusLost
+       if (jTextArea1.getText().isEmpty()) {
+            jTextArea1.setText("Bemærkning");
+        }
+    }//GEN-LAST:event_jTextArea1FocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
