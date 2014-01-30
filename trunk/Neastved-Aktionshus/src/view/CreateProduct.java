@@ -5,16 +5,11 @@
  */
 package view;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.*;
-import utility.CardHandler;
-import view.*;
 
 /**
  *
@@ -28,6 +23,7 @@ public class CreateProduct extends javax.swing.JPanel {
     private Auction akt;
     private MainFrame1 mf;
     private HovdePanel hp;
+    private String picturePath;
 
     /**
      * Creates new form OpretProduct
@@ -36,6 +32,7 @@ public class CreateProduct extends javax.swing.JPanel {
         this.auctionsListe = auctionsListe;
         this.buyer = buyer;
         this.mf = mf;
+        picturePath = "";
         initComponents();
 
         startCreate();
@@ -155,7 +152,7 @@ public class CreateProduct extends javax.swing.JPanel {
     public void CreateProduct(String product) {
         String title;
         String description;
-        String picturePath;
+        
         try {
 
             int estimatedPrice;
@@ -180,7 +177,6 @@ public class CreateProduct extends javax.swing.JPanel {
                         estimatedPrice = Integer.parseInt(jTextField3.getText());
                         minimumspris = Integer.parseInt(jTextField4.getText());
                         description = jTextArea1.getText();
-                        picturePath = "";
                         Furniture f = new Furniture(matrialer, dimensions, title, description, estimatedPrice, picturePath);
                         auction = new Auction(f, buyer, minimumspris, cal.getTime());
                         auctionsListe.add(auction);
@@ -195,7 +191,6 @@ public class CreateProduct extends javax.swing.JPanel {
                         description = jTextArea1.getText();
                         estimatedPrice = Integer.parseInt(jTextField4.getText());
                         minimumspris = Integer.parseInt(jTextField5.getText());
-                        picturePath = "";
 
                         Jewellery s = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
                         auction = new Auction(s, buyer, minimumspris, cal.getTime());
@@ -212,7 +207,6 @@ public class CreateProduct extends javax.swing.JPanel {
                         description = jTextArea1.getText();
                         estimatedPrice = Integer.parseInt(jTextField5.getText());
                         minimumspris = Integer.parseInt(jTextField6.getText());
-                        picturePath = "";
 
                         Painting b = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
                         auction = new Auction(b, buyer, minimumspris, cal.getTime());
@@ -232,7 +226,6 @@ public class CreateProduct extends javax.swing.JPanel {
                         description = jTextArea1.getText();
                         estimatedPrice = Integer.parseInt(jTextField8.getText());
                         minimumspris = Integer.parseInt(jTextField9.getText());
-                        picturePath = "";
 
                         Wine v = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
                         auction = new Auction(v, buyer, minimumspris, cal.getTime());
@@ -247,6 +240,8 @@ public class CreateProduct extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Dato, Tid, Pris, og procenter kan ikke være bogstaver");
         }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -273,7 +268,6 @@ public class CreateProduct extends javax.swing.JPanel {
         jButton_OpretAuction = new javax.swing.JButton();
         jToggleButton_tilbage = new javax.swing.JToggleButton();
         jTextField9 = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField_Year = new javax.swing.JTextField();
@@ -282,6 +276,7 @@ public class CreateProduct extends javax.swing.JPanel {
         jTextField_minut = new javax.swing.JTextField();
         jTextField_hour = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jButton_tilføj = new javax.swing.JButton();
 
         jComboBox_typer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_typer.addActionListener(new java.awt.event.ActionListener() {
@@ -336,13 +331,16 @@ public class CreateProduct extends javax.swing.JPanel {
 
         jTextField9.setText("jTextField9");
 
-        jToggleButton1.setText("Tilføj Billed");
-
         jLabel1.setText("Dato: fks. 2014-11-23.");
 
         jLabel2.setText("Kl: fks. 21,44");
 
-        jTextField_Year.setText("9999");
+        jTextField_Year.setText("YYYY");
+        jTextField_Year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_YearActionPerformed(evt);
+            }
+        });
 
         jTextField_mohnt.setText("MM");
 
@@ -359,14 +357,23 @@ public class CreateProduct extends javax.swing.JPanel {
 
         jLabel3.setText("Auctionens udløbnings dag/tid");
 
+        jButton_tilføj.setText("Tilføj billed");
+        jButton_tilføj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_tilføjActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jToggleButton_tilbage, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton_OpretAuction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -374,8 +381,6 @@ public class CreateProduct extends javax.swing.JPanel {
                             .addGap(18, 18, 18)
                             .addComponent(jButton_Chose, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton_OpretAuction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton_tilbage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,7 +390,6 @@ public class CreateProduct extends javax.swing.JPanel {
                         .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -401,8 +405,9 @@ public class CreateProduct extends javax.swing.JPanel {
                                     .addComponent(jTextField_hour, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jTextField_minut, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addComponent(jLabel3))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton_tilføj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -448,12 +453,12 @@ public class CreateProduct extends javax.swing.JPanel {
                     .addComponent(jTextField_minut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_tilføj)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_OpretAuction)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton_tilbage)
-                .addGap(22, 22, 22))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -473,11 +478,13 @@ public class CreateProduct extends javax.swing.JPanel {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Auction oprettet. ");
         }
+        
     }//GEN-LAST:event_jButton_OpretAuctionActionPerformed
 
     private void jToggleButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_tilbageActionPerformed
         mf.getCardHandler().show(MainFrame1.HOVEDPANEL);
         setTextfeid();
+       
         
     }//GEN-LAST:event_jToggleButton_tilbageActionPerformed
 
@@ -485,10 +492,23 @@ public class CreateProduct extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_hourActionPerformed
 
+    private void jButton_tilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_tilføjActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            picturePath = jfc.getSelectedFile().getAbsolutePath();
+            
+        }
+    }//GEN-LAST:event_jButton_tilføjActionPerformed
+
+    private void jTextField_YearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_YearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_YearActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Chose;
     private javax.swing.JButton jButton_OpretAuction;
+    private javax.swing.JButton jButton_tilføj;
     private javax.swing.JComboBox jComboBox_typer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -510,7 +530,6 @@ public class CreateProduct extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_hour;
     private javax.swing.JTextField jTextField_minut;
     private javax.swing.JTextField jTextField_mohnt;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton_tilbage;
     // End of variables declaration//GEN-END:variables
 }

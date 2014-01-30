@@ -7,6 +7,8 @@ package view;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
@@ -14,6 +16,7 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import model.*;
 import utility.CardHandler;
 
@@ -29,6 +32,7 @@ public class MainFrame1 extends javax.swing.JFrame {
     private User buyer;
     private AuctionSiden as;
     private CreateProduct cp;
+    private HovdePanel hp;
 
     public static final String HOVEDPANEL = "hp";
     public static final String AUCTIONSIDE = "as";
@@ -45,11 +49,12 @@ public class MainFrame1 extends javax.swing.JFrame {
         setSize(new Dimension(750, 600));
         ch = new CardHandler(cl, jPanel1, this);
         addPages();
+//        
 
     }
 
     public void addPages() {
-        HovdePanel hp = new HovdePanel(auctionsList, buyer, this);
+        hp = new HovdePanel(auctionsList, buyer, this);
         ch.addPage(hp, HOVEDPANEL);
 
         as = new AuctionSiden(buyer, this);

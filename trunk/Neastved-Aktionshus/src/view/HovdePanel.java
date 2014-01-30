@@ -39,7 +39,6 @@ public class HovdePanel extends javax.swing.JPanel {
     private MainFrame1 mf;
     private boolean færdig = false;
 
-
     /**
      * Creates new form main
      */
@@ -53,7 +52,6 @@ public class HovdePanel extends javax.swing.JPanel {
 
         createPanels(auctionsListe);
         setJcombobox();
-        
 
     }
 
@@ -88,6 +86,7 @@ public class HovdePanel extends javax.swing.JPanel {
     private void setJcombobox() {
         jComboBox1.removeAllItems();
         Search search = new Search(auctionsListe);
+        jComboBox1.addItem("all auctions");
         for (Object s : search.getProdukt()) {
             jComboBox1.addItem(s);
         }
@@ -127,15 +126,20 @@ public class HovdePanel extends javax.swing.JPanel {
                         }
                     }
                     break;
+                case "all auctions":
+
+                    if (auction.getLatestBid() <= MaxPrice) {
+                        al.add(auction);
+
+                    }
+                break;
+                    
                 default:
                     al = auctionsListe;
                     break;
             }
         }
-        if (al.isEmpty()) {
 
-            throw new Exception("Beløbet er for småt");
-        }
         jPanel_SamletAktion.removeAll();
         createPanels(al);
         jPanel_SamletAktion.updateUI();
@@ -144,15 +148,19 @@ public class HovdePanel extends javax.swing.JPanel {
     }
 
     public void update() {
+        maxPrice = jTextField_pris.getText();
+        if ("".equals(maxPrice) || "0".equals(maxPrice)) {
+            maxPrice = "10000000";
+        }
         try {
-            getSpecificAuction("hej");
+            String selectedItem = (String) jComboBox1.getSelectedItem();
+            MaxPrice = Double.parseDouble(maxPrice);
+            getSpecificAuction(selectedItem);
         } catch (Exception ex) {
             Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,7 +174,6 @@ public class HovdePanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel_SamletAktion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton_tilbage = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jTextField_pris = new javax.swing.JTextField();
@@ -190,13 +197,6 @@ public class HovdePanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Næstved Aktionshus");
-
-        jButton_tilbage.setText("Anullere Søgningen");
-        jButton_tilbage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_tilbageActionPerformed(evt);
-            }
-        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Type:" }));
 
@@ -233,12 +233,11 @@ public class HovdePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton_tilbage, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jTextField_pris)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -259,19 +258,11 @@ public class HovdePanel extends javax.swing.JPanel {
                         .addComponent(jTextField_pris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_tilbage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
-                        .addGap(24, 24, 24))))
+                        .addGap(19, 19, 19))))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton_tilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_tilbageActionPerformed
-        update();
-
-
-    }//GEN-LAST:event_jButton_tilbageActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         maxPrice = jTextField_pris.getText();
@@ -302,7 +293,6 @@ public class HovdePanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton_tilbage;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

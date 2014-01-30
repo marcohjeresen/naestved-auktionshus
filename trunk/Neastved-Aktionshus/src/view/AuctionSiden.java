@@ -7,12 +7,15 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import model.Auction;
 import model.Bid;
 import model.Furniture;
@@ -48,9 +51,17 @@ public class AuctionSiden extends javax.swing.JPanel {
         this.akt = akt;
         product = akt.getProduct();
         size = 5;
-        
+        Timer timer = new Timer(250, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                setLatestBid();
+            }
+
+        });
+        timer.start();
         fillLabels();
-        updateBid();
+
     }
 
     private void removeLabels() {
@@ -79,8 +90,8 @@ public class AuctionSiden extends javax.swing.JPanel {
         removeLabels();
         setLatestBid();
         jLabel_sælger.setText("Sælger: " + akt.getUser().getName());
-        jLabel_sælgerAdresse.setText("Adresse: "+ akt.getUser().getAddress());
-        jLabel_sælgerNummer.setText("Nummer: "+akt.getUser().getPhoneNumber());
+        jLabel_sælgerAdresse.setText("Adresse: " + akt.getUser().getAddress());
+        jLabel_sælgerNummer.setText("Nummer: " + akt.getUser().getPhoneNumber());
         jLabel2.setText("Title: " + product.getTitle());
         String ntime = dateFormat(akt.getTime());
         jLabel1_Sluttidspunkt.setText("Ends: " + ntime);
@@ -167,20 +178,7 @@ public class AuctionSiden extends javax.swing.JPanel {
         return str;
     }
 
-    public void updateBid() {
-        final java.util.Timer timer;
-        timer = new java.util.Timer(true);
-        timer.schedule(new TimerTask() {
-
-            @Override
-            public void run() {
-                setLatestBid();
-            }
-
-        }, 100, 100);
-
-    }
-
+//    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
