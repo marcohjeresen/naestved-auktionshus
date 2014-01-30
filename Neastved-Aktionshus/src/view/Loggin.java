@@ -157,8 +157,24 @@ public class Loggin extends javax.swing.JFrame {
         });
 
         jTextField2.setText("jTextField2");
+        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField2FocusLost(evt);
+            }
+        });
 
         jTextField1.setText("jTextField1");
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
 
         jButton_opretloggin.setText("Login");
         jButton_opretloggin.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +184,14 @@ public class Loggin extends javax.swing.JFrame {
         });
 
         jTextField3.setText("jTextField3");
+        jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField3FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField3FocusLost(evt);
+            }
+        });
 
         jLabel_brugeropret.setText("Brugeroprettelse");
 
@@ -253,6 +277,36 @@ public class Loggin extends javax.swing.JFrame {
         setCombobox();
          System.out.println("ap");
     }//GEN-LAST:event_jComboBox1FocusGained
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        if (jTextField1.getText().isEmpty()) {
+            jTextField1.setText("Navn: ");
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
+        jTextField2.setText("");
+    }//GEN-LAST:event_jTextField2FocusGained
+
+    private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+       if (jTextField2.getText().isEmpty()) {
+            jTextField2.setText("Adresse: ");
+        }
+    }//GEN-LAST:event_jTextField2FocusLost
+
+    private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
+        jTextField3.setText("");
+    }//GEN-LAST:event_jTextField3FocusGained
+
+    private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
+        if (jTextField3.getText().isEmpty()) {
+            jTextField3.setText("Telefon: ");
+        }
+    }//GEN-LAST:event_jTextField3FocusLost
 
     /**
      * @param args the command line arguments

@@ -159,41 +159,65 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField1FocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField2"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField2FocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField3">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField3"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField3FocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField4">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField4"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField4FocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField5">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField5"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField5FocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField6">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField6"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField6FocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField7">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField7"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField7FocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField8">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField8"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField8FocusGained"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -207,6 +231,10 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextArea1FocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextArea1FocusLost"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -230,6 +258,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField9"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField9FocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -246,30 +277,44 @@
         <Property name="text" type="java.lang.String" value="YYYY"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_YearActionPerformed"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_YearFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_YearFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_mohnt">
       <Properties>
         <Property name="text" type="java.lang.String" value="MM"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_mohntFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_mohntFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_date">
       <Properties>
         <Property name="text" type="java.lang.String" value="DD"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_dateFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_dateFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_minut">
       <Properties>
         <Property name="text" type="java.lang.String" value="Min"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_minutFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_minutFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_hour">
       <Properties>
         <Property name="text" type="java.lang.String" value="24"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_hourActionPerformed"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_hourFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField_hourFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
