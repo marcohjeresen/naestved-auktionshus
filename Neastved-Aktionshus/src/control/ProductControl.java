@@ -38,7 +38,6 @@ public class ProductControl {
     private String size;
 
     public ProductControl() {
-
     }
     
     public Wine createWine(){
@@ -139,6 +138,4 @@ public class ProductControl {
     public void setSize(String size) {
         this.size = size;
     }
-    
-
 }

@@ -43,7 +43,6 @@ public class AuctionControl {
             max = Integer.parseInt(maxPrice);
             if (max == 0) {
                 max = 10000000;
-                
             }
         }catch (NumberFormatException ex) {
             max = 10000000;
@@ -84,7 +83,6 @@ public class AuctionControl {
 
                     if (auction.getLatestBid() <= max) {
                         al.add(auction);
-
                     }
                 break;
                     
@@ -93,17 +91,11 @@ public class AuctionControl {
                     break;
             }
         }
-
-        
-        
-        
         return al;
     }
     
     public void createAuction(Product p, User u, int startbid, Date time){
         Auction a = new Auction(p, u, startbid, time);
         auctionlist.add(a);
-        
     }
-    
 }

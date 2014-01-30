@@ -27,7 +27,6 @@ public class Loggin extends javax.swing.JFrame {
     private ArrayList<User> userList;
     private AuctionControl ac;
     private User buyer;
-//    private Timer timer;
     private boolean running;
 
     /**
@@ -42,8 +41,6 @@ public class Loggin extends javax.swing.JFrame {
         this.ac = ac;
         jComboBox1.removeAllItems();
         setCombobox();
-//      
-
     }
 
     public void setCombobox() {
@@ -62,7 +59,6 @@ public class Loggin extends javax.swing.JFrame {
         jButton_fortryd.setVisible(false);
         jComboBox1.setEnabled(true);
         jButton_login.setEnabled(true);
-
     }
 
     private void setTextfeid() {
@@ -74,11 +70,9 @@ public class Loggin extends javax.swing.JFrame {
         jComboBox1.setEnabled(false);
         jButton_login.setEnabled(false);
         jButton_fortryd.setVisible(true);
-
         jTextField1.setText("Navn: ");
         jTextField2.setText("Adresse: ");
         jTextField3.setText("Telefonnummer: ");
-
         repaint();
     }
 
@@ -87,19 +81,15 @@ public class Loggin extends javax.swing.JFrame {
         String address;
         int phoneNumber;
         try {
-
             name = jTextField1.getText();
             address = jTextField2.getText();
             phoneNumber = Integer.parseInt(jTextField3.getText());
-
             User u = new User(name, address, phoneNumber);
             userList.add(u);
             buyer = u;
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Telefon nummeret kan ikke være tom eller bokstaver");
         }
-
     }
 
     public void getCombobox() {
@@ -114,9 +104,7 @@ public class Loggin extends javax.swing.JFrame {
 
         MainFrame1 mf = new MainFrame1(ac, buyer);
         mf.setVisible(true);
-        
         this.dispose();
-       
     }
     
     
@@ -240,24 +228,17 @@ public class Loggin extends javax.swing.JFrame {
     private void jButton_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_loginActionPerformed
         getCombobox();
         login(buyer);
-//        timer.stop();
-
     }//GEN-LAST:event_jButton_loginActionPerformed
 
     private void jButton_opretActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_opretActionPerformed
         setTextfeid();
-
     }//GEN-LAST:event_jButton_opretActionPerformed
 
     private void jButton_opretlogginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_opretlogginActionPerformed
         CreateBuyer();
-
         if (buyer != null) {
             login(buyer);
-//            timer.stop();
         }
-
-
     }//GEN-LAST:event_jButton_opretlogginActionPerformed
 
     private void jButton_fortrydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_fortrydActionPerformed

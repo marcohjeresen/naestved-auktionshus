@@ -51,7 +51,6 @@ public class CardHandler {
             case "cu":
                 frame.setBounds(0, 0, 200, 200);
                 break;
-
         }
         main.revalidate();
     }

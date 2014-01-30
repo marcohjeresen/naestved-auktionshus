@@ -57,11 +57,9 @@ public class AuctionSiden extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent ae) {
                 setLatestBid();
             }
-
         });
         timer.start();
         fillLabels();
-
     }
 
     private void removeLabels() {
@@ -82,7 +80,6 @@ public class AuctionSiden extends javax.swing.JPanel {
             jLabel8.setVisible(false);
             jLabel9.setVisible(false);
             jLabel10.setVisible(false);
-
         }
     }
 
@@ -110,7 +107,6 @@ public class AuctionSiden extends javax.swing.JPanel {
             img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel1.getWidth(), -1, 0);
             icon = new ImageIcon(img);
             jLabel1.setIcon(icon);
-
         }
 
         if (product instanceof Painting) {
@@ -151,9 +147,7 @@ public class AuctionSiden extends javax.swing.JPanel {
             jLabel3.setText("Matrialer: " + f.getMaterials());
             jLabel4.setText("Dimensioner: " + f.getDimensions());
             jLabel5.setText("Beskrivelse: " + f.getDescription());
-
         }
-
     }
 
     public void setLatestBid() {
@@ -363,7 +357,6 @@ public class AuctionSiden extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_bydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bydActionPerformed
-
         try {
             int bid = Integer.parseInt(jTextField1.getText());
             int currentBid = (int) akt.getLatestBid();

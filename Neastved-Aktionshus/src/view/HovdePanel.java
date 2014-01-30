@@ -35,8 +35,6 @@ public class HovdePanel extends javax.swing.JPanel {
     private int i;
     private Auction at;
     private Search search;
-    
-    
     private MainFrame1 mf;
     private boolean færdig = false;
 
@@ -52,7 +50,6 @@ public class HovdePanel extends javax.swing.JPanel {
         this.mf = mf;
         createPanels(ac.getAuctionlist());
         setJcombobox();
-
     }
 
     private void createPanels(ArrayList<Auction> auctionsLis) {
@@ -221,9 +218,7 @@ public class HovdePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
         mf.getCardHandler().show(MainFrame1.CREATEPRODUCT);
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

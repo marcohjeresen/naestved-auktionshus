@@ -19,7 +19,6 @@ import view.Loggin;
  */
 public class Main {
     
-
     public static void main(String[] args) {
         User Kurt = new User("Kurt", "Parkvej 170", 24243546);
         User Bent = new User("Bent", "Nøregade", 464646464);
@@ -32,7 +31,6 @@ public class Main {
         
         Calendar cal = Calendar.getInstance();
         cal.set(2014, 01, 20, 16, 30);
-        
 
         String manufacturer = "ItalieWine";
         String country = "Italie";
@@ -154,18 +152,5 @@ public class Main {
         
         Loggin login2 = new Loggin(userList, ac);
         login2.setVisible(true);
-        
-        
-            
-                
-        
-        
-        
-        
     };
-    
-    
-    
-    
-        
 }

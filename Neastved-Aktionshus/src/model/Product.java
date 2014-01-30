@@ -54,5 +54,4 @@ public class Product {
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
     }
-
 }

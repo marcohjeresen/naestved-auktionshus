@@ -44,7 +44,4 @@ private int phoneNumber;
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-
-
 }
