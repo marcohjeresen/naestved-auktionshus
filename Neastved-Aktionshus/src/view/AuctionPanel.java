@@ -103,10 +103,7 @@ public class AuctionPanel extends javax.swing.JPanel {
     }
     public void insertPic(){
         
-           
-//        Image img = new ImageIcon(product.getPicturePath()).getImage();
-            
-            
+
         jLabel3.setPreferredSize(new Dimension(34, 14));
         jLabel3.setSize(148, 83);
         Image img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), 0);

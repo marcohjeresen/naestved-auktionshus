@@ -5,7 +5,8 @@
  */
 package view;
 
-import java.util.ArrayList;
+import control.AuctionControl;
+import control.ProductControl;
 import java.util.Calendar;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ import model.*;
  */
 public class CreateProduct extends javax.swing.JPanel {
 
-    private ArrayList<Auction> auctionsListe;
+    private AuctionControl ac;
     private User buyer;
     private Product product;
     private Auction akt;
@@ -28,8 +29,8 @@ public class CreateProduct extends javax.swing.JPanel {
     /**
      * Creates new form OpretProduct
      */
-    public CreateProduct(ArrayList<Auction> auctionsListe, User buyer, MainFrame1 mf) {
-        this.auctionsListe = auctionsListe;
+    public CreateProduct(AuctionControl ac, User buyer, MainFrame1 mf) {
+        this.ac = ac;
         this.buyer = buyer;
         this.mf = mf;
         picturePath = "";
@@ -142,7 +143,7 @@ public class CreateProduct extends javax.swing.JPanel {
 
     private void setJcombobox() {
         jComboBox_typer.removeAllItems();
-        Search search = new Search(auctionsListe);
+        Search search = new Search(ac.getAuctionlist());
         for (Object s : search.getProdukt()) {
             jComboBox_typer.addItem(s);
         }
@@ -166,79 +167,80 @@ public class CreateProduct extends javax.swing.JPanel {
 
             Calendar cal = Calendar.getInstance();
             cal.set(years, mothn, day, time, min);
-
-            for (Auction auction : auctionsListe) {
+ProductControl pc = new ProductControl();
+            for (Auction auction : ac.getAuctionlist()) {
                 switch (product) {
                     case "Furniture":
 
-                        String matrialer = jTextField1.getText();
-                        String dimensions = jTextField2.getText();
-                        title = (String) jComboBox_typer.getSelectedItem();
-                        estimatedPrice = Integer.parseInt(jTextField3.getText());
+                        pc.setMaterials(jTextField1.getText());
+                        pc.setDimensions(jTextField2.getText());
+                        pc.setTitle((String) jComboBox_typer.getSelectedItem());
+                        pc.setEstimatedPrice(Integer.parseInt(jTextField3.getText()));
                         minimumspris = Integer.parseInt(jTextField4.getText());
-                        description = jTextArea1.getText();
-                        Furniture f = new Furniture(matrialer, dimensions, title, description, estimatedPrice, picturePath);
-                        auction = new Auction(f, buyer, minimumspris, cal.getTime());
-                        auctionsListe.add(auction);
+                        pc.setDescription(jTextArea1.getText());
+                        pc.setPicturePath(picturePath);
+                        
+                        ac.createAuction(pc.createFurniture(), buyer, minimumspris, cal.getTime());
+                        
 
                         break;
                     case "Jewellery":
 
-                        String metal = jTextField1.getText();
-                        String gemstone = jTextField2.getText();
-                        String stamp = jTextField3.getText();
-                        title = (String) jComboBox_typer.getSelectedItem();
-                        description = jTextArea1.getText();
-                        estimatedPrice = Integer.parseInt(jTextField4.getText());
+                        pc.setMetal(jTextField1.getText());
+                        pc.setGemstone(jTextField2.getText());
+                        pc.setStamp(jTextField3.getText());
+                        pc.setTitle((String) jComboBox_typer.getSelectedItem());
+                        pc.setDescription(jTextArea1.getText());
+                        pc.setEstimatedPrice(Integer.parseInt(jTextField4.getText()));
                         minimumspris = Integer.parseInt(jTextField5.getText());
+                        pc.setPicturePath(picturePath);
 
-                        Jewellery s = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
-                        auction = new Auction(s, buyer, minimumspris, cal.getTime());
-                        auctionsListe.add(auction);
+                        
+                        ac.createAuction(pc.createJewellery(), buyer, minimumspris, cal.getTime());
 
                         break;
                     case "Painting":
 
-                        String artist = jTextField1.getText();
-                        int year = Integer.parseInt(jTextField2.getText());
-                        String style = jTextField3.getText();
-                        String size = jTextField4.getText();
+                        pc.setArtist(jTextField1.getText());
+                        pc.setYear(Integer.parseInt(jTextField2.getText()));
+                        pc.setStyle(jTextField3.getText());
+                        pc.setSize(jTextField4.getText());
                         title = (String) jComboBox_typer.getSelectedItem();
-                        description = jTextArea1.getText();
-                        estimatedPrice = Integer.parseInt(jTextField5.getText());
+                        pc.setDescription(jTextArea1.getText());
+                        pc.setEstimatedPrice(Integer.parseInt(jTextField5.getText()));
                         minimumspris = Integer.parseInt(jTextField6.getText());
+                        pc.setPicturePath(picturePath);
 
-                        Painting b = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
-                        auction = new Auction(b, buyer, minimumspris, cal.getTime());
-                        auctionsListe.add(auction);
+                        
+                        ac.createAuction(pc.createPainting(), buyer, minimumspris, cal.getTime());
 
                         break;
                     case "Wine":
 
-                        String manufacturer = jTextField1.getText();
-                        String country = jTextField2.getText();
-                        int yearOfProduction = Integer.parseInt(jTextField3.getText());
-                        String grapes = jTextField4.getText();
-                        double percent = Double.parseDouble(jTextField5.getText());
-                        double bottleSize = Double.parseDouble(jTextField6.getText());
-                        int quantity = Integer.parseInt(jTextField7.getText());
+                        pc.setManufacturer(jTextField1.getText());
+                        pc.setCountry(jTextField2.getText()); 
+                        pc.setYearOfProduction(Integer.parseInt(jTextField3.getText())); 
+                        pc.setGrapes(jTextField4.getText());
+                        pc.setPercent(Double.parseDouble(jTextField5.getText())); 
+                        pc.setBottleSize(Double.parseDouble(jTextField6.getText())); 
+                        pc.setQuantity(Integer.parseInt(jTextField7.getText()));
                         title = (String) jComboBox_typer.getSelectedItem();
-                        description = jTextArea1.getText();
-                        estimatedPrice = Integer.parseInt(jTextField8.getText());
+                        pc.setDescription(jTextArea1.getText());
+                        pc.setEstimatedPrice(Integer.parseInt(jTextField8.getText()));
                         minimumspris = Integer.parseInt(jTextField9.getText());
+                        pc.setPicturePath(picturePath);
 
-                        Wine v = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
-                        auction = new Auction(v, buyer, minimumspris, cal.getTime());
-                        auctionsListe.add(auction);
-
+                        
+                        ac.createAuction(pc.createWine(), buyer, minimumspris, cal.getTime());
                         break;
                 }
             }
             akt.updateList();
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Dato, Tid, Pris, og procenter kan ikke være bogstaver");
-        }
+            JOptionPane.showMessageDialog(this, "Dato, Tid, Pris, og procenter kan ikke være bogstaver" + ex.getLocalizedMessage());
+            ex.getLocalizedMessage();
+        } 
     }
     
     

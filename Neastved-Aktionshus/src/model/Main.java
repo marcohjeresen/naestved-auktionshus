@@ -5,6 +5,7 @@
  */
 package model;
 
+import control.AuctionControl;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -146,11 +147,12 @@ public class Main {
         auctionList.add(auk7);
         auctionList.add(auk8);
         
+        AuctionControl ac = new AuctionControl(auctionList);
         
-        Loggin login = new Loggin(userList, auctionList);
+        Loggin login = new Loggin(userList, ac);
         login.setVisible(true);
         
-        Loggin login2 = new Loggin(userList, auctionList);
+        Loggin login2 = new Loggin(userList, ac);
         login2.setVisible(true);
         
         
