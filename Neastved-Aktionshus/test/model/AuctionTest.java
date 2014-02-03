@@ -48,7 +48,8 @@ public class AuctionTest {
     }
 
     /**
-     * Test of getLatestBid method, of class Auction.
+     * Tester at getLatestBid returnere startbuddet, når der ikke er afgivet
+     * andre bud.
      */
     @Test
     public void testGetLatestBid() {
@@ -57,46 +58,48 @@ public class AuctionTest {
         double expResult = 1000.0;
         double result = instance.getLatestBid();
         assertEquals("get.latesbid retunere ikke korrekt", expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-
     }
 
+    /**
+     * Tester at getLatestBid returnere det seneste bud og ikke startbuddet, når
+     * der er afgivet andre bud.
+     */
     @Test
     public void testGetLatestBid1() {
-
+        System.out.println("getLatestBid1");
         user = new User("palle", "birkevej", 45454545);
         ArrayList<Bid> ab = new ArrayList<>();
         Bid bid = new Bid(user, Calendar.getInstance().getTime(), 1500);
-        System.out.println("getLatestBid");
         ab.add(bid);
         ac.setBidingHistory(ab);
         Auction instance = ac;
         double expResult = 1500.0;
         double result = instance.getLatestBid();
         assertEquals("get.latesbid retunere ikke korrekt", expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-
     }
 
     /**
-     * Test of setLatesBid method, of class Auction.
+     * Tester at sælgeren ikke kan byde på sin egen vare for at presse buddet op
      */
     @Test
-    public void testSetLatesBid() throws Exception {
+    public void testSetLatesBid() {
         System.out.println("setLatesBid");
         Bid bid = new Bid(user, Calendar.getInstance().getTime(), 1700);
         Auction instance = ac;
         try {
             instance.setLatesBid(bid);
             fail("sælger må ikke kunne byde på egen vare");
-
         } catch (Exception ex) {
+            // Testen består hvis den fanger en exception.
         }
     }
 
+    /**
+     * Tester at man ikke kan byde på en auktion der er slut.
+     */
     @Test
-    public void testSetLatesBid1() throws Exception {
-        System.out.println("setLatesBid");
+    public void testSetLatesBid1() {
+        System.out.println("setLatesBid1");
         Calendar cal = Calendar.getInstance();
         cal.set(2014, 02, 21, 11, 00);
         user = new User("puol", "røvvej", 25252525);
@@ -105,28 +108,33 @@ public class AuctionTest {
         try {
             instance.setLatesBid(bid);
             fail("man må ikke byde på auctioner der er slut");
-
         } catch (Exception ex) {
+            // Testen består hvis den fanger en exception.
         }
     }
 
+    /**
+     * Tester at man kan byde over startbuddet.
+     */
     @Test
-    public void testSetLatesBid2() throws Exception {
-        System.out.println("setLatesBid");
+    public void testSetLatesBid2() {
+        System.out.println("setLatesBid2");
         user = new User("puol", "røvvej", 25252525);
         Bid bid = new Bid(user, Calendar.getInstance().getTime(), 1700);
         Auction instance = ac;
         try {
             instance.setLatesBid(bid);
-
         } catch (Exception ex) {
             fail("Buddet skal være højere end startbuddet.");
         }
     }
 
+    /**
+     * Tester at man kan byde over det seneste bud.
+     */
     @Test
-    public void testSetLatesBid3() throws Exception {
-        System.out.println("setLatesBid");
+    public void testSetLatesBid3() {
+        System.out.println("setLatesBid3");
         user = new User("palle", "birkevej", 45454545);
         ArrayList<Bid> ab = new ArrayList<>();
         Bid bid = new Bid(user, Calendar.getInstance().getTime(), 1500);
@@ -137,24 +145,64 @@ public class AuctionTest {
         Auction instance = ac;
         try {
             instance.setLatesBid(bid1);
-
         } catch (Exception ex) {
             fail("Buddet skal være højere end startbuddet.");
         }
     }
 
+    /**
+     * Tester at man ikke kan byde med et negativt beløb.
+     */
     @Test
-    public void testSetLatesBid4() throws Exception {
-        System.out.println("setLatesBid");
+    public void testSetLatesBid4() {
+        System.out.println("setLatesBid4");
         user = new User("puol", "røvvej", 25252525);
         Bid bid = new Bid(user, Calendar.getInstance().getTime(), -170000);
         Auction instance = ac;
         try {
             instance.setLatesBid(bid);
             fail("Buddet skal være højere end startbuddet.");
-
         } catch (Exception ex) {
+            // Testen består hvis den fanger en exception.
+        }
+    }
 
+    /**
+     * Tester at man ikke kan byde under startbuddet.
+     */
+    @Test
+    public void testSetLatesBid5() {
+        System.out.println("setLatesBid5");
+        user = new User("puol", "røvvej", 25252525);
+        Bid bid = new Bid(user, Calendar.getInstance().getTime(), 500);
+        Auction instance = ac;
+        try {
+            instance.setLatesBid(bid);
+            fail("Buddet skal være højere end startbuddet.");
+        } catch (Exception ex) {
+            // Testen består hvis den fanger en exception.
+        }
+    }
+
+    /**
+     * Tester at man ikke kan byde under det seneste bud.
+     */
+    @Test
+    public void testSetLatesBid6() {
+        System.out.println("setLatesBid6");
+        user = new User("palle", "birkevej", 45454545);
+        ArrayList<Bid> ab = new ArrayList<>();
+        Bid bid = new Bid(user, Calendar.getInstance().getTime(), 1500);
+        ab.add(bid);
+        user = new User("puol", "røvvej", 25252525);
+        Bid bid1 = new Bid(user, Calendar.getInstance().getTime(), 1250);
+        ac.setBidingHistory(ab);
+        Auction instance = ac;
+        try {
+            instance.setLatesBid(bid1);
+            fail("Buddet skal være højere end det seneste bud.");
+        } catch (Exception ex) {
+            // Testen består hvis den fanger en exception.
         }
     }
 }
