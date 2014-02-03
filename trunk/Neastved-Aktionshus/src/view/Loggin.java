@@ -6,16 +6,9 @@
 package view;
 
 import control.AuctionControl;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import control.ListenerControl;
 import java.util.ArrayList;
-import java.util.TimerTask;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
-import model.Auction;
-import model.Search;
 import model.User;
 
 /**
@@ -26,19 +19,21 @@ public class Loggin extends javax.swing.JFrame {
 
     private ArrayList<User> userList;
     private AuctionControl ac;
+    private ListenerControl lc;
     private User buyer;
     private boolean running;
 
     /**
      * Creates new form Loggin
      */
-    public Loggin(ArrayList<User> userList, AuctionControl ac) {
+    public Loggin(ArrayList<User> userList, AuctionControl ac, ListenerControl lc) {
         buyer = null;
         running = true;
         initComponents();
         removeField();
         this.userList = userList;
         this.ac = ac;
+        this.lc = lc;
         jComboBox1.removeAllItems();
         setCombobox();
     }
@@ -87,7 +82,7 @@ public class Loggin extends javax.swing.JFrame {
             User u = new User(name, address, phoneNumber);
             userList.add(u);
             buyer = u;
-        } catch (Exception ex) {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Telefon nummeret kan ikke være tom eller bokstaver");
         }
     }
@@ -102,12 +97,10 @@ public class Loggin extends javax.swing.JFrame {
 
     public void login(User buyer) {
 
-        MainFrame1 mf = new MainFrame1(ac, buyer);
+        MainFrame1 mf = new MainFrame1(ac, buyer, lc);
         mf.setVisible(true);
         this.dispose();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -270,7 +263,7 @@ public class Loggin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_fortrydActionPerformed
 
     private void jComboBox1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseEntered
-      
+
     }//GEN-LAST:event_jComboBox1MouseEntered
 
     private void jComboBox1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusGained
@@ -293,7 +286,7 @@ public class Loggin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2FocusGained
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
-       if (jTextField2.getText().isEmpty()) {
+        if (jTextField2.getText().isEmpty()) {
             jTextField2.setText("Adresse: ");
         }
     }//GEN-LAST:event_jTextField2FocusLost

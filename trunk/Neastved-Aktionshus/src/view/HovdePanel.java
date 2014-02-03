@@ -7,21 +7,13 @@ package view;
 
 import control.AuctionControl;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 import model.Auction;
-import model.Furniture;
-import model.Jewellery;
-import model.Painting;
 import model.Search;
 import model.User;
-import model.Wine;
 
 /**
  *
@@ -67,6 +59,7 @@ public class HovdePanel extends javax.swing.JPanel {
             ap.setVisible(true);
             height = ap.getHeight();
             width = ap.getWidth();
+            apListe.add(ap);
         }
         if (auctionsLis.size() > 4) {
             height *= auctionsLis.size();
@@ -105,6 +98,11 @@ public class HovdePanel extends javax.swing.JPanel {
         }
     }
     
+    public void setLatestBid(){
+        for (AuctionPanel auctionPanel : apListe) {
+            auctionPanel.setLatestBid();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
