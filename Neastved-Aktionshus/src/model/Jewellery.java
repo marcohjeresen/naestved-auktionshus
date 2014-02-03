@@ -9,7 +9,7 @@ package model;
  * @author Madsen
  */
 public class Jewellery extends Product {
-    
+
     private String metal;
     private String gemstone;
     private String stamp;

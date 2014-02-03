@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 /**
@@ -11,9 +10,10 @@ package model;
  * @author Dennis
  */
 public class User {
-private String name;
-private String address;
-private int phoneNumber;
+
+    private String name;
+    private String address;
+    private int phoneNumber;
 
     public User(String name, String address, int phoneNumber) {
         this.name = name;

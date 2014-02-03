@@ -4,12 +4,8 @@
  */
 package model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import javax.swing.Timer;
 import view.*;
 
 /**
@@ -44,7 +40,7 @@ public class Auction {
     }
 
     public void setLatesBid(Bid bid) throws Exception {
-        
+
         if (getUser().getName().equals(bid.getUser().getName())) {
             throw new Exception("Sælger kan ikke byde");
         } else {
@@ -61,8 +57,8 @@ public class Auction {
             }
         }
     }
-    
-    public void updateList(){
+
+    public void updateList() {
         hp.update();
     }
 

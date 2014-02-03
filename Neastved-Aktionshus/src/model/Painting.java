@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 /**
  *
  * @author markh_000
  */
-public class Painting extends Product{
+public class Painting extends Product {
 
     private String artist;
     private int year;

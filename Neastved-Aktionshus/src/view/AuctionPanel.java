@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
 
 import java.awt.Dimension;
@@ -12,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import model.*;
@@ -22,6 +20,7 @@ import model.*;
  * @author markh_000
  */
 public class AuctionPanel extends javax.swing.JPanel {
+
     private Auction akt;
     private Product product;
     private MainFrame1 mf;
@@ -30,7 +29,7 @@ public class AuctionPanel extends javax.swing.JPanel {
      * Creates new form AuctionPanel
      */
     public AuctionPanel(Auction akt, MainFrame1 mf) {
-        
+
         initComponents();
         this.akt = akt;
         this.mf = mf;
@@ -46,62 +45,63 @@ public class AuctionPanel extends javax.swing.JPanel {
         });
         timer.start();
     }
-    
-    private void removeLabels(){
+
+    private void removeLabels() {
         if (product instanceof Painting) {
             jLabel_ekstra.setVisible(false);
-            
-        }else if(product instanceof Furniture || product instanceof Jewellery ){
+
+        } else if (product instanceof Furniture || product instanceof Jewellery) {
             jLabel_flaksestøøresle.setVisible(false);
             jLabel_year.setVisible(false);
             jLabel_ekstra.setVisible(false);
         }
     }
-    private void fillLabels(){
+
+    private void fillLabels() {
         removeLabels();
         setLatestBid();
         insertPic();
-        
+
         jLabel_Titel.setText("Title: " + product.getTitle());
         String ntime = dateFormat(akt.getTime());
         jLabel_Ends.setText("Ends: " + ntime);
-        jLabel_Estimere.setText("Estimated Value: "+ product.getEstimatedPrice());
-        
+        jLabel_Estimere.setText("Estimated Value: " + product.getEstimatedPrice());
+
         if (product instanceof Painting) {
-            Painting p = (Painting)product;
-            jLabel_Artist.setText("Artist: "+ p.getArtist());
-            jLabel_flaksestøøresle.setText("Year: "+ p.getYear());
-            jLabel_year.setText("Beskrivelse: "+ p.getDescription());
-         
-        }else if(product instanceof Wine){
-            Wine w = (Wine)product;
+            Painting p = (Painting) product;
+            jLabel_Artist.setText("Artist: " + p.getArtist());
+            jLabel_flaksestøøresle.setText("Year: " + p.getYear());
+            jLabel_year.setText("Beskrivelse: " + p.getDescription());
+
+        } else if (product instanceof Wine) {
+            Wine w = (Wine) product;
             jLabel_Artist.setText("Quantity: " + w.getQuantity());
-            jLabel_flaksestøøresle.setText("Bottle Size: "+ w.getBottleSize() + "L.");
-            jLabel_year.setText("Year: "+ w.getYearOfProduction());
+            jLabel_flaksestøøresle.setText("Bottle Size: " + w.getBottleSize() + "L.");
+            jLabel_year.setText("Year: " + w.getYearOfProduction());
             jLabel_ekstra.setText("Beskrivelse: " + w.getDescription());
-            
-        }else if (product instanceof Furniture) {
-            Furniture f =(Furniture)product;
+
+        } else if (product instanceof Furniture) {
+            Furniture f = (Furniture) product;
             jLabel_Artist.setText("Beskrivelse: " + f.getDescription());
-            
-        }else if (product instanceof Jewellery) {
+
+        } else if (product instanceof Jewellery) {
             Jewellery j = (Jewellery) product;
             jLabel_Artist.setText("Beskrivelse: " + j.getDescription());
         }
     }
-    
-    public void setLatestBid(){
-        jLabel_sisdtebud.setText("Latest Bid: "+ akt.getLatestBid());
+
+    public void setLatestBid() {
+        jLabel_sisdtebud.setText("Latest Bid: " + akt.getLatestBid());
     }
-    
-    private String dateFormat(Date date){
+
+    private String dateFormat(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM-YYYY HH:mm");
         String str = sdf.format(date);
         return str;
     }
-    
-    public void insertPic(){
-        
+
+    public void insertPic() {
+
         jLabel3.setPreferredSize(new Dimension(34, 14));
         jLabel3.setSize(148, 83);
         Image img = (new ImageIcon(product.getPicturePath())).getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), 0);
@@ -118,7 +118,6 @@ public class AuctionPanel extends javax.swing.JPanel {
             jLabel3.setIcon(icon);
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
