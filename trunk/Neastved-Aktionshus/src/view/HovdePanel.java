@@ -92,13 +92,13 @@ public class HovdePanel extends javax.swing.JPanel {
     public void update() {
         try {
             String selectedItem = (String) jComboBox1.getSelectedItem();
-            getSpecificAuction(selectedItem , jTextField_pris.getText());
+            getSpecificAuction(selectedItem, jTextField_pris.getText());
         } catch (Exception ex) {
             Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void setLatestBid(){
+
+    public void setLatestBid() {
         for (AuctionPanel auctionPanel : apListe) {
             auctionPanel.setLatestBid();
         }
@@ -210,7 +210,7 @@ public class HovdePanel extends javax.swing.JPanel {
         String selectedItem = (String) jComboBox1.getSelectedItem();
         try {
             getSpecificAuction(selectedItem, jTextField_pris.getText());
-        }  catch (Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.Date;
@@ -13,6 +12,7 @@ import java.util.Date;
  * @author markh_000
  */
 public class Bid {
+
     private User user;
     private Date time;
     private int amount;

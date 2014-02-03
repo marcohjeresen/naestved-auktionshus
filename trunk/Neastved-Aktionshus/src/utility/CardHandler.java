@@ -43,11 +43,11 @@ public class CardHandler {
             case "hp":
                 frame.setBounds(0, 0, 910, 600);
                 break;
-                
+
             case "as":
                 frame.setBounds(0, 0, 600, 610);
                 break;
-                
+
             case "cu":
                 frame.setBounds(0, 0, 200, 200);
                 break;

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.Set;
  * @author markh_000
  */
 public class Search {
-    
+
     private HashSet<String> alist;
     private ArrayList<Auction> auctionList;
 
@@ -30,8 +29,8 @@ public class Search {
             alist.add(auctionList.get(i).getProduct().getTitle());
         }
     }
-    
-    public void setProductlist(Object object){
+
+    public void setProductlist(Object object) {
         for (int i = 0; i < auctionList.size(); i++) {
             if (!auctionList.get(i).getProduct().getTitle().equals(object)) {
                 System.out.println(auctionList.get(i).getProduct().getTitle());
@@ -39,7 +38,7 @@ public class Search {
             }
         }
     }
-    
+
     private void doCombo() {
         getProduct();
     }

@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 /**
  *
  * @author markh_000
  */
-public class Wine extends Product{
+public class Wine extends Product {
 
     public Wine(String title, String description, int estimatedPrice, String picturePath) {
         super(title, description, estimatedPrice, picturePath);
@@ -21,7 +20,7 @@ public class Wine extends Product{
     private String grapes;
     private double percent;
     private double bottleSize;
-    private int quantity ;
+    private int quantity;
 
     public Wine(String manufacturer, String country, int yearOfProduction, String grapes, double percent, double bottleSize, int quantity, String title, String description, int estimatedPrice, String picturePath) {
         super(title, description, estimatedPrice, picturePath);

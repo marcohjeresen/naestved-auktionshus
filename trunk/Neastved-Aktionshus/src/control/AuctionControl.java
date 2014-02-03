@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package control;
 
 import java.util.ArrayList;
@@ -21,22 +20,23 @@ import model.Wine;
  * @author markh_000
  */
 public class AuctionControl {
-    
+
     private ArrayList<Auction> auctionlist;
-    
-    public AuctionControl(ArrayList<Auction> auctionlist){
+
+    public AuctionControl(ArrayList<Auction> auctionlist) {
         this.auctionlist = auctionlist;
-        
+
     }
-    
+
     public ArrayList<Auction> getAuctionlist() {
         return auctionlist;
     }
-    
-    public void addAuction(Auction action){
+
+    public void addAuction(Auction action) {
         auctionlist.add(action);
     }
-    public ArrayList<Auction> getSpecificAuction(String product, String maxPrice){
+
+    public ArrayList<Auction> getSpecificAuction(String product, String maxPrice) {
         ArrayList<Auction> al = new ArrayList<>();
         int max;
         try {
@@ -44,7 +44,7 @@ public class AuctionControl {
             if (max == 0) {
                 max = 10000000;
             }
-        }catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             max = 10000000;
         }
 
@@ -84,8 +84,8 @@ public class AuctionControl {
                     if (auction.getLatestBid() <= max) {
                         al.add(auction);
                     }
-                break;
-                    
+                    break;
+
                 default:
                     al = auctionlist;
                     break;
@@ -93,8 +93,8 @@ public class AuctionControl {
         }
         return al;
     }
-    
-    public void createAuction(Product p, User u, int startbid, Date time){
+
+    public void createAuction(Product p, User u, int startbid, Date time) {
         Auction a = new Auction(p, u, startbid, time);
         auctionlist.add(a);
     }

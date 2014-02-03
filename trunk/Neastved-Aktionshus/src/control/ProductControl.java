@@ -39,22 +39,23 @@ public class ProductControl {
 
     public ProductControl() {
     }
-    
-    public Wine createWine(){
+
+    public Wine createWine() {
         Wine wine = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
         return wine;
     }
-    
-    public Furniture createFurniture(){
+
+    public Furniture createFurniture() {
         Furniture f = new Furniture(materials, dimensions, title, description, estimatedPrice, picturePath);
         return f;
     }
-    public Painting createPainting(){
+
+    public Painting createPainting() {
         Painting p = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
         return p;
     }
-    
-    public Jewellery createJewellery(){
+
+    public Jewellery createJewellery() {
         Jewellery j = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
         return j;
     }
