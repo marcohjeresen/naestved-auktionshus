@@ -44,11 +44,11 @@ public class Auction {
     }
 
     public void setLatesBid(Bid bid) throws Exception {
-        Calendar cal = Calendar.getInstance();
+        
         if (getUser().getName().equals(bid.getUser().getName())) {
             throw new Exception("Sælger kan ikke byde");
         } else {
-            if (cal.getTime().after(time)) {
+            if (bid.getTime().after(time)) {
                 throw new Exception("Auctinon er slut");
             } else {
                 if (bidingHistory.isEmpty() && bid.getAmount() > startbid) {
