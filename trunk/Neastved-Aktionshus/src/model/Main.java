@@ -7,6 +7,7 @@ package model;
 
 import control.AuctionControl;
 import java.awt.event.ActionListener;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.Timer;
@@ -31,7 +32,8 @@ public class Main {
         
         Calendar cal = Calendar.getInstance();
         cal.set(2014, 01, 20, 16, 30);
-
+        String fs = FileSystems.getDefault().getSeparator();
+     
         String manufacturer = "ItalieWine";
         String country = "Italie";
         int yearOfProduction = 1890;
@@ -42,8 +44,10 @@ public class Main {
         String title = "Wine";
         String description = "Flot Flot vin";
         int estimatedPrice = 13000;
-        String picturePath = ".\\Billeder\\glas vin.jpg";
-
+        
+   //     String picturePath = "."+"+fs+""Billeder"+fs+"glas vin.jpg";
+        String picturePath = "."+fs+"Billeder"+fs+"glas vin.jpg";
+     
         Wine vin1 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
 
         manufacturer = "Denmark Wine";
@@ -56,7 +60,7 @@ public class Main {
         title = "Wine";
         description = "Gammel vin fra mormorstid";
         estimatedPrice = 15000;
-        picturePath = ".\\Billeder\\vin.jpg";
+        picturePath = "."+fs+"Billeder"+"."+fs+"vin.jpg";
         Wine vin2 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
 
         String materials = "Bøetræ";
@@ -64,7 +68,7 @@ public class Main {
         title = "Furniture";
         description = "Arve Stykke";
         estimatedPrice = 5000;
-        picturePath = ".\\Billeder\\bøgetræ sofa.jpg";
+        picturePath = "."+fs+"Billeder"+fs+"bøgetræ sofa.jpg";
 
         Furniture møbel = new Furniture(materials, dimensions, title, description, estimatedPrice, picturePath);
 
@@ -73,7 +77,7 @@ public class Main {
         title = "Furniture";
         description = "Nedslidt sofa";
         estimatedPrice = 1000;
-        picturePath = ".\\Billeder\\Nedsligt egetræ sofa.jpg";
+        picturePath = "."+fs+"Billeder"+fs+"Nedsligt egetræ sofa.jpg";
 
         Furniture møbel2 = new Furniture(materials, dimensions, title, description, estimatedPrice, picturePath);
 
@@ -83,7 +87,7 @@ public class Main {
         title = "Jewellery";
         description = "Mega flot ring";
         estimatedPrice = 2000;
-        picturePath = ".\\Billeder\\sølvring med diamant.jpg";
+        picturePath = "."+fs+"Billeder"+fs+"sølvring med diamant.jpg";
 
         Jewellery smykke1 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
 
@@ -93,7 +97,7 @@ public class Main {
         title = "Jewellery";
         description = "Gucci ring";
         estimatedPrice = 10000;
-        picturePath = ".\\Billeder\\gucci ring med ædel.jpg";
+        picturePath = "."+fs+"Billeder"+fs+"gucci ring med ædel.jpg";
 
         Jewellery smykke2 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
 
@@ -104,7 +108,7 @@ public class Main {
         title = "Painting";
         description = "Super godt afslappede billede malet af selveste Vincent Van Gogh";
         estimatedPrice = 10000000;
-        picturePath = ".\\Billeder\\Vincent Van Gogh afslapp.jpg";
+        picturePath = "."+fs+"Billeder"+fs+"Vincent Van Gogh afslapp.jpg";
 
         Painting billede1 = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
 
@@ -115,7 +119,7 @@ public class Main {
         title = "Painting";
         description = "Masser af skov på dette mægtige billede af Vincent Van Gogh";
         estimatedPrice = 5000000;
-        picturePath = ".\\Billeder\\Vincent Van Gogh natur.jpg";
+        picturePath = "."+fs+"Billeder"+fs+"Vincent Van Gogh natur.jpg";
 
         Painting billede2 = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
         
