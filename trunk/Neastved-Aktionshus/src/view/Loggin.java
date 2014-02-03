@@ -275,7 +275,7 @@ public class Loggin extends javax.swing.JFrame {
 
     private void jComboBox1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusGained
         setCombobox();
-         System.out.println("ap");
+
     }//GEN-LAST:event_jComboBox1FocusGained
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
