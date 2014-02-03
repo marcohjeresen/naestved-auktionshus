@@ -6,20 +6,18 @@
 package model;
 
 import control.AuctionControl;
-import java.awt.event.ActionListener;
+import control.ListenerControl;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Calendar;
-import javax.swing.Timer;
 import view.Loggin;
-
 
 /**
  *
  * @author markh_000
  */
 public class Main {
-    
+
     public static void main(String[] args) {
         User Kurt = new User("Kurt", "Parkvej 170", 24243546);
         User Bent = new User("Bent", "Nøregade", 464646464);
@@ -29,11 +27,11 @@ public class Main {
         userList.add(Bent);
         userList.add(Kurt);
         userList.add(Jens);
-        
+
         Calendar cal = Calendar.getInstance();
         cal.set(2014, 01, 20, 16, 30);
         String fs = FileSystems.getDefault().getSeparator();
-     
+
         String manufacturer = "ItalieWine";
         String country = "Italie";
         int yearOfProduction = 1890;
@@ -44,10 +42,10 @@ public class Main {
         String title = "Wine";
         String description = "Flot Flot vin";
         int estimatedPrice = 13000;
-        
-   //     String picturePath = "."+"+fs+""Billeder"+fs+"glas vin.jpg";
-        String picturePath = "."+fs+"Billeder"+fs+"glas vin.jpg";
-     
+
+        //     String picturePath = "."+"+fs+""Billeder"+fs+"glas vin.jpg";
+        String picturePath = "." + fs + "Billeder" + fs + "glas vin.jpg";
+
         Wine vin1 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
 
         manufacturer = "Denmark Wine";
@@ -60,7 +58,7 @@ public class Main {
         title = "Wine";
         description = "Gammel vin fra mormorstid";
         estimatedPrice = 15000;
-        picturePath = "."+fs+"Billeder"+"."+fs+"vin.jpg";
+        picturePath = "." + fs + "Billeder" + "." + fs + "vin.jpg";
         Wine vin2 = new Wine(manufacturer, country, yearOfProduction, grapes, percent, bottleSize, quantity, title, description, estimatedPrice, picturePath);
 
         String materials = "Bøetræ";
@@ -68,7 +66,7 @@ public class Main {
         title = "Furniture";
         description = "Arve Stykke";
         estimatedPrice = 5000;
-        picturePath = "."+fs+"Billeder"+fs+"bøgetræ sofa.jpg";
+        picturePath = "." + fs + "Billeder" + fs + "bøgetræ sofa.jpg";
 
         Furniture møbel = new Furniture(materials, dimensions, title, description, estimatedPrice, picturePath);
 
@@ -77,7 +75,7 @@ public class Main {
         title = "Furniture";
         description = "Nedslidt sofa";
         estimatedPrice = 1000;
-        picturePath = "."+fs+"Billeder"+fs+"Nedsligt egetræ sofa.jpg";
+        picturePath = "." + fs + "Billeder" + fs + "Nedsligt egetræ sofa.jpg";
 
         Furniture møbel2 = new Furniture(materials, dimensions, title, description, estimatedPrice, picturePath);
 
@@ -87,7 +85,7 @@ public class Main {
         title = "Jewellery";
         description = "Mega flot ring";
         estimatedPrice = 2000;
-        picturePath = "."+fs+"Billeder"+fs+"sølvring med diamant.jpg";
+        picturePath = "." + fs + "Billeder" + fs + "sølvring med diamant.jpg";
 
         Jewellery smykke1 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
 
@@ -97,7 +95,7 @@ public class Main {
         title = "Jewellery";
         description = "Gucci ring";
         estimatedPrice = 10000;
-        picturePath = "."+fs+"Billeder"+fs+"gucci ring med ædel.jpg";
+        picturePath = "." + fs + "Billeder" + fs + "gucci ring med ædel.jpg";
 
         Jewellery smykke2 = new Jewellery(metal, gemstone, stamp, title, description, estimatedPrice, picturePath);
 
@@ -108,7 +106,7 @@ public class Main {
         title = "Painting";
         description = "Super godt afslappede billede malet af selveste Vincent Van Gogh";
         estimatedPrice = 10000000;
-        picturePath = "."+fs+"Billeder"+fs+"Vincent Van Gogh afslapp.jpg";
+        picturePath = "." + fs + "Billeder" + fs + "Vincent Van Gogh afslapp.jpg";
 
         Painting billede1 = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
 
@@ -119,10 +117,10 @@ public class Main {
         title = "Painting";
         description = "Masser af skov på dette mægtige billede af Vincent Van Gogh";
         estimatedPrice = 5000000;
-        picturePath = "."+fs+"Billeder"+fs+"Vincent Van Gogh natur.jpg";
+        picturePath = "." + fs + "Billeder" + fs + "Vincent Van Gogh natur.jpg";
 
         Painting billede2 = new Painting(artist, year, style, size, title, description, estimatedPrice, picturePath);
-        
+
         Auction auk1 = new Auction(vin1, Jens, 1000, cal.getTime());
         cal.set(2014, 00, 21, 10, 04);
         Auction auk2 = new Auction(vin2, Jens, 1500, cal.getTime());
@@ -138,8 +136,8 @@ public class Main {
         Auction auk7 = new Auction(møbel, Jens, 900, cal.getTime());
         cal.set(2014, 03, 13, 16, 00);
         Auction auk8 = new Auction(møbel2, Jens, 500, cal.getTime());
-        
-        ArrayList<Auction> auctionList =  new ArrayList<>();
+
+        ArrayList<Auction> auctionList = new ArrayList<>();
         auctionList.add(auk1);
         auctionList.add(auk2);
         auctionList.add(auk3);
@@ -148,13 +146,15 @@ public class Main {
         auctionList.add(auk6);
         auctionList.add(auk7);
         auctionList.add(auk8);
-        
+
         AuctionControl ac = new AuctionControl(auctionList);
-        
-        Loggin login = new Loggin(userList, ac);
+        ListenerControl lc = new ListenerControl();
+
+        Loggin login = new Loggin(userList, ac, lc);
         login.setVisible(true);
-        
-        Loggin login2 = new Loggin(userList, ac);
+
+        Loggin login2 = new Loggin(userList, ac, lc);
         login2.setVisible(true);
-    };
+    }
+;
 }

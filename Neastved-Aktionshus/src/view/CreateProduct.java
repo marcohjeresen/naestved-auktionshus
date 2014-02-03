@@ -228,7 +228,7 @@ public class CreateProduct extends javax.swing.JPanel {
                         break;
                 }
             }
-            akt.updateList();
+            mf.notifyListeners("New Auction");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Dato, Tid, Pris, og procenter kan ikke være bogstaver" + ex.getLocalizedMessage());
             ex.getLocalizedMessage();
@@ -616,47 +616,47 @@ public class CreateProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField_mohntFocusGained
 
     private void jTextField_mohntFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_mohntFocusLost
-       if (jTextField_mohnt.getText().isEmpty()) {
+        if (jTextField_mohnt.getText().isEmpty()) {
             jTextField_mohnt.setText("MM");
         }
     }//GEN-LAST:event_jTextField_mohntFocusLost
 
     private void jTextField_dateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_dateFocusGained
-       jTextField_date.setText("");
+        jTextField_date.setText("");
     }//GEN-LAST:event_jTextField_dateFocusGained
 
     private void jTextField_dateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_dateFocusLost
-       if (jTextField_date.getText().isEmpty()) {
+        if (jTextField_date.getText().isEmpty()) {
             jTextField_date.setText("DD");
         }
     }//GEN-LAST:event_jTextField_dateFocusLost
 
     private void jTextField_hourFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_hourFocusGained
-       jTextField_hour.setText("");
+        jTextField_hour.setText("");
     }//GEN-LAST:event_jTextField_hourFocusGained
 
     private void jTextField_hourFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_hourFocusLost
-       if (jTextField_hour.getText().isEmpty()) {
+        if (jTextField_hour.getText().isEmpty()) {
             jTextField_hour.setText("TT");
         }
     }//GEN-LAST:event_jTextField_hourFocusLost
 
     private void jTextField_minutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_minutFocusGained
-      jTextField_minut.setText("");
+        jTextField_minut.setText("");
     }//GEN-LAST:event_jTextField_minutFocusGained
 
     private void jTextField_minutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_minutFocusLost
-      if (jTextField_minut.getText().isEmpty()) {
-           jTextField_minut.setText("MM");
+        if (jTextField_minut.getText().isEmpty()) {
+            jTextField_minut.setText("MM");
         }
     }//GEN-LAST:event_jTextField_minutFocusLost
 
     private void jTextArea1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusGained
-       jTextArea1.setText("");
+        jTextArea1.setText("");
     }//GEN-LAST:event_jTextArea1FocusGained
 
     private void jTextArea1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusLost
-       if (jTextArea1.getText().isEmpty()) {
+        if (jTextArea1.getText().isEmpty()) {
             jTextArea1.setText("Bemærkning");
         }
     }//GEN-LAST:event_jTextArea1FocusLost

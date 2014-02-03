@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -51,14 +50,6 @@ public class AuctionSiden extends javax.swing.JPanel {
         this.akt = akt;
         product = akt.getProduct();
         size = 5;
-        Timer timer = new Timer(250, new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                setLatestBid();
-            }
-        });
-        timer.start();
         fillLabels();
     }
 
@@ -153,7 +144,7 @@ public class AuctionSiden extends javax.swing.JPanel {
     public void setLatestBid() {
         size = akt.getBidingHistory().size() - 5;
         jTextArea1.setText("");
-        if (akt.getBidingHistory().size() == 0) {
+        if (akt.getBidingHistory().isEmpty()) {
             jTextArea1.append("Start bud: " + akt.getLatestBid());
         } else if (akt.getBidingHistory().size() <= 5) {
             for (int i = 0; i < akt.getBidingHistory().size(); i++) {
@@ -363,6 +354,7 @@ public class AuctionSiden extends javax.swing.JPanel {
             int currentBid = (int) akt.getLatestBid();
             if (bid >= 50 + currentBid) {
                 akt.setLatesBid(new Bid(user, Calendar.getInstance().getTime(), bid));
+                mf.notifyListeners("New Bid");
             } else {
                 JOptionPane.showMessageDialog(this, "Buddet er for lavt. Fedterøv!");
             }

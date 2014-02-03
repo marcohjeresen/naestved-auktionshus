@@ -6,18 +6,11 @@
 package view;
 
 import control.AuctionControl;
+import control.ListenerControl;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
 import model.*;
 import utility.CardHandler;
 
@@ -25,11 +18,12 @@ import utility.CardHandler;
  *
  * @author markh_000
  */
-public class MainFrame1 extends javax.swing.JFrame {
+public class MainFrame1 extends javax.swing.JFrame implements ActionListener {
 
     private CardLayout cl;
     private CardHandler ch;
     private AuctionControl ac;
+    private ListenerControl lc;
     private User buyer;
     private AuctionSiden as;
     private CreateProduct cp;
@@ -40,10 +34,16 @@ public class MainFrame1 extends javax.swing.JFrame {
 
     /**
      * Creates new form main
+     *
+     * @param ac
+     * @param buyer
+     * @param lc
      */
-    public MainFrame1(AuctionControl ac, User buyer) {
+    public MainFrame1(AuctionControl ac, User buyer, ListenerControl lc) {
         this.ac = ac;
         this.buyer = buyer;
+        this.lc = lc;
+        lc.addListener(this);
         initComponents();
         setTitle(buyer.getName());
         setSize(new Dimension(750, 600));
@@ -59,7 +59,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         as = new AuctionSiden(buyer, this);
         ch.addPage(as, AUCTIONSIDE);
         ch.show(HOVEDPANEL);
-        
+
         cp = new CreateProduct(ac, buyer, this);
         ch.addPage(cp, CREATEPRODUCT);
     }
@@ -74,6 +74,10 @@ public class MainFrame1 extends javax.swing.JFrame {
 
     public void createProduct(Auction auction) {
         ac.addAuction(auction);
+    }
+
+    public void notifyListeners(String msg) {
+        lc.notifyListeners(msg);
     }
 
     /**
@@ -143,4 +147,24 @@ public class MainFrame1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "New Auction":
+                hp.update();
+                break;
+            case "New Bid":
+                as.setLatestBid();
+                hp.setLatestBid();
+                break;
+            default:
+                System.out.println("Unknown Command... Updating everything...");
+                hp.update();
+                as.setLatestBid();
+                hp.setLatestBid();
+                break;
+        }
+
+    }
 }
